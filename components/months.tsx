@@ -10,6 +10,7 @@ import {
   endOfYear,
   CalendarDate,
 } from "@internationalized/date";
+import { cn } from "@nextui-org/react";
 
 export default function MonthsSelect() {
   let date = today(getLocalTimeZone());
@@ -51,10 +52,17 @@ export default function MonthsSelect() {
     <>
       <div className="flex flex-col gap-2">
         <div className="w-[260px] border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100">
-          {/* w-full */}
           <Listbox
             disallowEmptySelection
             aria-label="Single selection example"
+            itemClasses={{
+              base: cn(
+                "inline-flex w-full max-w-md",
+                "hover:bg-content2 items-center justify-start",
+                "cursor-pointer rounded-lg gap-2 px-4 py-3 border-2 border-transparent",
+                "data-[selected=true]:border-primary",
+              ),
+            }}
             selectedKeys={selectedKeys}
             selectionMode="single"
             variant="flat"

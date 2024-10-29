@@ -5,10 +5,10 @@ import { Input } from "@nextui-org/input";
 import { Accordion, AccordionItem } from "@nextui-org/accordion";
 import React from "react";
 import { today, getLocalTimeZone } from "@internationalized/date";
+import { cn } from "@nextui-org/react";
 
 export default function YearSelect() {
   let date = today(getLocalTimeZone());
-  // const selectedValue = date.year;
   const [value, setValue] = React.useState(`${date.year}`);
   const [isSelected, setIsSelected] = React.useState(true);
   const selectedValue = React.useMemo(
@@ -26,8 +26,16 @@ export default function YearSelect() {
   return (
     <>
       <div className="flex flex-col gap-2">
-        <div className="w-[260px] border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100">
+        <div className="w-[260px] border-small rounded-small border-default-200 dark:border-default-100">
           <Checkbox
+            classNames={{
+              base: cn(
+                "inline-flex w-full max-w-md",
+                "hover:bg-content2 items-center justify-start",
+                "cursor-pointer rounded-lg gap-2 m-0 p-4 border-2 border-transparent",
+              ),
+              label: "w-full",
+            }}
             isSelected={isSelected}
             onChange={handleOpenInput}
             onValueChange={setIsSelected}

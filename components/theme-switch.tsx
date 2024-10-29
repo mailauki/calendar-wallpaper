@@ -79,3 +79,47 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
     </Component>
   );
 };
+
+// import { VisuallyHidden } from "@react-aria/visually-hidden";
+// import { Switch, SwitchProps, useSwitch } from "@nextui-org/switch";
+
+// import {
+//   SunFilledIcon as SunIcon,
+//   MoonFilledIcon as MoonIcon,
+// } from "@/components/icons";
+
+// export function ThemeSwitch(props: SwitchProps) {
+//   const {
+//     Component,
+//     slots,
+//     isSelected,
+//     getBaseProps,
+//     getInputProps,
+//     getWrapperProps,
+//   } = useSwitch(props);
+
+//   return (
+//     <div className="flex flex-col gap-2">
+//       <Component {...getBaseProps()}>
+//         <VisuallyHidden>
+//           <input {...getInputProps()} />
+//         </VisuallyHidden>
+//         <div
+//           {...getWrapperProps()}
+//           className={slots.wrapper({
+//             class: [
+//               "w-8 h-8",
+//               "flex items-center justify-center",
+//               "rounded-lg bg-default-100 hover:bg-default-200",
+//             ],
+//           })}
+//         >
+//           {isSelected ? <SunIcon /> : <MoonIcon />}
+//         </div>
+//       </Component>
+//       <p className="text-default-500 select-none">
+//         Lights: {isSelected ? "on" : "off"}
+//       </p>
+//     </div>
+//   );
+// }
