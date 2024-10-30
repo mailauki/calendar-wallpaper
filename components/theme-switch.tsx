@@ -110,16 +110,14 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
 //             class: [
 //               "w-8 h-8",
 //               "flex items-center justify-center",
-//               "rounded-lg bg-default-100 hover:bg-default-200",
+//               // "rounded-lg bg-default-100 hover:bg-default-200",
+//               "bg-transparent",
 //             ],
 //           })}
 //         >
 //           {isSelected ? <SunIcon /> : <MoonIcon />}
 //         </div>
 //       </Component>
-//       <p className="text-default-500 select-none">
-//         Lights: {isSelected ? "on" : "off"}
-//       </p>
 //     </div>
 //   );
 // }
