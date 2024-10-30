@@ -9,7 +9,6 @@ import {
   DateValue,
 } from "@internationalized/date";
 import { Calendar } from "@nextui-org/react";
-// import { Calendar, CalendarCell, CalendarGrid } from "react-aria-components";
 
 import MonthsSelect from "./months";
 import YearSelect from "./year";
@@ -75,7 +74,6 @@ export default function CalendarSelect() {
               {formatter.format(calDate.toDate(getLocalTimeZone()))}{" "}
               {selectedYear}
             </p>
-
             <Calendar
               isReadOnly
               aria-label="Date (Controlled)"
@@ -90,6 +88,16 @@ export default function CalendarSelect() {
               focusedValue={calValue}
               value={calValue}
             />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <div className="w-[260px] border rounded-lg">
+              <img
+                alt={calDate.toString()}
+                src={`/api/og?date=${calDate.toString()}`}
+              />
+            </div>
+            <p className="text-small text-default-500">Preview</p>
           </div>
         </div>
       </div>
