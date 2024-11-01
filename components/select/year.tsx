@@ -26,7 +26,7 @@ export default function YearSelect({
   }
 
   return (
-    <div className="w-[260px] border-small rounded-small border-default-200 dark:border-default-100">
+    <>
       <Checkbox
         classNames={{
           base: cn(
@@ -60,6 +60,6 @@ export default function YearSelect({
           </div>
         </AccordionItem>
       </Accordion>
-    </div>
+    </>
   );
 }
