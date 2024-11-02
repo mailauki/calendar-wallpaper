@@ -7,17 +7,21 @@ import {
   CalendarDate,
   DateValue,
 } from "@internationalized/date";
+import { Button } from "@nextui-org/react";
+import Link from "next/link";
 
 import MonthsSelect from "./select/months";
 import YearSelect from "./select/year";
 import Preview from "./preview";
 import CalendarSelect from "./select/calendar";
-import Box from "./box";
 import ColorsSelect from "./select/colors";
+import Box from "./box";
 
 export default function SelectOptions() {
+  // current date
   let date = today(getLocalTimeZone());
 
+  // selected month value
   const [selectedKeys, setSelectedKeys] = React.useState(
     new Set([`${date.month}`]),
   );
@@ -26,6 +30,7 @@ export default function SelectOptions() {
     [selectedKeys],
   );
 
+  // selected year value
   const [value, setValue] = React.useState(`${date.year}`);
   const [isSelected, setIsSelected] = React.useState(true);
   const selectedYear = React.useMemo(
@@ -33,6 +38,11 @@ export default function SelectOptions() {
     [isSelected, value],
   );
 
+  // selected colors values
+  const [bgColor, setBgColor] = React.useState("#f6f6f6");
+  const [textColor, setTextColor] = React.useState("#000000");
+
+  // date value for calendar preview
   let calDate = new CalendarDate(selectedYear, Number(selectedMonth), 1);
   let [calValue, setCalValue] = React.useState<DateValue>(calDate);
 
@@ -68,12 +78,28 @@ export default function SelectOptions() {
           </Box>
 
           <Box>
-            <ColorsSelect />
+            <ColorsSelect
+              bgColor={bgColor}
+              setBgColor={setBgColor}
+              setTextColor={setTextColor}
+              textColor={textColor}
+            />
           </Box>
 
           <Box description="Preview">
-            <Preview date={calDate} />
+            <Preview bgColor={bgColor} date={calDate} textColor={textColor} />
           </Box>
+
+          <Button
+            as={Link}
+            color="primary"
+            download={`${date.month.toString()}-${date.year.toString()}`}
+            href={`/api/og?date=${date.toString()}&bg=${bgColor}&text=${textColor}`}
+            radius="sm"
+            target="_blank"
+          >
+            Download
+          </Button>
         </div>
       </div>
     </>

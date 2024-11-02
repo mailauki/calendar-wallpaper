@@ -10,16 +10,26 @@ import {
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const date = searchParams.get("date");
+  const bg = searchParams.get("bg") || "#f6f6f6";
+  const text = searchParams.get("text") || "#000";
   const formatter = new DateFormatter("en-US", {
     month: "long",
     year: "numeric",
   });
 
   if (!date) {
-    return new ImageResponse(<>Visit with &quot;?date=vercel&quot;</>, {
-      width: 1200,
-      height: 630,
-    });
+    return new ImageResponse(
+      (
+        <>
+          Visit with &quot;?date=2020-10-01&quot; or
+          &quot;?date=2020-10-01&bg=#F6F6F6&text=#000000&quot;
+        </>
+      ),
+      {
+        width: 1200,
+        height: 630,
+      },
+    );
   }
 
   return new ImageResponse(
@@ -28,8 +38,8 @@ export async function GET(request: Request) {
         style={{
           display: "flex",
           fontSize: 60,
-          color: "black",
-          background: "#f6f6f6",
+          color: text,
+          backgroundColor: bg,
           width: "100%",
           height: "100%",
           paddingTop: 50,
@@ -38,7 +48,7 @@ export async function GET(request: Request) {
           alignItems: "center",
         }}
       >
-        <p>{formatter.format(parseDate(date).toDate(getLocalTimeZone()))}</p>
+        {formatter.format(parseDate(date).toDate(getLocalTimeZone()))}
       </div>
     ),
     {
@@ -46,4 +56,21 @@ export async function GET(request: Request) {
       height: 630,
     },
   );
+  // const image = (
+  //   <div
+  //     style={{
+  //       width: 1200,
+  //       height: 630,
+  //       display: "flex",
+  //       alignItems: "center",
+  //       justifyContent: "center",
+  //       fontSize: 60,
+  //       backgroundColor: "pink",
+  //     }}
+  //   >
+  //     <p>{formatter.format(parseDate(date).toDate(getLocalTimeZone()))}</p>
+  //   </div>
+  // );
+
+  // return new ImageResponse(image);
 }
