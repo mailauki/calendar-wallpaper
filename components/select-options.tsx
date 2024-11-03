@@ -6,8 +6,6 @@ import {
   getLocalTimeZone,
   CalendarDate,
   DateValue,
-	parseDate,
-	getDayOfWeek,
 } from "@internationalized/date";
 import { Button } from "@nextui-org/react";
 import Link from "next/link";
@@ -53,13 +51,14 @@ export default function SelectOptions() {
       setCalValue(calDate);
     }
   }, [calDate]);
-	
-	// console.log(getDayOfWeek(calDate, "en-US"));
 
   return (
     <>
-      <div className="w-full flex flex-wrap items-start justify-center gap-4">
-        <Box description={`Selected month: ${selectedMonth}`}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 auto-rows-auto gap-4">
+        <Box
+          description={`Selected month: ${selectedMonth}`}
+          span="sm:row-span-4"
+        >
           <MonthsSelect
             date={date}
             selectedKeys={selectedKeys}
@@ -67,47 +66,51 @@ export default function SelectOptions() {
           />
         </Box>
 
-        <div className="flex flex-col gap-4">
-          <Box description={`Selected year: ${selectedYear}`}>
-            <YearSelect
-              isSelected={isSelected}
-              setIsSelected={setIsSelected}
-              setValue={setValue}
-              value={value}
-            />
-          </Box>
+        <Box description={`Selected year: ${selectedYear}`}>
+          <YearSelect
+            isSelected={isSelected}
+            setIsSelected={setIsSelected}
+            setValue={setValue}
+            value={value}
+          />
+        </Box>
 
-          <Box>
-            <CalendarSelect date={calDate} value={calValue} />
-          </Box>
+        <Box>
+          <ColorsSelect
+            bgColor={bgColor}
+            setBgColor={setBgColor}
+            setTextColor={setTextColor}
+            textColor={textColor}
+          />
+        </Box>
 
-          <Box>
-            <ColorsSelect
-              bgColor={bgColor}
-              setBgColor={setBgColor}
-              setTextColor={setTextColor}
-              textColor={textColor}
-            />
-          </Box>
+        <Box span="sm:row-span-2">
+          <CalendarSelect date={calDate} value={calValue} />
+        </Box>
 
-          <Box description="Preview">
-            <Preview
-              bgColor={bgColor.split("#")[1]}
-              date={calDate}
-              textColor={textColor.split("#")[1]}
-            />
-          </Box>
+        <div className="w-full sm:col-span-2">
+          <div className="flex flex-col gap-2">
+            <div className="border-small rounded-small border-default-200 dark:border-default-100">
+              <Preview
+                bgColor={bgColor.split("#")[1]}
+                date={calDate}
+                textColor={textColor.split("#")[1]}
+              />
+            </div>
+            <p className="text-xs text-default-500">Preview</p>
 
-          <Button
-            as={Link}
-            color="primary"
-            download={`${date.month.toString()}-${date.year.toString()}`}
-            href={`/api/og?date=${date.toString()}&bg=${bgColor.split("#")[1]}&text=${textColor.split("#")[1]}`}
-            radius="sm"
-            target="_blank"
-          >
-            Download
-          </Button>
+            <Button
+              fullWidth
+              as={Link}
+              color="primary"
+              download={`${date.month.toString()}-${date.year.toString()}`}
+              href={`/api/og?date=${date.toString()}&bg=${bgColor.split("#")[1]}&text=${textColor.split("#")[1]}`}
+              radius="sm"
+              target="_blank"
+            >
+              Download
+            </Button>
+          </div>
         </div>
       </div>
     </>

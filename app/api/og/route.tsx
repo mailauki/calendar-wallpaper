@@ -112,21 +112,4 @@ export async function GET(request: Request) {
       height: 2160,
     },
   );
-  // const image = (
-  //   <div
-  //     style={{
-  //       width: 1200,
-  //       height: 630,
-  //       display: "flex",
-  //       alignItems: "center",
-  //       justifyContent: "center",
-  //       fontSize: 60,
-  //       backgroundColor: "pink",
-  //     }}
-  //   >
-  //     <p>{formatter.format(parseDate(date).toDate(getLocalTimeZone()))}</p>
-  //   </div>
-  // );
-
-  // return new ImageResponse(image);
 }

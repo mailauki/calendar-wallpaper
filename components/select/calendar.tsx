@@ -25,20 +25,22 @@ export default function CalendarSelect({
       <p className="text-lg text-center">
         {formatter.format(date.toDate(getLocalTimeZone()))}
       </p>
-      <Calendar
-        isReadOnly
-        aria-label="Date (Controlled)"
-        classNames={{
-          base: "bg-transparent shadow-none overflow-hidden",
-          headerWrapper: "hidden",
-          gridHeader: "bg-transparent shadow-none",
-          gridHeaderRow: "py-2",
-          cellButton:
-            "data-[selected=true]:bg-transparent data-[selected=true]:text-forground data-[focus-visible=true]:outline-transparent",
-        }}
-        focusedValue={value}
-        value={value}
-      />
+      <div className="flex justify-center">
+        <Calendar
+          isReadOnly
+          aria-label="Calendar"
+          classNames={{
+            base: "bg-transparent shadow-none overflow-hidden",
+            headerWrapper: "hidden",
+            gridHeader: "bg-transparent shadow-none",
+            gridHeaderRow: "py-2",
+            cellButton:
+              "data-[selected=true]:bg-transparent data-[selected=true]:text-forground data-[focus-visible=true]:outline-transparent",
+          }}
+          focusedValue={value}
+          value={value}
+        />
+      </div>
     </div>
   );
 }
