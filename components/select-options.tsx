@@ -6,6 +6,8 @@ import {
   getLocalTimeZone,
   CalendarDate,
   DateValue,
+	parseDate,
+	getDayOfWeek,
 } from "@internationalized/date";
 import { Button } from "@nextui-org/react";
 import Link from "next/link";
@@ -40,7 +42,7 @@ export default function SelectOptions() {
 
   // selected colors values
   const [bgColor, setBgColor] = React.useState("#f6f6f6");
-  const [textColor, setTextColor] = React.useState("#000000");
+  const [textColor, setTextColor] = React.useState("#000");
 
   // date value for calendar preview
   let calDate = new CalendarDate(selectedYear, Number(selectedMonth), 1);
@@ -51,6 +53,8 @@ export default function SelectOptions() {
       setCalValue(calDate);
     }
   }, [calDate]);
+	
+	// console.log(getDayOfWeek(calDate, "en-US"));
 
   return (
     <>
@@ -87,14 +91,18 @@ export default function SelectOptions() {
           </Box>
 
           <Box description="Preview">
-            <Preview bgColor={bgColor} date={calDate} textColor={textColor} />
+            <Preview
+              bgColor={bgColor.split("#")[1]}
+              date={calDate}
+              textColor={textColor.split("#")[1]}
+            />
           </Box>
 
           <Button
             as={Link}
             color="primary"
             download={`${date.month.toString()}-${date.year.toString()}`}
-            href={`/api/og?date=${date.toString()}&bg=${bgColor}&text=${textColor}`}
+            href={`/api/og?date=${date.toString()}&bg=${bgColor.split("#")[1]}&text=${textColor.split("#")[1]}`}
             radius="sm"
             target="_blank"
           >
