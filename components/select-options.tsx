@@ -13,7 +13,6 @@ import Link from "next/link";
 import MonthsSelect from "./select/months";
 import YearSelect from "./select/year";
 import Preview from "./preview";
-import CalendarSelect from "./select/calendar";
 import ColorsSelect from "./select/colors";
 import Box from "./box";
 
@@ -25,17 +24,20 @@ export default function SelectOptions() {
   const [selectedKeys, setSelectedKeys] = React.useState(
     new Set([`${date.month}`]),
   );
+  const [useCurrentMonth, setUseCurrentMonth] = React.useState(true);
   const selectedMonth = React.useMemo(
-    () => Array.from(selectedKeys).join(", "),
-    [selectedKeys],
+    // () => Array.from(selectedKeys).join(", "),
+    // [selectedKeys],
+    () => (useCurrentMonth ? date.month : Array.from(selectedKeys).join(", ")),
+    [useCurrentMonth, selectedKeys],
   );
 
   // selected year value
   const [value, setValue] = React.useState(`${date.year}`);
-  const [isSelected, setIsSelected] = React.useState(true);
+  const [useCurrentYear, setUseCurrentYear] = React.useState(true);
   const selectedYear = React.useMemo(
-    () => (isSelected ? date.year : Number(value)),
-    [isSelected, value],
+    () => (useCurrentYear ? date.year : Number(value)),
+    [useCurrentYear, value],
   );
 
   // selected colors values
@@ -54,22 +56,21 @@ export default function SelectOptions() {
 
   return (
     <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 auto-rows-auto gap-4">
-        <Box
-          description={`Selected month: ${selectedMonth}`}
-          span="sm:row-span-4"
-        >
+      <div className="flex flex-col gap-3">
+        <Box>
           <MonthsSelect
             date={date}
+            isSelected={useCurrentMonth}
             selectedKeys={selectedKeys}
+            setIsSelected={setUseCurrentMonth}
             setSelectedKeys={setSelectedKeys}
           />
         </Box>
 
-        <Box description={`Selected year: ${selectedYear}`}>
+        <Box>
           <YearSelect
-            isSelected={isSelected}
-            setIsSelected={setIsSelected}
+            isSelected={useCurrentYear}
+            setIsSelected={setUseCurrentYear}
             setValue={setValue}
             value={value}
           />
@@ -84,12 +85,12 @@ export default function SelectOptions() {
           />
         </Box>
 
-        <Box span="sm:row-span-2">
+        {/* <Box span="sm:row-span-2">
           <CalendarSelect date={calDate} value={calValue} />
-        </Box>
+        </Box> */}
 
-        <div className="w-full sm:col-span-2">
-          <div className="flex flex-col gap-2">
+        <div className="w-full ">
+          <div className="flex flex-col gap-3">
             <div className="border-small rounded-small border-default-200 dark:border-default-100">
               <Preview
                 bgColor={bgColor.split("#")[1]}
@@ -97,7 +98,7 @@ export default function SelectOptions() {
                 textColor={textColor.split("#")[1]}
               />
             </div>
-            <p className="text-xs text-default-500">Preview</p>
+            {/* <p className="text-xs text-default-500">Preview</p> */}
 
             <Button
               fullWidth
@@ -107,6 +108,7 @@ export default function SelectOptions() {
               href={`/api/og?date=${date.toString()}&bg=${bgColor.split("#")[1]}&text=${textColor.split("#")[1]}`}
               radius="sm"
               target="_blank"
+							size="lg"
             >
               Download
             </Button>
