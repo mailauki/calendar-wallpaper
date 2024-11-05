@@ -16,6 +16,9 @@ export async function GET(request: Request) {
   const date = searchParams.get("date");
   const bg = searchParams.get("bg") || "f6f6f6";
   const text = searchParams.get("text") || "000";
+  const start: 0 | 1 = (Number(searchParams.get("start")) as 0 | 1) || 0;
+  const size: "short" | "long" | "full" =
+    (searchParams.get("size") as "short" | "long" | "full") || "short";
   const formatter = new DateFormatter("en-US", {
     month: "long",
     year: "numeric",
@@ -39,15 +42,31 @@ export async function GET(request: Request) {
     );
   }
 
+  const weekdays = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Sunday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+  // const start: 0 | 1 = 1;
+  const sundayStart = weekdays.slice(0, 7);
+  const mondayStart = weekdays.slice(1);
+  const weekStart = start == 0 ? sundayStart : mondayStart;
   const daysInWeek = Array.from(Array(7), (_, index) => index);
   const weekInMonth = Array.from(
     Array(getWeeksInMonth(parseDate(date), "en-US")),
     (_, index) => index,
   );
 
-  const firstDate = parseDate(date).subtract({
-    days: getDayOfWeek(parseDate(date), "en-US"),
-  });
+  const firstDate = parseDate(date)
+    .subtract({
+      days: getDayOfWeek(parseDate(date), "en-US"),
+    })
+    .add({ days: start });
 
   return new ImageResponse(
     (
@@ -71,18 +90,32 @@ export async function GET(request: Request) {
         </p>
         <div
           style={{ opacity: 0.5 }}
-          tw="flex items-center justify-around w-1/3"
+          tw={`flex items-center justify-around ${size == "full" ? "w-1/2" : "w-1/3"}`}
         >
-          <p style={{ margin: 0 }}>S</p>
-          <p style={{ margin: 0 }}>M</p>
-          <p style={{ margin: 0 }}>T</p>
-          <p style={{ margin: 0 }}>W</p>
-          <p style={{ margin: 0 }}>T</p>
-          <p style={{ margin: 0 }}>F</p>
-          <p style={{ margin: 0 }}>S</p>
+          {weekStart.map((day) => (
+            <p
+              key={day}
+              style={{
+                margin: 0,
+                width: "10rem",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                textAlign: "center",
+                textTransform: "uppercase",
+              }}
+            >
+              {size == "short" && day.charAt(0)}
+              {size == "long" && day.substring(0, 3)}
+              {size == "full" && day}
+            </p>
+          ))}
         </div>
         {weekInMonth.map((week) => (
-          <div key={week} tw="flex items-center justify-around w-1/3">
+          <div
+            key={week}
+            tw={`flex items-center justify-around ${size == "full" ? "w-1/2" : "w-1/3"}`}
+          >
             {daysInWeek.map((day) => (
               <p
                 key={firstDate.add({ weeks: week, days: day }).toString()}
@@ -94,6 +127,11 @@ export async function GET(request: Request) {
                   )
                     ? 1
                     : 0.5,
+                  width: "10rem",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  textAlign: "center",
                 }}
               >
                 {dayFormatter.format(

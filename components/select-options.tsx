@@ -15,6 +15,7 @@ import YearSelect from "./select/year";
 import Preview from "./preview";
 import ColorsSelect from "./select/colors";
 import Box from "./box";
+import StartSelect from "./select/start";
 
 export default function SelectOptions() {
   // current date
@@ -26,8 +27,6 @@ export default function SelectOptions() {
   );
   const [useCurrentMonth, setUseCurrentMonth] = React.useState(true);
   const selectedMonth = React.useMemo(
-    // () => Array.from(selectedKeys).join(", "),
-    // [selectedKeys],
     () => (useCurrentMonth ? date.month : Array.from(selectedKeys).join(", ")),
     [useCurrentMonth, selectedKeys],
   );
@@ -53,6 +52,10 @@ export default function SelectOptions() {
       setCalValue(calDate);
     }
   }, [calDate]);
+
+  // const [start, setStart] = React.useState(true);
+  const [start, setStart] = React.useState("sunday");
+  const [weekdaySize, setWeekdaySize] = React.useState("short");
 
   return (
     <>
@@ -85,30 +88,42 @@ export default function SelectOptions() {
           />
         </Box>
 
+        <Box>
+          <StartSelect
+            // isSelected={start}
+            // setIsSelected={setStart}
+            setSize={setWeekdaySize}
+            setValue={setStart}
+            size={weekdaySize}
+            value={start}
+          />
+        </Box>
+
         {/* <Box span="sm:row-span-2">
           <CalendarSelect date={calDate} value={calValue} />
         </Box> */}
 
-        <div className="w-full ">
+        <div className="w-full">
           <div className="flex flex-col gap-3">
             <div className="border-small rounded-small border-default-200 dark:border-default-100">
               <Preview
                 bgColor={bgColor.split("#")[1]}
                 date={calDate}
+                size={weekdaySize}
+                start={start == "sunday" ? 0 : 1}
                 textColor={textColor.split("#")[1]}
               />
             </div>
-            {/* <p className="text-xs text-default-500">Preview</p> */}
 
             <Button
               fullWidth
               as={Link}
               color="primary"
               download={`${date.month.toString()}-${date.year.toString()}`}
-              href={`/api/og?date=${date.toString()}&bg=${bgColor.split("#")[1]}&text=${textColor.split("#")[1]}`}
+              href={`/api/og?date=${date.toString()}&bg=${bgColor.split("#")[1]}&text=${textColor.split("#")[1]}&start=${start == "sunday" ? 0 : 1}&size=${weekdaySize}`}
               radius="sm"
+              size="lg"
               target="_blank"
-							size="lg"
             >
               Download
             </Button>
