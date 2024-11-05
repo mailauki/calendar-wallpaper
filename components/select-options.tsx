@@ -7,14 +7,12 @@ import {
   CalendarDate,
   DateValue,
 } from "@internationalized/date";
-import { Button } from "@nextui-org/react";
-import Link from "next/link";
 
+import Preview from "./preview";
+import Box from "./box";
 import MonthsSelect from "./select/months";
 import YearSelect from "./select/year";
-import Preview from "./preview";
 import ColorsSelect from "./select/colors";
-import Box from "./box";
 import StartSelect from "./select/start";
 
 export default function SelectOptions() {
@@ -40,7 +38,7 @@ export default function SelectOptions() {
   );
 
   // selected colors values
-  const [bgColor, setBgColor] = React.useState("#f6f6f6");
+  const [bgColor, setBgColor] = React.useState("#ebebeb"); // #f6f6f6
   const [textColor, setTextColor] = React.useState("#000");
 
   // date value for calendar preview
@@ -53,13 +51,40 @@ export default function SelectOptions() {
     }
   }, [calDate]);
 
-  // const [start, setStart] = React.useState(true);
   const [start, setStart] = React.useState("sunday");
   const [weekdaySize, setWeekdaySize] = React.useState("short");
 
   return (
     <>
-      <div className="flex flex-col gap-3">
+      {/* <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+        <div className="md:flex">
+          <div className="md:shrink-0">
+            <img
+              alt="Modern building architecture"
+              className="h-48 w-full object-cover md:h-full md:w-48"
+              src="/img/building.jpg"
+            />
+          </div>
+          <div className="p-8">
+            <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
+              Company retreats
+            </div>
+            <a
+              className="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
+              href="/"
+            >
+              Incredible accommodation for your team
+            </a>
+            <p className="mt-2 text-slate-500">
+              Looking to take your team away on a retreat to enjoy awesome food
+              and take in some sunshine? We have a list of places to do just
+              that.
+            </p>
+          </div>
+        </div>
+      </div> */}
+
+      <div className="flex flex-col w-full lg:max-w-md md:max-w-md gap-4">
         <Box>
           <MonthsSelect
             date={date}
@@ -90,45 +115,26 @@ export default function SelectOptions() {
 
         <Box>
           <StartSelect
-            // isSelected={start}
-            // setIsSelected={setStart}
             setSize={setWeekdaySize}
             setValue={setStart}
             size={weekdaySize}
             value={start}
           />
         </Box>
+      </div>
 
-        {/* <Box span="sm:row-span-2">
+      {/* <Box span="sm:row-span-2">
           <CalendarSelect date={calDate} value={calValue} />
         </Box> */}
 
-        <div className="w-full">
-          <div className="flex flex-col gap-3">
-            <div className="border-small rounded-small border-default-200 dark:border-default-100">
-              <Preview
-                bgColor={bgColor.split("#")[1]}
-                date={calDate}
-                size={weekdaySize}
-                start={start == "sunday" ? 0 : 1}
-                textColor={textColor.split("#")[1]}
-              />
-            </div>
-
-            <Button
-              fullWidth
-              as={Link}
-              color="primary"
-              download={`${date.month.toString()}-${date.year.toString()}`}
-              href={`/api/og?date=${date.toString()}&bg=${bgColor.split("#")[1]}&text=${textColor.split("#")[1]}&start=${start == "sunday" ? 0 : 1}&size=${weekdaySize}`}
-              radius="sm"
-              size="lg"
-              target="_blank"
-            >
-              Download
-            </Button>
-          </div>
-        </div>
+      <div className="w-full">
+        <Preview
+          bgColor={bgColor.split("#")[1]}
+          date={calDate}
+          size={weekdaySize}
+          start={start == "sunday" ? 0 : 1}
+          textColor={textColor.split("#")[1]}
+        />
       </div>
     </>
   );

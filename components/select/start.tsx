@@ -15,7 +15,7 @@ export const Radio = (props: RadioProps) => {
       classNames={{
         base: cn(
           "inline-flex m-0 bg-content1 hover:bg-content2 items-center justify-between",
-          "flex-grow flex-row-reverse max-w-[300px] cursor-pointer rounded-lg gap-4 p-4 border-2 border-transparent",
+          "flex-grow flex-row-reverse min-w-sm max-w-full cursor-pointer rounded-lg gap-4 p-4 border-2 border-transparent",
           "data-[selected=true]:border-primary",
         ),
       }}
@@ -26,15 +26,11 @@ export const Radio = (props: RadioProps) => {
 };
 
 export default function StartSelect({
-  // isSelected,
-  // setIsSelected,
   value,
   setValue,
   size,
   setSize,
 }: {
-  // isSelected: boolean;
-  // setIsSelected: React.Dispatch<React.SetStateAction<boolean>>;
   value: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
   size: string;
@@ -42,22 +38,6 @@ export default function StartSelect({
 }) {
   return (
     <>
-      {/* <Checkbox
-        classNames={{
-          base: cn(
-            "inline-flex w-full min-w-full",
-            "hover:bg-content2 items-center justify-start",
-            "cursor-pointer rounded-lg gap-2 m-0 p-4 border-2 border-transparent",
-          ),
-          label: "w-full",
-        }}
-        isSelected={isSelected}
-        onValueChange={setIsSelected}
-      >
-        <div className="w-full flex justify-between gap-2">
-          {isSelected ? "Sunday" : "Monday"} start
-        </div>
-      </Checkbox> */}
       <RadioGroup
         className="w-full min-w-full p-4"
         label="Select weekday start"

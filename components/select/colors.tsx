@@ -1,4 +1,4 @@
-// import "@/styles/color-picker.css";
+import "@/styles/color-picker.css";
 
 import { Divider, Input } from "@nextui-org/react";
 import { getContrastRatio, getContrastColor, RGB } from "a11y-contrast-color";

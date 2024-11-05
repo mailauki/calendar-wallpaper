@@ -52,7 +52,6 @@ export async function GET(request: Request) {
     "Saturday",
     "Sunday",
   ];
-  // const start: 0 | 1 = 1;
   const sundayStart = weekdays.slice(0, 7);
   const mondayStart = weekdays.slice(1);
   const weekStart = start == 0 ? sundayStart : mondayStart;
