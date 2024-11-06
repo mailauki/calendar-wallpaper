@@ -7,6 +7,8 @@ import {
   CalendarDate,
   DateValue,
 } from "@internationalized/date";
+import { Accordion, AccordionItem } from "@nextui-org/accordion";
+import { Selection } from "@nextui-org/react";
 
 import Preview from "./preview";
 import Box from "./box";
@@ -54,6 +56,10 @@ export default function SelectOptions() {
   const [start, setStart] = React.useState("sunday");
   const [weekdaySize, setWeekdaySize] = React.useState("short");
 
+  const [accordionOpen, setAccordionOpen] = React.useState<Selection>(
+    new Set([""]),
+  );
+
   return (
     <>
       {/* <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
@@ -84,6 +90,16 @@ export default function SelectOptions() {
         </div>
       </div> */}
 
+      <div className="w-full">
+        <Preview
+          bgColor={bgColor.split("#")[1]}
+          date={calDate}
+          size={weekdaySize}
+          start={start == "sunday" ? 0 : 1}
+          textColor={textColor.split("#")[1]}
+        />
+      </div>
+
       <div className="flex flex-col w-full lg:max-w-md md:max-w-md gap-4">
         <Box>
           <MonthsSelect
@@ -104,7 +120,96 @@ export default function SelectOptions() {
           />
         </Box>
 
-        <Box>
+        <Accordion
+          // disableIndicatorAnimation
+          fullWidth
+          className="px-0 max-w-full md:max-w-md gap-4"
+          itemClasses={{
+            base: "p-0 w-full",
+            title: "font-normal text-medium",
+            trigger:
+              "px-4 py-0 data-[hover=true]:bg-default-100 rounded-lg h-14 flex items-center",
+            indicator: "text-medium",
+            content: "px-4 pb-4 text-small",
+          }}
+          selectedKeys={accordionOpen}
+          selectionMode="single"
+          showDivider={false}
+          variant="splitted"
+          onSelectionChange={setAccordionOpen}
+        >
+          {/* <AccordionItem
+          key="months"
+          aria-label="Use current month"
+          // indicator={({ isOpen }) => (
+          //   <Checkbox isDisabled isSelected={!isOpen} />
+          // )}
+          startContent={
+            <Checkbox
+              // isDisabled
+              isSelected={accordionOpen.currentKey !== "months"}
+              // onValueChange={() =>
+              //   accordionOpen.currentKey !== "months"
+              //     ? setAccordionOpen(new Set(["months"]))
+              //     : setAccordionOpen(new Set([""]))
+              // }
+              // onChange={handleOpenAccordion}
+              // onValueChange={setIsSelected}
+            />
+          }
+          title="Use current month"
+        >
+          <MonthsSelect
+            date={date}
+            isSelected={useCurrentMonth}
+            selectedKeys={selectedKeys}
+            setIsSelected={setUseCurrentMonth}
+            setSelectedKeys={setSelectedKeys}
+          />
+        </AccordionItem> */}
+          {/* <AccordionItem
+          key="years"
+          aria-label="Use current year"
+          // indicator={({ isOpen }) => (
+          //   <Checkbox isDisabled isSelected={!isOpen} />
+          // )}
+          title="Use current year"
+        >
+          <YearSelect
+            isSelected={useCurrentYear}
+            setIsSelected={setUseCurrentYear}
+            setValue={setValue}
+            value={value}
+          />
+        </AccordionItem> */}
+          <AccordionItem
+            key="colors"
+            aria-label="Select colors"
+            title="Select colors"
+          >
+            <ColorsSelect
+              bgColor={bgColor}
+              setBgColor={setBgColor}
+              setTextColor={setTextColor}
+              textColor={textColor}
+            />
+          </AccordionItem>
+          <AccordionItem
+            key="weekday"
+            aria-label="Select weekday style"
+            title="Select weekday style"
+          >
+            <StartSelect
+              setSize={setWeekdaySize}
+              setValue={setStart}
+              size={weekdaySize}
+              value={start}
+            />
+          </AccordionItem>
+        </Accordion>
+        {/* <pre>{JSON.stringify(accordionOpen, null, 2)}</pre> */}
+
+        {/* <Box>
           <ColorsSelect
             bgColor={bgColor}
             setBgColor={setBgColor}
@@ -120,22 +225,12 @@ export default function SelectOptions() {
             size={weekdaySize}
             value={start}
           />
-        </Box>
+        </Box> */}
       </div>
 
       {/* <Box span="sm:row-span-2">
           <CalendarSelect date={calDate} value={calValue} />
         </Box> */}
-
-      <div className="w-full">
-        <Preview
-          bgColor={bgColor.split("#")[1]}
-          date={calDate}
-          size={weekdaySize}
-          start={start == "sunday" ? 0 : 1}
-          textColor={textColor.split("#")[1]}
-        />
-      </div>
     </>
   );
 }

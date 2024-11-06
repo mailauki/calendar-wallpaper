@@ -32,7 +32,7 @@ export default function YearSelect({
           base: cn(
             "inline-flex w-full min-w-full",
             "hover:bg-content2 items-center justify-start",
-            "cursor-pointer rounded-lg gap-2 m-0 p-4 border-2 border-transparent",
+            "cursor-pointer rounded-medium gap-2 m-0 px-4 py-3 border-2 border-transparent",
           ),
           label: "w-full",
         }}

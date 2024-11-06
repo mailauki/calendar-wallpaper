@@ -32,12 +32,12 @@ export default function ColorsSelect({
               label: "text-xs text-default-500",
               helperWrapper: "p-0",
               mainWrapper: "gap-none",
-              inputWrapper: "rounded-b-none border-b",
+              inputWrapper: "rounded-b-none border-b py-2 px-4",
             }}
             description={
               <Input
                 classNames={{
-                  inputWrapper: "rounded-t-none border-t",
+                  inputWrapper: "rounded-t-none border-t py-2 px-4",
                 }}
                 errorMessage={`Try ${contrastBgColor}`}
                 isInvalid={contrastRatio < 4.5}
@@ -65,12 +65,12 @@ export default function ColorsSelect({
               label: "text-xs text-default-500",
               helperWrapper: "p-0",
               mainWrapper: "gap-none",
-              inputWrapper: "rounded-b-none border-b",
+              inputWrapper: "rounded-b-none border-b py-2 px-4",
             }}
             description={
               <Input
                 classNames={{
-                  inputWrapper: "rounded-t-none border-t",
+                  inputWrapper: "rounded-t-none border-t py-2 px-4",
                 }}
                 errorMessage={`Try ${contrastTextColor}`}
                 isInvalid={contrastRatio < 4.5}

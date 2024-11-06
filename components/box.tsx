@@ -1,10 +1,8 @@
-import { Card, CardBody } from "@nextui-org/react";
+import { Card } from "@nextui-org/react";
 import React from "react";
 
 export default function Box({
   children,
-  description,
-  span,
 }: {
   children: React.ReactNode;
   description?: string;
@@ -20,7 +18,7 @@ export default function Box({
     // <div className="w-full border-small rounded-small border-default-200 dark:border-default-100">
     //   {children}
     // </div>
-    <Card className="border-none" radius="sm">
+    <Card className="border-none" radius="md">
       {children}
     </Card>
   );
