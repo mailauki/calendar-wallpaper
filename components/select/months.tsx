@@ -81,11 +81,12 @@ export default function MonthsSelect({
         <div className="w-full flex justify-between gap-2">
           Use current month
           <Chip variant="flat">
-            {formatter.format(
+            {/* {formatter.format(
               date
                 .set({ month: Number(selectedKeys.values().next().value) })
                 .toDate(getLocalTimeZone()),
-            )}
+            )} */}
+            {formatter.format(date.toDate(getLocalTimeZone()))}
           </Chip>
         </div>
       </Checkbox>
@@ -95,34 +96,6 @@ export default function MonthsSelect({
           hideIndicator
           aria-label="Open other month options"
           classNames={{ trigger: "hidden", content: "mt-1" }}
-          // title={
-          //   <Checkbox
-          //     classNames={{
-          //       base: cn(
-          //         "inline-flex w-full min-w-full",
-          //         "hover:bg-content2 items-center justify-start",
-          //         "cursor-pointer rounded-lg gap-2 m-0 p-4 border-2 border-transparent",
-          //       ),
-          //       label: "w-full",
-          //     }}
-          //     isSelected={isSelected}
-          //     onChange={handleOpenAccordion}
-          //     onValueChange={setIsSelected}
-          //   >
-          //     <div className="w-full flex justify-between gap-2">
-          //       Use current month
-          //       <Chip variant="flat">
-          //         {formatter.format(
-          //           date
-          //             .set({
-          //               month: Number(selectedKeys.values().next().value),
-          //             })
-          //             .toDate(getLocalTimeZone()),
-          //         )}
-          //       </Chip>
-          //     </div>
-          //   </Checkbox>
-          // }
         >
           <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
             <Listbox

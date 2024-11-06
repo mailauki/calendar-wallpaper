@@ -7,8 +7,7 @@ import {
   CalendarDate,
   DateValue,
 } from "@internationalized/date";
-import { Accordion, AccordionItem } from "@nextui-org/accordion";
-import { Selection } from "@nextui-org/react";
+import { Tab, Tabs } from "@nextui-org/react";
 
 import Preview from "./preview";
 import Box from "./box";
@@ -28,7 +27,7 @@ export default function SelectOptions() {
   const [useCurrentMonth, setUseCurrentMonth] = React.useState(true);
   const selectedMonth = React.useMemo(
     () => (useCurrentMonth ? date.month : Array.from(selectedKeys).join(", ")),
-    [useCurrentMonth, selectedKeys],
+    [useCurrentMonth, selectedKeys, date],
   );
 
   // selected year value
@@ -36,7 +35,7 @@ export default function SelectOptions() {
   const [useCurrentYear, setUseCurrentYear] = React.useState(true);
   const selectedYear = React.useMemo(
     () => (useCurrentYear ? date.year : Number(value)),
-    [useCurrentYear, value],
+    [useCurrentYear, value, date],
   );
 
   // selected colors values
@@ -51,45 +50,17 @@ export default function SelectOptions() {
     if (calDate.month !== calValue.month || calDate.year !== calValue.year) {
       setCalValue(calDate);
     }
+    if (selectedMonth !== calDate.month)
+      calDate.set({ month: Number(selectedMonth) });
+    if (selectedYear !== calDate.year)
+      calDate.set({ year: Number(selectedYear) });
   }, [calDate]);
 
   const [start, setStart] = React.useState("sunday");
   const [weekdaySize, setWeekdaySize] = React.useState("short");
 
-  const [accordionOpen, setAccordionOpen] = React.useState<Selection>(
-    new Set([""]),
-  );
-
   return (
     <>
-      {/* <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-        <div className="md:flex">
-          <div className="md:shrink-0">
-            <img
-              alt="Modern building architecture"
-              className="h-48 w-full object-cover md:h-full md:w-48"
-              src="/img/building.jpg"
-            />
-          </div>
-          <div className="p-8">
-            <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-              Company retreats
-            </div>
-            <a
-              className="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
-              href="/"
-            >
-              Incredible accommodation for your team
-            </a>
-            <p className="mt-2 text-slate-500">
-              Looking to take your team away on a retreat to enjoy awesome food
-              and take in some sunshine? We have a list of places to do just
-              that.
-            </p>
-          </div>
-        </div>
-      </div> */}
-
       <div className="w-full">
         <Preview
           bgColor={bgColor.split("#")[1]}
@@ -101,131 +72,50 @@ export default function SelectOptions() {
       </div>
 
       <div className="flex flex-col w-full lg:max-w-md md:max-w-md gap-4">
-        <Box>
-          <MonthsSelect
-            date={date}
-            isSelected={useCurrentMonth}
-            selectedKeys={selectedKeys}
-            setIsSelected={setUseCurrentMonth}
-            setSelectedKeys={setSelectedKeys}
-          />
-        </Box>
-
-        <Box>
-          <YearSelect
-            isSelected={useCurrentYear}
-            setIsSelected={setUseCurrentYear}
-            setValue={setValue}
-            value={value}
-          />
-        </Box>
-
-        <Accordion
-          // disableIndicatorAnimation
-          fullWidth
-          className="px-0 max-w-full md:max-w-md gap-4"
-          itemClasses={{
-            base: "p-0 w-full",
-            title: "font-normal text-medium",
-            trigger:
-              "px-4 py-0 data-[hover=true]:bg-default-100 rounded-lg h-14 flex items-center",
-            indicator: "text-medium",
-            content: "px-4 pb-4 text-small",
-          }}
-          selectedKeys={accordionOpen}
-          selectionMode="single"
-          showDivider={false}
-          variant="splitted"
-          onSelectionChange={setAccordionOpen}
-        >
-          {/* <AccordionItem
-          key="months"
-          aria-label="Use current month"
-          // indicator={({ isOpen }) => (
-          //   <Checkbox isDisabled isSelected={!isOpen} />
-          // )}
-          startContent={
-            <Checkbox
-              // isDisabled
-              isSelected={accordionOpen.currentKey !== "months"}
-              // onValueChange={() =>
-              //   accordionOpen.currentKey !== "months"
-              //     ? setAccordionOpen(new Set(["months"]))
-              //     : setAccordionOpen(new Set([""]))
-              // }
-              // onChange={handleOpenAccordion}
-              // onValueChange={setIsSelected}
-            />
-          }
-          title="Use current month"
-        >
-          <MonthsSelect
-            date={date}
-            isSelected={useCurrentMonth}
-            selectedKeys={selectedKeys}
-            setIsSelected={setUseCurrentMonth}
-            setSelectedKeys={setSelectedKeys}
-          />
-        </AccordionItem> */}
-          {/* <AccordionItem
-          key="years"
-          aria-label="Use current year"
-          // indicator={({ isOpen }) => (
-          //   <Checkbox isDisabled isSelected={!isOpen} />
-          // )}
-          title="Use current year"
-        >
-          <YearSelect
-            isSelected={useCurrentYear}
-            setIsSelected={setUseCurrentYear}
-            setValue={setValue}
-            value={value}
-          />
-        </AccordionItem> */}
-          <AccordionItem
-            key="colors"
-            aria-label="Select colors"
-            title="Select colors"
-          >
-            <ColorsSelect
-              bgColor={bgColor}
-              setBgColor={setBgColor}
-              setTextColor={setTextColor}
-              textColor={textColor}
-            />
-          </AccordionItem>
-          <AccordionItem
-            key="weekday"
-            aria-label="Select weekday style"
-            title="Select weekday style"
-          >
-            <StartSelect
-              setSize={setWeekdaySize}
-              setValue={setStart}
-              size={weekdaySize}
-              value={start}
-            />
-          </AccordionItem>
-        </Accordion>
-        {/* <pre>{JSON.stringify(accordionOpen, null, 2)}</pre> */}
-
-        {/* <Box>
-          <ColorsSelect
-            bgColor={bgColor}
-            setBgColor={setBgColor}
-            setTextColor={setTextColor}
-            textColor={textColor}
-          />
-        </Box>
-
-        <Box>
-          <StartSelect
-            setSize={setWeekdaySize}
-            setValue={setStart}
-            size={weekdaySize}
-            value={start}
-          />
-        </Box> */}
+        <Tabs fullWidth aria-label="Options">
+          <Tab key="months" title="Months">
+            <Box>
+              <MonthsSelect
+                date={calDate}
+                isSelected={useCurrentMonth}
+                selectedKeys={selectedKeys}
+                setIsSelected={setUseCurrentMonth}
+                setSelectedKeys={setSelectedKeys}
+              />
+            </Box>
+          </Tab>
+          <Tab key="years" title="Years">
+            <Box>
+              <YearSelect
+                date={calDate}
+                isSelected={useCurrentYear}
+                setIsSelected={setUseCurrentYear}
+                setValue={setValue}
+                value={value}
+              />
+            </Box>
+          </Tab>
+          <Tab key="colors" title="Colors">
+            <Box>
+              <ColorsSelect
+                bgColor={bgColor}
+                setBgColor={setBgColor}
+                setTextColor={setTextColor}
+                textColor={textColor}
+              />
+            </Box>
+          </Tab>
+          <Tab key="labels" title="Labels">
+            <Box>
+              <StartSelect
+                setSize={setWeekdaySize}
+                setValue={setStart}
+                size={weekdaySize}
+                value={start}
+              />
+            </Box>
+          </Tab>
+        </Tabs>
       </div>
 
       {/* <Box span="sm:row-span-2">

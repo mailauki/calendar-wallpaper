@@ -4,14 +4,16 @@ import { Checkbox } from "@nextui-org/checkbox";
 import { Input } from "@nextui-org/input";
 import { Accordion, AccordionItem } from "@nextui-org/accordion";
 import React from "react";
-import { Chip, cn } from "@nextui-org/react";
+import { CalendarDate, Chip, cn } from "@nextui-org/react";
 
 export default function YearSelect({
+	date,
   value,
   setValue,
   isSelected,
   setIsSelected,
 }: {
+	date: CalendarDate;
   value: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
   isSelected: boolean;
@@ -42,7 +44,7 @@ export default function YearSelect({
       >
         <div className="w-full flex justify-between gap-2">
           Use current year
-          <Chip variant="flat">{value}</Chip>
+          <Chip variant="flat">{date.year}</Chip>
         </div>
       </Checkbox>
       <Accordion selectedKeys={accordionOpen}>
