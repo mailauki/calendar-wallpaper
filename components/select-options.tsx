@@ -39,8 +39,8 @@ export default function SelectOptions() {
   );
 
   // selected colors values
-  const [bgColor, setBgColor] = React.useState("#ebebeb"); // #f6f6f6
-  const [textColor, setTextColor] = React.useState("#000");
+  const [bgColor, setBgColor] = React.useState(["#ebebeb"]); // #f6f6f6
+  const [textColor, setTextColor] = React.useState("#000000");
 
   // date value for calendar preview
   let calDate = new CalendarDate(selectedYear, Number(selectedMonth), 1);
@@ -63,7 +63,7 @@ export default function SelectOptions() {
     <>
       <div className="w-full">
         <Preview
-          bgColor={bgColor.split("#")[1]}
+          bgColor={bgColor[0].split("#")[1]}
           date={calDate}
           size={weekdaySize}
           start={start == "sunday" ? 0 : 1}
@@ -71,8 +71,16 @@ export default function SelectOptions() {
         />
       </div>
 
-      <div className="flex flex-col w-full lg:max-w-md md:max-w-md gap-4">
+      <div className="flex flex-col w-full lg:max-w-md md:max-w-md">
         <Tabs fullWidth aria-label="Options">
+          <Tab key="colors" title="Colors">
+            <ColorsSelect
+              bgColor={bgColor}
+              setBgColor={setBgColor}
+              setTextColor={setTextColor}
+              textColor={textColor}
+            />
+          </Tab>
           <Tab key="months" title="Months">
             <Box>
               <MonthsSelect
@@ -92,16 +100,6 @@ export default function SelectOptions() {
                 setIsSelected={setUseCurrentYear}
                 setValue={setValue}
                 value={value}
-              />
-            </Box>
-          </Tab>
-          <Tab key="colors" title="Colors">
-            <Box>
-              <ColorsSelect
-                bgColor={bgColor}
-                setBgColor={setBgColor}
-                setTextColor={setTextColor}
-                textColor={textColor}
               />
             </Box>
           </Tab>
