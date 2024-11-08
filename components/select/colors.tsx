@@ -10,8 +10,6 @@ import {
   Tab,
   CardFooter,
 } from "@nextui-org/react";
-import { getContrastRatio, getContrastColor, RGB } from "a11y-contrast-color";
-import { hex2rgb, rgb2hex } from "@nextcss/color-tools";
 import React from "react";
 
 import ColorButton from "../button";
@@ -138,7 +136,8 @@ export default function ColorsSelect({
       text: "#000000",
     },
   ];
-	const [swap, setSwap] = React.useState(false);
+  const [swap, setSwap] = React.useState(false);
+
   // Add a new item to the array
   const addBgColor = (newItem: string) => {
     setBgColor((prevArray) => [...prevArray, newItem]);
@@ -171,8 +170,8 @@ export default function ColorsSelect({
               size="sm"
               onPress={() => {
                 setSwap(!swap);
-                // setBgColor([textColor]);
-                // setTextColor(bgColor[0]);
+                setBgColor([textColor]);
+                setTextColor(bgColor[0]);
               }}
             >
               Swap
@@ -200,7 +199,7 @@ export default function ColorsSelect({
           </CardHeader>
           <CardBody>
             <div className="flex items-center gap-3">
-              <Input
+              {/* <Input
                 className="w-40"
                 // isInvalid={contrastRatio < 4.5}
                 radius="full"
@@ -214,17 +213,22 @@ export default function ColorsSelect({
                 type="text"
                 value={textColor.toLowerCase()}
                 onValueChange={setTextColor}
+              /> */}
+              <ColorInput
+                color={textColor}
+                setColor={setTextColor}
+                showRemove={false}
               />
               {/* <p className="text-small w-2/3">Color name</p> */}
               {/* #c8cebb #c18677 */}
-              <Button
+              {/* <Button
                 radius="full"
                 size="sm"
                 variant="flat"
                 // onPress={() => console.log(textColor)}
               >
                 Copy
-              </Button>
+              </Button> */}
             </div>
 
             {/* {contrastRatio < 4.5 && (
@@ -249,6 +253,7 @@ export default function ColorsSelect({
                       color={color}
                       index={index}
                       removeColor={() => removeBgColor(index)}
+                      showRemove={bgColor.length > 1}
                       updateColor={(event: {
                         currentTarget: { value: string };
                       }) => updateBgColor(index, event.currentTarget.value)}

@@ -73,6 +73,7 @@ export default function Preview({
             color="default"
             href={`/api/og?date=${date.toString()}&bg=${bgColor}&text=${textColor}&start=${start}&size=${size}`}
             radius="full"
+            target="_blank"
             variant="light"
           >
             Preview

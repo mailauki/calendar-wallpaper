@@ -113,6 +113,11 @@ export default function SelectOptions() {
               />
             </Box>
           </Tab>
+          <Tab key="size" title="Size">
+            <Box>
+              <></>
+            </Box>
+          </Tab>
         </Tabs>
       </div>
 

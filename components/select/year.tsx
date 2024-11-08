@@ -7,13 +7,13 @@ import React from "react";
 import { CalendarDate, Chip, cn } from "@nextui-org/react";
 
 export default function YearSelect({
-	date,
+  date,
   value,
   setValue,
   isSelected,
   setIsSelected,
 }: {
-	date: CalendarDate;
+  date: CalendarDate;
   value: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
   isSelected: boolean;
@@ -22,10 +22,14 @@ export default function YearSelect({
   const [accordionOpen, setAccordionOpen] = React.useState(new Set([""]));
 
   function handleOpenAccordion() {
-    accordionOpen.has("custom-year")
+    accordionOpen.has("custom-year") || isSelected
       ? setAccordionOpen(new Set([]))
       : setAccordionOpen(new Set(["custom-year"]));
   }
+
+  React.useEffect(() => {
+    handleOpenAccordion();
+  }, [date]);
 
   return (
     <>

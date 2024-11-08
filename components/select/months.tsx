@@ -58,10 +58,14 @@ export default function MonthsSelect({
   const [accordionOpen, setAccordionOpen] = React.useState(new Set([""]));
 
   function handleOpenAccordion() {
-    accordionOpen.has("other-month")
-      ? setAccordionOpen(new Set([]))
+    accordionOpen.has("other-month") || isSelected
+      ? setAccordionOpen(new Set([""]))
       : setAccordionOpen(new Set(["other-month"]));
   }
+
+  React.useEffect(() => {
+    handleOpenAccordion();
+  }, [date]);
 
   return (
     <>
