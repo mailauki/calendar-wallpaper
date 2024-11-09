@@ -1,7 +1,6 @@
 import "@/styles/color-picker.css";
 
 import {
-  Input,
   CardBody,
   Card,
   CardHeader,
@@ -9,11 +8,14 @@ import {
   Tabs,
   Tab,
   CardFooter,
+  Chip,
 } from "@nextui-org/react";
+import { colord, extend } from "colord";
+import a11yPlugin from "colord/plugins/a11y";
 import React from "react";
+extend([a11yPlugin]);
 
 import ColorButton from "../button";
-
 import ColorInput from "../color";
 
 import { ColorProps } from "@/types";
@@ -98,6 +100,7 @@ export default function ColorsSelect({
   // const color1 = hex2rgb(bgColor[0] as string) as RGB;
   // const color2 = hex2rgb(textColor) as RGB;
   // const contrastRatio = getContrastRatio(color1, color2);
+  const isReadable = colord(textColor).isReadable(bgColor[0]);
   // const contrastColor1 = getContrastColor(color1, 4.5);
   // const contrastColor2 = getContrastColor(color2, 4.5);
   // const contrastBgColor = rgb2hex(contrastColor1 as number[]);
@@ -105,14 +108,14 @@ export default function ColorsSelect({
   const colors = [
     { bg: ["#ebebeb"], text: "#000000" },
     { bg: ["#111111"], text: "#ebebeb" },
-    { bg: ["#0061ff"], text: "#ffffff" },
-    { bg: ["#ffecd5"], text: "#02197f" }, // {bg:"#fff6eb", text: "#0433ff"}
+    { bg: ["#263e0f"], text: "#c7976f" },
+    { bg: ["#ffecd5"], text: "#02197f" },
     { bg: ["#874efe"], text: "#ffffff" },
     { bg: ["#561029"], text: "#fecb3e" },
     { bg: ["#f9d3e0"], text: "#38571a" },
     { bg: ["#450e59"], text: "#e4ef65" },
     { bg: ["#00364a"], text: "#ff9300" },
-    { bg: ["#d95000"], text: "#94e3fe" },
+    { bg: ["#831100"], text: "#d6d6d6" },
     { bg: ["#e66465", "#9198e5"], text: "#ffffff" },
     {
       bg: ["#02197f", "#9198e5", "#ffc677", "#ff8647"],
@@ -122,14 +125,14 @@ export default function ColorsSelect({
   const reverseColors = [
     { bg: ["#000000"], text: "#ebebeb" },
     { bg: ["#ebebeb"], text: "#111111" },
-    { bg: ["#ffffff"], text: "#0061ff" },
-    { bg: ["#02197f"], text: "#ffecd5" }, // {bg:"#fff6eb", text: "#0433ff"}
+    { bg: ["#c7976f"], text: "#263e0f" },
+    { bg: ["#02197f"], text: "#ffecd5" },
     { bg: ["#ffffff"], text: "#874efe" },
     { bg: ["#fecb3e"], text: "#561029" },
     { bg: ["#38571a"], text: "#f9d3e0" },
     { bg: ["#e4ef65"], text: "#450e59" },
     { bg: ["#ff9300"], text: "#00364a" },
-    { bg: ["#94e3fe"], text: "#d95000" },
+    { bg: ["#d6d6d6"], text: "#831100" },
     { bg: ["#9198e5", "#e66465"], text: "#ffffff" },
     {
       bg: ["#ff8647", "#ffc677", "#9198e5", "#02197f"],
@@ -137,11 +140,6 @@ export default function ColorsSelect({
     },
   ];
   const [swap, setSwap] = React.useState(false);
-
-  // Add a new item to the array
-  const addBgColor = (newItem: string) => {
-    setBgColor((prevArray) => [...prevArray, newItem]);
-  };
 
   // Update an item at a specific index
   const updateBgColor = (index: number, newValue: string) => {
@@ -163,7 +161,7 @@ export default function ColorsSelect({
     <>
       <div className="flex flex-col gap-4">
         <Card>
-          <CardHeader className="flex justify-between">
+          <CardHeader className="flex justify-between gap-1">
             Themes
             <Button
               radius="full"
@@ -194,54 +192,44 @@ export default function ColorsSelect({
           </CardBody>
         </Card>
         <Card>
-          <CardHeader className="flex items-center justify-between">
+          <CardHeader className="flex items-center justify-between gap-1">
             Text
+            {!isReadable && (
+              <Chip
+                className="pe-2"
+                color={bgColor.length > 1 ? "warning" : "danger"}
+                size="sm"
+                startContent={<p className="px-2">!</p>}
+                variant="flat"
+              >
+                Not readable
+              </Chip>
+            )}
           </CardHeader>
           <CardBody>
             <div className="flex items-center gap-3">
-              {/* <Input
-                className="w-40"
-                // isInvalid={contrastRatio < 4.5}
-                radius="full"
-                type="color"
-                value={textColor}
-                onValueChange={setTextColor}
-              />
-              <Input
-                // isInvalid={contrastRatio < 4.5}
-                radius="full"
-                type="text"
-                value={textColor.toLowerCase()}
-                onValueChange={setTextColor}
-              /> */}
               <ColorInput
                 color={textColor}
                 setColor={setTextColor}
                 showRemove={false}
               />
-              {/* <p className="text-small w-2/3">Color name</p> */}
-              {/* #c8cebb #c18677 */}
-              {/* <Button
-                radius="full"
-                size="sm"
-                variant="flat"
-                // onPress={() => console.log(textColor)}
-              >
-                Copy
-              </Button> */}
             </div>
-
-            {/* {contrastRatio < 4.5 && (
-              <p className="text-tiny text-danger p-2">
-                This color doesn&apos;t contrast the background enough, try{" "}
-                <b>{contrastTextColor}</b>
-              </p>
-            )} */}
           </CardBody>
         </Card>
         <Card>
-          <CardHeader className="flex items-center justify-between">
+          <CardHeader className="flex flex-col items-start justify-between gap-1">
             Background
+            {!isReadable && bgColor.length > 1 && (
+              <Chip
+                className="pe-2"
+                color="warning"
+                size="sm"
+                startContent={<p className="px-2">!</p>}
+                variant="flat"
+              >
+                Gradient backgrounds may make the calendar harder to read
+              </Chip>
+            )}
           </CardHeader>
           <CardBody>
             <Tabs fullWidth aria-label="Background options">
@@ -260,12 +248,6 @@ export default function ColorsSelect({
                     />
                   ))}
                 </div>
-                {/* {contrastRatio < 4.5 && (
-                  <p className="text-tiny text-danger p-2">
-                    This color doesn&apos;t contrast the foreground enough, try{" "}
-                    <b>{contrastBgColor}</b>
-                  </p>
-                )} */}
               </Tab>
               <Tab key="bg-image" title="Image">
                 <></>

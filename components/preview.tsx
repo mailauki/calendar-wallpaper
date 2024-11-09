@@ -4,7 +4,6 @@ import {
   Card,
   CardFooter,
   Link,
-  Image,
 } from "@nextui-org/react";
 import React from "react";
 

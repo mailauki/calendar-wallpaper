@@ -78,7 +78,6 @@ export async function GET(request: Request) {
           display: "flex",
           fontSize: 55,
           color: `#${text}`,
-          // backgroundColor: `#${bg}`,
           background:
             bgColor.length > 1
               ? `linear-gradient(217deg, ${gradient})`
