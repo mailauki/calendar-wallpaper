@@ -19,6 +19,10 @@ export async function GET(request: Request) {
   const start: 0 | 1 = (Number(searchParams.get("start")) as 0 | 1) || 0;
   const size: "short" | "long" | "full" =
     (searchParams.get("size") as "short" | "long" | "full") || "short";
+
+  const bgColor = bg.split(",");
+  const gradient = bgColor.map((color) => "#" + color).join(", ");
+
   const formatter = new DateFormatter("en-US", {
     month: "long",
     year: "numeric",
@@ -32,7 +36,7 @@ export async function GET(request: Request) {
       (
         <>
           Visit with &quot;?date=2020-10-01&quot; or
-          &quot;?date=2020-10-01&bg=#F6F6F6&text=#000000&quot;
+          &quot;?date=2020-10-01&bg=#f6f6f6&text=#000000&quot;
         </>
       ),
       {
@@ -74,7 +78,11 @@ export async function GET(request: Request) {
           display: "flex",
           fontSize: 55,
           color: `#${text}`,
-          backgroundColor: `#${bg}`,
+          // backgroundColor: `#${bg}`,
+          background:
+            bgColor.length > 1
+              ? `linear-gradient(217deg, ${gradient})`
+              : `#${bgColor[0]}`,
           width: "100%",
           height: "100%",
           flexDirection: "column",

@@ -16,62 +16,64 @@ export default function Preview({
   size,
 }: {
   date: CalendarDate;
-  bgColor: string;
+  bgColor: string[];
   textColor: string;
   start: 0 | 1;
   size: string;
 }) {
-  const [imageUrl, setImageUrl] = React.useState(undefined);
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [imageError, setImageError] = React.useState<string | null>(null);
+  const text = textColor.split("#")[1];
+  const bg = bgColor.map((color) => color.split("#").join(""));
+  const imageUrl = `/api/og?date=${date.toString()}&bg=${bg}&text=${text}&start=${start}&size=${size}`;
+  // const [imageUrl, setImageUrl] = React.useState(undefined);
+  // const [isLoading, setIsLoading] = React.useState(true);
+  // const [imageError, setImageError] = React.useState<string | null>(null);
 
-  React.useEffect(() => {
-    async function fetchData() {
-      setIsLoading(true);
-      try {
-        const res = await fetch(
-          `/api/og?date=${date.toString()}&bg=${bgColor}&text=${textColor}&start=${start}&size=${size}`,
-        );
+  // React.useEffect(() => {
+  //   async function fetchData() {
+  //     setIsLoading(true);
+  //     try {
+  //       const res = await fetch(
+  //         `/api/og?date=${date.toString()}&bg=${bgColor}&text=${textColor}&start=${start}&size=${size}`,
+  //       );
 
-        if (res.ok) {
-          const data = await res.json();
+  //       if (res.ok) {
+  //         const data = await res.json();
 
-          setImageUrl(data.url);
-        } else {
-          setImageError("Image not found");
-        }
-      } catch (error) {
-        setImageError("Error fetching image");
-      } finally {
-        setIsLoading(false);
-      }
-    }
+  //         setImageUrl(data.url);
+  //       } else {
+  //         setImageError("Image not found");
+  //       }
+  //     } catch (error) {
+  //       setImageError("Error fetching image");
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   }
 
-    fetchData();
-  }, [date, bgColor, textColor, start, size]);
+  //   fetchData();
+  // }, [date, bgColor, textColor, start, size]);
 
   return (
     <>
-      <Card isFooterBlurred>
-        {/* <img
+      <Card isFooterBlurred className="overflow-hidden">
+        <img
           alt={date.toString()}
-          src={`/api/og?date=${date.toString()}&bg=${bgColor}&text=${textColor}&start=${start}&size=${size}`}
+          src={imageUrl}
           style={{ maxHeight: "440px", aspectRatio: "16:9" }}
           // className="h-full max-h-40"
-        /> */}
-        <Image
+        />
+        {/* <Image
           alt={date.toString()}
           height={440}
           isLoading={isLoading || Boolean(imageError)}
           src={imageUrl}
           width={784}
-        />
-        {/* <CardFooter className="absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10 justify-between"> */}
-        <CardFooter className="absolute bg-content1 bottom-0 border-t-1 border-background z-10 justify-between">
+        /> */}
+        <CardFooter className="justify-between">
           <Button
             as={Link}
             color="default"
-            href={`/api/og?date=${date.toString()}&bg=${bgColor}&text=${textColor}&start=${start}&size=${size}`}
+            href={imageUrl}
             radius="full"
             target="_blank"
             variant="light"

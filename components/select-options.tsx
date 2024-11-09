@@ -63,11 +63,11 @@ export default function SelectOptions() {
     <>
       <div className="w-full">
         <Preview
-          bgColor={bgColor[0].split("#")[1]}
+          bgColor={bgColor}
           date={calDate}
           size={weekdaySize}
           start={start == "sunday" ? 0 : 1}
-          textColor={textColor.split("#")[1]}
+          textColor={textColor}
         />
       </div>
 
