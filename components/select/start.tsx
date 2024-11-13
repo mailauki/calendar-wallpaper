@@ -1,40 +1,19 @@
-import React from "react";
-import {
-  cn,
-  Radio as NextUIRadio,
-  RadioGroup,
-  RadioProps,
-} from "@nextui-org/react";
+import { RadioGroup } from "@nextui-org/react";
 
-export const Radio = (props: RadioProps) => {
-  const { children, ...otherProps } = props;
+import Radio from "../radio-button";
 
-  return (
-    <NextUIRadio
-      {...otherProps}
-      classNames={{
-        base: cn(
-          "inline-flex m-0 bg-content1 hover:bg-content2 items-center justify-between",
-          "flex-grow flex-row-reverse min-w-sm max-w-full cursor-pointer rounded-lg gap-4 p-4 border-2 border-transparent",
-          "data-[selected=true]:border-primary",
-        ),
-      }}
-    >
-      {children}
-    </NextUIRadio>
-  );
-};
+import { WeekdayLabel, WeekdayStart } from "@/types";
 
 export default function StartSelect({
-  value,
-  setValue,
-  size,
-  setSize,
+  start,
+  setStart,
+  weekdayLabel,
+  setWeekdayLabel,
 }: {
-  value: string;
-  setValue: React.Dispatch<React.SetStateAction<string>>;
-  size: string;
-  setSize: React.Dispatch<React.SetStateAction<string>>;
+  start: string;
+  setStart: React.Dispatch<React.SetStateAction<WeekdayStart>>;
+  weekdayLabel: string;
+  setWeekdayLabel: React.Dispatch<React.SetStateAction<WeekdayLabel>>;
 }) {
   return (
     <>
@@ -42,13 +21,13 @@ export default function StartSelect({
         className="w-full min-w-full p-4"
         label="Select weekday start"
         orientation="horizontal"
-        value={value}
-        onValueChange={setValue}
+        value={start}
+        onValueChange={(value: string) => setStart(value as WeekdayStart)}
       >
-        <Radio key={0} value="sunday">
+        <Radio key={0} value="0">
           Sunday
         </Radio>
-        <Radio key={1} value="monday">
+        <Radio key={1} value="1">
           Monday
         </Radio>
       </RadioGroup>
@@ -56,8 +35,10 @@ export default function StartSelect({
         className="w-full min-w-full p-4"
         label="Select weekday label size"
         orientation="horizontal"
-        value={size}
-        onValueChange={setSize}
+        value={weekdayLabel}
+        onValueChange={(value: string) =>
+          setWeekdayLabel(value as WeekdayLabel)
+        }
       >
         <Radio description="Ex: S" value="short">
           Short

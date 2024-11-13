@@ -15,6 +15,9 @@ import MonthsSelect from "./select/months";
 import YearSelect from "./select/year";
 import ColorsSelect from "./select/colors";
 import StartSelect from "./select/start";
+import SizeSelect from "./select/size";
+
+import { AspectRatio, WeekdayLabel, WeekdayStart } from "@/types";
 
 export default function SelectOptions() {
   // current date
@@ -56,8 +59,13 @@ export default function SelectOptions() {
       calDate.set({ year: Number(selectedYear) });
   }, [calDate]);
 
-  const [start, setStart] = React.useState("sunday");
-  const [weekdaySize, setWeekdaySize] = React.useState("short");
+  // weekday label length and start day
+  const [start, setStart] = React.useState<WeekdayStart>("0");
+  const [weekdayLabel, setWeekdayLabel] = React.useState<WeekdayLabel>("short");
+
+  // wallpaper size and aspect ratio
+  const [ratio, setRatio] = React.useState<AspectRatio>("16:9");
+  const [size, setSize] = React.useState("3840x2160");
 
   return (
     <>
@@ -65,9 +73,11 @@ export default function SelectOptions() {
         <Preview
           bgColor={bgColor}
           date={calDate}
-          size={weekdaySize}
-          start={start == "sunday" ? 0 : 1}
+          ratio={ratio}
+          size={size}
           textColor={textColor}
+          weekdayLabel={weekdayLabel}
+          weekdayStart={start}
         />
       </div>
 
@@ -106,16 +116,21 @@ export default function SelectOptions() {
           <Tab key="labels" title="Labels">
             <Box>
               <StartSelect
-                setSize={setWeekdaySize}
-                setValue={setStart}
-                size={weekdaySize}
-                value={start}
+                setStart={setStart}
+                setWeekdayLabel={setWeekdayLabel}
+                start={start}
+                weekdayLabel={weekdayLabel}
               />
             </Box>
           </Tab>
           <Tab key="size" title="Size">
             <Box>
-              <></>
+              <SizeSelect
+                ratio={ratio}
+                setRatio={setRatio}
+                setSize={setSize}
+                size={size}
+              />
             </Box>
           </Tab>
         </Tabs>

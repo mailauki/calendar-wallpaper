@@ -11,14 +11,19 @@ import {
   getWeeksInMonth,
 } from "@internationalized/date";
 
+import { WeekdayLabel, WeekdayStart } from "@/types";
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const date = searchParams.get("date");
   const bg = searchParams.get("bg") || "f6f6f6";
-  const text = searchParams.get("text") || "000";
-  const start: 0 | 1 = (Number(searchParams.get("start")) as 0 | 1) || 0;
-  const size: "short" | "long" | "full" =
-    (searchParams.get("size") as "short" | "long" | "full") || "short";
+  const text = searchParams.get("tc") || "000";
+  const start: WeekdayStart =
+    (searchParams.get("start") as WeekdayStart) || "0";
+  const label: WeekdayLabel =
+    (searchParams.get("label") as WeekdayLabel) || "short";
+  // const ratio: AspectRatio = (searchParams.get("ar") as AspectRatio) || "16:9";
+  const size = searchParams.get("size") || "3840x2160";
 
   const bgColor = bg.split(",");
   const gradient = bgColor.map((color) => "#" + color).join(", ");
@@ -58,7 +63,7 @@ export async function GET(request: Request) {
   ];
   const sundayStart = weekdays.slice(0, 7);
   const mondayStart = weekdays.slice(1);
-  const weekStart = start == 0 ? sundayStart : mondayStart;
+  const weekStart = start == "0" ? sundayStart : mondayStart;
   const daysInWeek = Array.from(Array(7), (_, index) => index);
   const weekInMonth = Array.from(
     Array(getWeeksInMonth(parseDate(date), "en-US")),
@@ -69,7 +74,7 @@ export async function GET(request: Request) {
     .subtract({
       days: getDayOfWeek(parseDate(date), "en-US"),
     })
-    .add({ days: start });
+    .add({ days: Number(start) });
 
   return new ImageResponse(
     (
@@ -96,7 +101,7 @@ export async function GET(request: Request) {
         </p>
         <div
           style={{ opacity: 0.5 }}
-          tw={`flex items-center justify-around ${size == "full" ? "w-1/2" : "w-1/3"}`}
+          tw={`flex items-center justify-around ${label == "full" ? "w-1/2" : "w-1/3"}`}
         >
           {weekStart.map((day) => (
             <p
@@ -111,16 +116,16 @@ export async function GET(request: Request) {
                 textTransform: "uppercase",
               }}
             >
-              {size == "short" && day.charAt(0)}
-              {size == "long" && day.substring(0, 3)}
-              {size == "full" && day}
+              {label == "short" && day.charAt(0)}
+              {label == "long" && day.substring(0, 3)}
+              {label == "full" && day}
             </p>
           ))}
         </div>
         {weekInMonth.map((week) => (
           <div
             key={week}
-            tw={`flex items-center justify-around ${size == "full" ? "w-1/2" : "w-1/3"}`}
+            tw={`flex items-center justify-around ${label == "full" ? "w-1/2" : "w-1/3"}`}
           >
             {daysInWeek.map((day) => (
               <p
@@ -152,8 +157,8 @@ export async function GET(request: Request) {
       </div>
     ),
     {
-      width: 3840,
-      height: 2160,
+      width: Number(size.split("x")[0]),
+      height: Number(size.split("x")[1]),
     },
   );
 }

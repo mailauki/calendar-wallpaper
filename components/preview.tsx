@@ -7,22 +7,28 @@ import {
 } from "@nextui-org/react";
 import React from "react";
 
+import { WeekdayLabel, WeekdayStart } from "@/types";
+
 export default function Preview({
   date,
   bgColor,
   textColor,
-  start,
+  weekdayStart,
+  weekdayLabel,
   size,
+  ratio,
 }: {
   date: CalendarDate;
   bgColor: string[];
   textColor: string;
-  start: 0 | 1;
+  weekdayStart: WeekdayStart;
+  weekdayLabel: WeekdayLabel;
   size: string;
+  ratio: string;
 }) {
   const text = textColor.split("#")[1];
   const bg = bgColor.map((color) => color.split("#").join(""));
-  const imageUrl = `/api/og?date=${date.toString()}&bg=${bg}&text=${text}&start=${start}&size=${size}`;
+  const imageUrl = `/api/og?date=${date.toString()}&bg=${bg}&tc=${text}&start=${weekdayStart}&label=${weekdayLabel}&ar=${ratio}&size=${size}`;
   // const [imageUrl, setImageUrl] = React.useState(undefined);
   // const [isLoading, setIsLoading] = React.useState(true);
   // const [imageError, setImageError] = React.useState<string | null>(null);
@@ -58,7 +64,11 @@ export default function Preview({
         <img
           alt={date.toString()}
           src={imageUrl}
-          style={{ maxHeight: "440px", aspectRatio: "16:9" }}
+          style={{
+            maxHeight: "440px",
+            aspectRatio: ratio,
+            objectFit: "contain",
+          }}
           // className="h-full max-h-40"
         />
         {/* <Image
