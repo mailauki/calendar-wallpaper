@@ -9,6 +9,7 @@ import {
   CardHeader,
 } from "@nextui-org/react";
 import React from "react";
+import { BsArrowRight as ArrowRightIcon } from "react-icons/bs";
 
 import { WeekdayLabel, WeekdayStart } from "@/types";
 
@@ -68,19 +69,27 @@ export default function Preview({
             />
           </CardBody>
         )}
-        <CardFooter className="justify-between">
+        <CardFooter className="justify-between gap-4">
           <Button
             as={Link}
+            className="w-2/5 min-w-fit"
+            color="primary"
+            download={imageUrl}
+            radius="full"
+          >
+            Download
+          </Button>
+          <Button
+            as={Link}
+            className="w-1/5 min-w-fit"
             color="default"
+            endContent={<ArrowRightIcon />}
             href={imageUrl}
             radius="full"
             target="_blank"
             variant="light"
           >
             Preview
-          </Button>
-          <Button color="primary" radius="full">
-            Download
           </Button>
         </CardFooter>
       </Card>
