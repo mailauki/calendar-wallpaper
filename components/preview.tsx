@@ -4,6 +4,9 @@ import {
   Card,
   CardFooter,
   Link,
+  Image,
+  CardBody,
+  CardHeader,
 } from "@nextui-org/react";
 import React from "react";
 
@@ -28,56 +31,43 @@ export default function Preview({
 }) {
   const text = textColor.split("#")[1];
   const bg = bgColor.map((color) => color.split("#").join(""));
-  const imageUrl = `/api/og?date=${date.toString()}&bg=${bg}&tc=${text}&start=${weekdayStart}&label=${weekdayLabel}&ar=${ratio}&size=${size}`;
-  // const [imageUrl, setImageUrl] = React.useState(undefined);
-  // const [isLoading, setIsLoading] = React.useState(true);
-  // const [imageError, setImageError] = React.useState<string | null>(null);
+  let url = `/api/og?date=${date.toString()}&bg=${bg}&tc=${text}&start=${weekdayStart}&label=${weekdayLabel}&ar=${ratio}&size=${size}`;
+  const [imageUrl, setImageUrl] = React.useState<string | undefined>(undefined);
+  const [imageError, setImageError] = React.useState<string | null>(null);
 
-  // React.useEffect(() => {
-  //   async function fetchData() {
-  //     setIsLoading(true);
-  //     try {
-  //       const res = await fetch(
-  //         `/api/og?date=${date.toString()}&bg=${bgColor}&text=${textColor}&start=${start}&size=${size}`,
-  //       );
+  React.useEffect(() => {
+    setImageUrl(undefined);
+    setImageError(null);
+    async function fetchImage() {
+      let data = await fetch(url);
 
-  //       if (res.ok) {
-  //         const data = await res.json();
-
-  //         setImageUrl(data.url);
-  //       } else {
-  //         setImageError("Image not found");
-  //       }
-  //     } catch (error) {
-  //       setImageError("Error fetching image");
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   }
-
-  //   fetchData();
-  // }, [date, bgColor, textColor, start, size]);
+      if (data.ok) setImageUrl(data.url);
+      else setImageError("Image preview failed to load");
+    }
+    fetchImage();
+  }, [url]);
 
   return (
     <>
       <Card isFooterBlurred className="overflow-hidden">
-        <img
-          alt={date.toString()}
-          src={imageUrl}
-          style={{
-            maxHeight: "440px",
-            aspectRatio: ratio,
-            objectFit: "contain",
-          }}
-          // className="h-full max-h-40"
-        />
-        {/* <Image
-          alt={date.toString()}
-          height={440}
-          isLoading={isLoading || Boolean(imageError)}
-          src={imageUrl}
-          width={784}
-        /> */}
+        {imageError && <CardHeader>{imageError}</CardHeader>}
+        {!imageError && (
+          <CardBody className="items-center">
+            <Image
+              alt={date.toString()}
+              height={440}
+              isLoading={!Boolean(imageUrl)}
+              src={imageUrl}
+              style={{
+                // maxHeight: "440px",
+                aspectRatio: ratio,
+                // objectFit: "contain",
+                objectFit: "cover",
+              }}
+              // width={784}
+            />
+          </CardBody>
+        )}
         <CardFooter className="justify-between">
           <Button
             as={Link}

@@ -3,8 +3,9 @@ import React from "react";
 
 import Radio from "../radio-button";
 
-import { sizes } from "@/types/sizes";
-import { AspectRatio, WallpaperQuality, WxH } from "@/types";
+import { sizes } from "@/helpers/sizes";
+import { AspectRatio, WallpaperQuality } from "@/types";
+import { getWxH } from "@/helpers";
 
 export default function SizeSelect({
   setSize,
@@ -17,10 +18,6 @@ export default function SizeSelect({
   setRatio: React.Dispatch<React.SetStateAction<AspectRatio>>;
 }) {
   const [index, setIndex] = React.useState<string>("0");
-
-  function getWxH({ width, height }: WxH) {
-    return width + "x" + height;
-  }
 
   React.useEffect(() => {
     setSize(getWxH(sizes[ratio as AspectRatio][Number(index)]));

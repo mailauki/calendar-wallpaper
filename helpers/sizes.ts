@@ -1,4 +1,4 @@
-import { Sizes } from ".";
+import { Sizes } from "../types";
 
 export const sizes: Sizes = {
   "16:9": [

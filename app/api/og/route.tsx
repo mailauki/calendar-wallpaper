@@ -3,18 +3,20 @@ import { ImageResponse } from "next/og";
 // App router includes @vercel/og.
 // No need to install it.
 import {
-  DateFormatter,
   getDayOfWeek,
   getLocalTimeZone,
   parseDate,
   isSameMonth,
   getWeeksInMonth,
 } from "@internationalized/date";
+import { NextRequest } from "next/server";
 
 import { WeekdayLabel, WeekdayStart } from "@/types";
+import { dayFormatter, monthYearFormatter } from "@/helpers/formats";
 
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
+export async function GET(request: NextRequest) {
+  // const { searchParams } = new URL(request.url);
+  const { searchParams } = request.nextUrl;
   const date = searchParams.get("date");
   const bg = searchParams.get("bg") || "f6f6f6";
   const text = searchParams.get("tc") || "000";
@@ -27,14 +29,6 @@ export async function GET(request: Request) {
 
   const bgColor = bg.split(",");
   const gradient = bgColor.map((color) => "#" + color).join(", ");
-
-  const formatter = new DateFormatter("en-US", {
-    month: "long",
-    year: "numeric",
-  });
-  const dayFormatter = new DateFormatter("en-US", {
-    day: "2-digit",
-  });
 
   if (!date) {
     return new ImageResponse(
@@ -97,7 +91,9 @@ export async function GET(request: Request) {
         }}
       >
         <p style={{ fontSize: 65, margin: 0 }}>
-          {formatter.format(parseDate(date).toDate(getLocalTimeZone()))}
+          {monthYearFormatter.format(
+            parseDate(date).toDate(getLocalTimeZone()),
+          )}
         </p>
         <div
           style={{ opacity: 0.5 }}
