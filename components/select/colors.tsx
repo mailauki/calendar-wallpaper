@@ -2,7 +2,6 @@ import "@/styles/color-picker.css";
 
 import {
   CardBody,
-  Card,
   CardHeader,
   Button,
   Tabs,
@@ -17,79 +16,10 @@ extend([a11yPlugin]);
 
 import ColorButton from "../button";
 import ColorInput from "../color";
+import Box from "../box";
 
 import { ColorProps } from "@/types";
-
-// export const Input = (props: InputProps) => {
-//   const { children, ...otherProps } = props;
-
-//   return (
-//     <Input
-//       {...otherProps}
-//       classNames={{
-//         label: "text-xs text-default-500",
-//         helperWrapper: "p-0",
-//         mainWrapper: "gap-none",
-//         inputWrapper: "rounded-b-none border-b py-2 px-4",
-//       }}
-//       description={
-//         <Input
-//           classNames={{
-//             inputWrapper: "rounded-t-none border-t py-2 px-4",
-//           }}
-//           type="text"
-//         />
-//       }
-//       type="color"
-//     />
-//   );
-// };
-
-// export const Button = (
-//   props: ButtonProps & {
-//     bgColor: string;
-//     setBgColor: React.Dispatch<React.SetStateAction<string>>;
-//     setTextColor: React.Dispatch<React.SetStateAction<string>>;
-//     textColor: string;
-//   },
-//   // {children,
-//   //   bgColor,
-//   //   textColor,
-//   //   setBgColor,
-//   //   setTextColor,
-//   // }: {
-//   // 	...ButtonProps;
-//   //   bgColor: string;
-//   //   setBgColor: React.Dispatch<React.SetStateAction<string>>;
-//   //   setTextColor: React.Dispatch<React.SetStateAction<string>>;
-//   //   textColor: string;
-//   // },
-// ) => {
-//   const {
-//     children,
-//     bgColor,
-//     textColor,
-//     setBgColor,
-//     setTextColor,
-//     ...otherProps
-//   } = props;
-
-//   return (
-//     <Button
-//       {...otherProps}
-//       radius="full"
-//       size="sm"
-//       style={{ backgroundColor: bgColor, color: textColor }}
-//       variant="solid"
-//       onPress={() => {
-//         setBgColor(bgColor);
-//         setTextColor(textColor);
-//       }}
-//     >
-//       {children}
-//     </Button>
-//   );
-// };
+import { colors, reverseColors } from "@/helpers/colors";
 
 export default function ColorsSelect({
   bgColor,
@@ -105,40 +35,6 @@ export default function ColorsSelect({
   // const contrastColor2 = getContrastColor(color2, 4.5);
   // const contrastBgColor = rgb2hex(contrastColor1 as number[]);
   // const contrastTextColor = rgb2hex(contrastColor2 as number[]);
-  const colors = [
-    { bg: ["#ebebeb"], text: "#000000" },
-    { bg: ["#111111"], text: "#ebebeb" },
-    { bg: ["#263e0f"], text: "#c7976f" },
-    { bg: ["#ffecd5"], text: "#02197f" },
-    { bg: ["#874efe"], text: "#ffffff" },
-    { bg: ["#561029"], text: "#fecb3e" },
-    { bg: ["#f9d3e0"], text: "#38571a" },
-    { bg: ["#450e59"], text: "#e4ef65" },
-    { bg: ["#00364a"], text: "#ff9300" },
-    { bg: ["#831100"], text: "#d6d6d6" },
-    { bg: ["#e66465", "#9198e5"], text: "#ffffff" },
-    {
-      bg: ["#02197f", "#9198e5", "#ffc677", "#ff8647"],
-      text: "#000000",
-    },
-  ];
-  const reverseColors = [
-    { bg: ["#000000"], text: "#ebebeb" },
-    { bg: ["#ebebeb"], text: "#111111" },
-    { bg: ["#c7976f"], text: "#263e0f" },
-    { bg: ["#02197f"], text: "#ffecd5" },
-    { bg: ["#ffffff"], text: "#874efe" },
-    { bg: ["#fecb3e"], text: "#561029" },
-    { bg: ["#38571a"], text: "#f9d3e0" },
-    { bg: ["#e4ef65"], text: "#450e59" },
-    { bg: ["#ff9300"], text: "#00364a" },
-    { bg: ["#d6d6d6"], text: "#831100" },
-    { bg: ["#9198e5", "#e66465"], text: "#ffffff" },
-    {
-      bg: ["#ff8647", "#ffc677", "#9198e5", "#02197f"],
-      text: "#000000",
-    },
-  ];
   const [swap, setSwap] = React.useState(false);
 
   // Update an item at a specific index
@@ -160,7 +56,7 @@ export default function ColorsSelect({
   return (
     <>
       <div className="flex flex-col gap-4">
-        <Card>
+        <Box>
           <CardHeader className="flex justify-between gap-1">
             Themes
             <Button
@@ -190,8 +86,8 @@ export default function ColorsSelect({
               ))}
             </div>
           </CardBody>
-        </Card>
-        <Card>
+        </Box>
+        <Box>
           <CardHeader className="flex items-center justify-between gap-1">
             Text
             {!isReadable && (
@@ -215,8 +111,8 @@ export default function ColorsSelect({
               />
             </div>
           </CardBody>
-        </Card>
-        <Card>
+        </Box>
+        <Box>
           <CardHeader className="flex flex-col items-start justify-between gap-1">
             Background
             {!isReadable && bgColor.length > 1 && (
@@ -265,7 +161,7 @@ export default function ColorsSelect({
               Add
             </Button>
           </CardFooter>
-        </Card>
+        </Box>
       </div>
     </>
   );

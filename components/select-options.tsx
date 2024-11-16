@@ -18,6 +18,7 @@ import StartSelect from "./select/start";
 import SizeSelect from "./select/size";
 
 import { AspectRatio, WeekdayLabel, WeekdayStart } from "@/types";
+import FontSelect from "./select/font";
 
 export default function SelectOptions() {
   // current date
@@ -83,7 +84,7 @@ export default function SelectOptions() {
 
       <div className="flex flex-col w-full lg:max-w-md md:max-w-md">
         <Tabs fullWidth aria-label="Options">
-          <Tab key="colors" title="Colors">
+          <Tab key="color" title="Color">
             <ColorsSelect
               bgColor={bgColor}
               setBgColor={setBgColor}
@@ -91,29 +92,12 @@ export default function SelectOptions() {
               textColor={textColor}
             />
           </Tab>
-          <Tab key="months" title="Months">
+          <Tab key="font" title="Font">
             <Box>
-              <MonthsSelect
-                date={calDate}
-                isSelected={useCurrentMonth}
-                selectedKeys={selectedKeys}
-                setIsSelected={setUseCurrentMonth}
-                setSelectedKeys={setSelectedKeys}
-              />
+              <FontSelect />
             </Box>
           </Tab>
-          <Tab key="years" title="Years">
-            <Box>
-              <YearSelect
-                date={calDate}
-                isSelected={useCurrentYear}
-                setIsSelected={setUseCurrentYear}
-                setValue={setValue}
-                value={value}
-              />
-            </Box>
-          </Tab>
-          <Tab key="labels" title="Labels">
+          <Tab key="label" title="Label">
             <Box>
               <StartSelect
                 setStart={setStart}
@@ -133,12 +117,30 @@ export default function SelectOptions() {
               />
             </Box>
           </Tab>
+          <Tab key="date" title="Date">
+            <div className="flex flex-col gap-4">
+              <Box>
+                <MonthsSelect
+                  date={calDate}
+                  isSelected={useCurrentMonth}
+                  selectedKeys={selectedKeys}
+                  setIsSelected={setUseCurrentMonth}
+                  setSelectedKeys={setSelectedKeys}
+                />
+              </Box>
+              <Box>
+                <YearSelect
+                  date={calDate}
+                  isSelected={useCurrentYear}
+                  setIsSelected={setUseCurrentYear}
+                  setValue={setValue}
+                  value={value}
+                />
+              </Box>
+            </div>
+          </Tab>
         </Tabs>
       </div>
-
-      {/* <Box span="sm:row-span-2">
-          <CalendarSelect date={calDate} value={calValue} />
-        </Box> */}
     </>
   );
 }
