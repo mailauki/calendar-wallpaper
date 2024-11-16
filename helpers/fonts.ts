@@ -1,16 +1,21 @@
 import { fonts } from "@/styles/fonts";
+import { Font, FontType } from "@/types";
 
-export const mainFonts = [
-  { key: "font-sans", label: "Sans" },
-  { key: "font-serif", label: "Serif" },
-  { key: "font-mono", label: "Mono" },
+export const mainFonts: FontType[] = [
+  { key: "font-sans", value: "font-sans", label: "Sans" },
+  { key: "font-serif", value: "font-serif", label: "Serif" },
+  { key: "font-mono", value: "font-mono", label: "Mono" },
 ];
 
-console.log({fonts})
-
-export const otherFonts = Object.values(fonts).map((font) =>
+export const otherFonts: FontType[] = Object.values(fonts).map((font) =>
   Object.assign({
     key: font.className,
+    value: font.style.fontFamily
+      .split("'")[1]
+      .split("_")
+      .slice(2, -1)
+      .join("-")
+      .toLowerCase(),
     label: font.style.fontFamily
       .split("'")[1]
       .split("_")

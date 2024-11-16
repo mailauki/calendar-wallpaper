@@ -11,24 +11,45 @@ import {
 } from "@internationalized/date";
 import { NextRequest } from "next/server";
 
-import { WeekdayLabel, WeekdayStart } from "@/types";
-import { dayFormatter, monthYearFormatter } from "@/helpers/formats";
+import {
+  Font,
+  MonthLabel,
+  WeekdayLabel,
+  WeekdayStart,
+  YearLabel,
+} from "@/types";
+import { dayFormatter, formatter } from "@/helpers/formats";
 
 export async function GET(request: NextRequest) {
   // const { searchParams } = new URL(request.url);
   const { searchParams } = request.nextUrl;
+
   const date = searchParams.get("date");
-  const bg = searchParams.get("bg") || "f6f6f6";
-  const text = searchParams.get("tc") || "000";
+
+  const bg: string = searchParams.get("bg") || "f6f6f6";
+  const text: string = searchParams.get("text") || "000000";
+
   const start: WeekdayStart =
     (searchParams.get("start") as WeekdayStart) || "0";
-  const label: WeekdayLabel =
-    (searchParams.get("label") as WeekdayLabel) || "short";
-  // const ratio: AspectRatio = (searchParams.get("ar") as AspectRatio) || "16:9";
-  const size = searchParams.get("size") || "3840x2160";
+  const weekdayLabel: WeekdayLabel =
+    (searchParams.get("week-label") as WeekdayLabel) || "narrow";
+  const weekdayFont: Font =
+    (searchParams.get("week-font") as Font) || "font-sans";
+  const weekdaySize: number = Number(searchParams.get("week-size")) || 55;
 
-  const bgColor = bg.split(",");
-  const gradient = bgColor.map((color) => "#" + color).join(", ");
+  const monthLabel: MonthLabel =
+    (searchParams.get("month-label") as MonthLabel) || "long";
+  const monthFont: Font =
+    (searchParams.get("month-font") as Font) || "font-sans";
+  const monthSize: number = Number(searchParams.get("month-size")) || 65;
+
+  const yearLabel: YearLabel =
+    (searchParams.get("year-label") as YearLabel) || "show";
+  // const ratio: AspectRatio = (searchParams.get("ar") as AspectRatio) || "16:9";
+  const size: string = searchParams.get("size") || "3840x2160";
+
+  const bgColor = bg.split("-");
+  const gradient: string = bgColor.map((color) => "#" + color).join(", ");
 
   if (!date) {
     return new ImageResponse(
@@ -75,7 +96,8 @@ export async function GET(request: NextRequest) {
       <div
         style={{
           display: "flex",
-          fontSize: 55,
+          // fontFamily: "serif",
+          fontSize: weekdaySize,
           color: `#${text}`,
           background:
             bgColor.length > 1
@@ -90,16 +112,19 @@ export async function GET(request: NextRequest) {
           gap: "3rem",
         }}
       >
-        <p style={{ fontSize: 65, margin: 0 }}>
-          {monthYearFormatter.format(
+        <p style={{ fontSize: monthSize, margin: 0 }} tw={`${monthFont}`}>
+          {/* {monthYearFormatter.format(
+            parseDate(date).toDate(getLocalTimeZone()),
+          )} */}
+          {formatter({ monthLabel, yearLabel }).format(
             parseDate(date).toDate(getLocalTimeZone()),
           )}
         </p>
         <div
           style={{ opacity: 0.5 }}
-          tw={`flex items-center justify-around ${label == "full" ? "w-1/2" : "w-1/3"}`}
+          tw={`flex items-center justify-around ${weekdayLabel == "long" ? "w-1/2" : "w-1/3"}`}
         >
-          {weekStart.map((day) => (
+          {weekStart.map((day, index) => (
             <p
               key={day}
               style={{
@@ -110,18 +135,25 @@ export async function GET(request: NextRequest) {
                 alignItems: "center",
                 textAlign: "center",
                 textTransform: "uppercase",
+                // fontFamily: "serif",
               }}
+              tw={`${weekdayFont}`}
             >
-              {label == "short" && day.charAt(0)}
-              {label == "long" && day.substring(0, 3)}
-              {label == "full" && day}
+              {/* {weekdayLabel == "narrow" && day.charAt(0)}
+              {weekdayLabel == "short" && day.substring(0, 3)}
+              {weekdayLabel == "long" && day} */}
+              {formatter({ weekdayLabel }).format(
+                parseDate(firstDate.add({ days: index }).toString()).toDate(
+                  getLocalTimeZone(),
+                ),
+              )}
             </p>
           ))}
         </div>
         {weekInMonth.map((week) => (
           <div
             key={week}
-            tw={`flex items-center justify-around ${label == "full" ? "w-1/2" : "w-1/3"}`}
+            tw={`flex items-center justify-around ${weekdayLabel == "long" ? "w-1/2" : "w-1/3"}`}
           >
             {daysInWeek.map((day) => (
               <p
@@ -139,7 +171,9 @@ export async function GET(request: NextRequest) {
                   justifyContent: "center",
                   alignItems: "center",
                   textAlign: "center",
+                  // fontFamily: "serif",
                 }}
+                tw={`${weekdayFont}`}
               >
                 {dayFormatter.format(
                   firstDate

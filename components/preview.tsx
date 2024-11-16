@@ -10,8 +10,16 @@ import {
 } from "@nextui-org/react";
 import React from "react";
 import { BsArrowRight as ArrowRightIcon } from "react-icons/bs";
+import { useSearchParams } from "next/navigation";
 
-import { WeekdayLabel, WeekdayStart } from "@/types";
+import {
+  Font,
+  MonthLabel,
+  QueryParams,
+  WeekdayLabel,
+  WeekdayStart,
+  YearLabel,
+} from "@/types";
 
 export default function Preview({
   date,
@@ -19,7 +27,13 @@ export default function Preview({
   textColor,
   weekdayStart,
   weekdayLabel,
-  size,
+  weekdayFont,
+  weekdaySize,
+  monthLabel,
+  monthFont,
+  monthSize,
+  yearLabel,
+  wallpaperSize,
   ratio,
 }: {
   date: CalendarDate;
@@ -27,12 +41,59 @@ export default function Preview({
   textColor: string;
   weekdayStart: WeekdayStart;
   weekdayLabel: WeekdayLabel;
-  size: string;
+  weekdayFont: Font;
+  weekdaySize: number;
+  monthLabel: MonthLabel;
+  monthFont: Font;
+  monthSize: number;
+  yearLabel: YearLabel;
+  wallpaperSize: string;
   ratio: string;
 }) {
+  const searchParams = useSearchParams();
   const text = textColor.split("#")[1];
-  const bg = bgColor.map((color) => color.split("#").join(""));
-  let url = `/api/og?date=${date.toString()}&bg=${bg}&tc=${text}&start=${weekdayStart}&label=${weekdayLabel}&ar=${ratio}&size=${size}`;
+  const bg = bgColor.map((color) => color.split("#").join("")).join("-");
+  // let url = `/api/og?date=${date.toString()}&bg=${bg}&text=${text}&start=${weekdayStart}&label=${weekdayLabel}&ar=${ratio}&size=${size}`;
+
+  const setParams = React.useCallback(
+    (name: QueryParams, value: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams],
+  );
+
+  let url =
+    "/api/og" +
+    "?" +
+    setParams("date", date.toString()) +
+    "&" +
+    setParams("bg", bg) +
+    "&" +
+    setParams("text", text) +
+    "&" +
+    setParams("start", weekdayStart) +
+    "&" +
+    setParams("week-label", weekdayLabel) +
+    "&" +
+    setParams("week-font", weekdayFont) +
+    "&" +
+    setParams("week-size", String(weekdaySize)) +
+    "&" +
+    setParams("month-label", monthLabel) +
+    "&" +
+    setParams("month-font", monthFont) +
+    "&" +
+    setParams("month-size", String(monthSize)) +
+    "&" +
+    setParams("year-label", yearLabel) +
+    "&" +
+    // setParams("ratio", ratio) +
+    // "&" +
+    setParams("size", wallpaperSize);
   const [imageUrl, setImageUrl] = React.useState<string | undefined>(undefined);
   const [imageError, setImageError] = React.useState<string | null>(null);
 

@@ -14,11 +14,18 @@ import Box from "./box";
 import MonthsSelect from "./select/months";
 import YearSelect from "./select/year";
 import ColorsSelect from "./select/colors";
-import StartSelect from "./select/start";
+import FontSelect from "./select/font";
+import LabelSelect from "./select/label";
 import SizeSelect from "./select/size";
 
-import { AspectRatio, WeekdayLabel, WeekdayStart } from "@/types";
-import FontSelect from "./select/font";
+import {
+  AspectRatio,
+  Font,
+  MonthLabel,
+  WeekdayLabel,
+  WeekdayStart,
+  YearLabel,
+} from "@/types";
 
 export default function SelectOptions() {
   // current date
@@ -60,9 +67,18 @@ export default function SelectOptions() {
       calDate.set({ year: Number(selectedYear) });
   }, [calDate]);
 
-  // weekday label length and start day
+  // weekday label length, font family, size, and start day
   const [start, setStart] = React.useState<WeekdayStart>("0");
-  const [weekdayLabel, setWeekdayLabel] = React.useState<WeekdayLabel>("short");
+  const [weekdayLabel, setWeekdayLabel] =
+    React.useState<WeekdayLabel>("narrow");
+  const [weekdayFont, setWeekdayFont] = React.useState<Font>("font-sans");
+  const [weekdaySize, setWeekdaySize] = React.useState<number>(55);
+
+  // month/year label length, font family, and size
+  const [monthLabel, setMonthLabel] = React.useState<MonthLabel>("long");
+  const [monthFont, setMonthFont] = React.useState<Font>("font-sans");
+  const [monthSize, setMonthSize] = React.useState<number>(65);
+  const [yearLabel, setYearLabel] = React.useState<YearLabel>("show");
 
   // wallpaper size and aspect ratio
   const [ratio, setRatio] = React.useState<AspectRatio>("16:9");
@@ -74,11 +90,17 @@ export default function SelectOptions() {
         <Preview
           bgColor={bgColor}
           date={calDate}
+          monthFont={monthFont}
+          monthLabel={monthLabel}
+          monthSize={monthSize}
           ratio={ratio}
-          size={size}
           textColor={textColor}
+          wallpaperSize={size}
+          weekdayFont={weekdayFont}
           weekdayLabel={weekdayLabel}
+          weekdaySize={weekdaySize}
           weekdayStart={start}
+          yearLabel={yearLabel}
         />
       </div>
 
@@ -94,18 +116,31 @@ export default function SelectOptions() {
           </Tab>
           <Tab key="font" title="Font">
             <Box>
-              <FontSelect />
+              <FontSelect
+                monthFont={monthFont}
+                monthSize={monthSize}
+                setMonthFont={setMonthFont}
+                setMonthSize={setMonthSize}
+                setWeekdayFont={setWeekdayFont}
+                setWeekdaySize={setWeekdaySize}
+                weekdayFont={weekdayFont}
+                weekdaySize={weekdaySize}
+              />
             </Box>
           </Tab>
           <Tab key="label" title="Label">
-            <Box>
-              <StartSelect
+            <div className="flex flex-col gap-4">
+              <LabelSelect
+                monthLabel={monthLabel}
+                setMonthLabel={setMonthLabel}
                 setStart={setStart}
                 setWeekdayLabel={setWeekdayLabel}
+                setYearLabel={setYearLabel}
                 start={start}
                 weekdayLabel={weekdayLabel}
+                yearLabel={yearLabel}
               />
-            </Box>
+            </div>
           </Tab>
           <Tab key="size" title="Size">
             <Box>

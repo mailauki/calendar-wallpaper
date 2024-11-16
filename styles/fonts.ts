@@ -25,7 +25,7 @@ import {
   Big_Shoulders_Display,
   Bilbo_Swash_Caps,
   Bitter,
-  Bodoni_Moda,
+  // Bodoni_Moda,
   Bokor,
   Bubbler_One,
   Bungee,
@@ -48,7 +48,7 @@ import {
   Cuprum,
   Dancing_Script,
   Darker_Grotesque,
-  Dawning_of_a_New_Day,
+  // Dawning_of_a_New_Day,
   Days_One,
   Delius,
   Delius_Unicase,
@@ -70,7 +70,7 @@ import {
   Fontdiner_Swanky,
   Forum,
   Francois_One,
-  Fredericka_the_Great,
+  // Fredericka_the_Great,
   Gaegu,
   Glass_Antiqua,
   Gloria_Hallelujah,
@@ -89,18 +89,18 @@ import {
   Homemade_Apple,
   Hurricane,
   Iceberg,
-  IM_Fell_English_SC,
-  Imbue,
+  // IM_Fell_English_SC,
+  // Imbue,
   Indie_Flower,
   Inter,
   Italiana,
   Itim,
-  Jacquard_24,
+  // Jacquard_24,
   Josefin_Sans,
   Jura,
   Just_Another_Hand,
   Just_Me_Again_Down_Here,
-  Kalnia,
+  // Kalnia,
   Kanit,
   Kiwi_Maru,
   Klee_One,
@@ -131,7 +131,7 @@ import {
   Montserrat_Alternates,
   Mrs_Saint_Delafield,
   Ms_Madi,
-  Nanum_Pen_Script,
+  // Nanum_Pen_Script,
   Neucha,
   Nixie_One,
   Notable,
@@ -143,7 +143,7 @@ import {
   Open_Sans,
   Orbitron,
   Oswald,
-  Over_the_Rainbow,
+  // Over_the_Rainbow,
   Oxygen,
   Pacifico,
   Palanquin,
@@ -180,7 +180,7 @@ import {
   Shantell_Sans,
   Silkscreen,
   Six_Caps,
-  Sixtyfour,
+  // Sixtyfour,
   Sofadi_One,
   Sofia,
   Source_Code_Pro,
@@ -190,8 +190,8 @@ import {
   Square_Peg,
   Sriracha,
   Sue_Ellen_Francisco,
-  Supermercado_One,
-  Swanky_and_Moo_Moo,
+  // Supermercado_One,
+  // Swanky_and_Moo_Moo,
   Syncopate,
   Syne,
   Tangerine,
@@ -205,7 +205,7 @@ import {
   Viga,
   Vollkorn,
   VT323,
-  Waiting_for_the_Sunrise,
+  // Waiting_for_the_Sunrise,
   Walter_Turncoat,
   WindSong,
   Wire_One,
@@ -289,11 +289,11 @@ const creepster = Creepster({ weight: "400" });
 const silkscreen = Silkscreen({ weight: "400" });
 const pirata_one = Pirata_One({ weight: "400" });
 const yellowtail = Yellowtail({ weight: "400" });
-const sixtyfour = Sixtyfour();
+// const sixtyfour = Sixtyfour();
 const crete_round = Crete_Round({ weight: "400" });
 const courgette = Courgette({ weight: "400" });
 const gloria_hallelujah = Gloria_Hallelujah({ weight: "400" });
-const bodoni_moda = Bodoni_Moda();
+// const bodoni_moda = Bodoni_Moda();
 const mate_sc = Mate_SC({ weight: "400" });
 const sacramento = Sacramento({ weight: "400" });
 const old_standard_tt = Old_Standard_TT({ weight: "400" });
@@ -342,7 +342,7 @@ const nothing_you_could_do = Nothing_You_Could_Do({
   weight: "400",
 });
 const six_caps = Six_Caps({ weight: "400" });
-const nanum_pen_script = Nanum_Pen_Script({ weight: "400" });
+// const nanum_pen_script = Nanum_Pen_Script({ weight: "400" });
 const bad_script = Bad_Script({ weight: "400" });
 const unica_one = Unica_One({ weight: "400" });
 const monoton = Monoton({ weight: "400" });
@@ -378,9 +378,9 @@ const delius = Delius({ weight: "400" });
 const kiwi_maru = Kiwi_Maru({ weight: "400" });
 const marcellus_sc = Marcellus_SC({ weight: "400" });
 const gowun_batang = Gowun_Batang({ weight: "400" });
-const fredericka_the_great = Fredericka_the_Great({
-  weight: "400",
-});
+// const fredericka_the_great = Fredericka_the_Great({
+//   weight: "400",
+// });
 const italiana = Italiana({ weight: "400" });
 const shantell_sans = Shantell_Sans();
 const nixie_one = Nixie_One({ weight: "400" });
@@ -393,26 +393,26 @@ const bokor = Bokor({ weight: "400" });
 const love_ya_like_a_sister = Love_Ya_Like_A_Sister({
   weight: "400",
 });
-const waiting_for_the_sunrise = Waiting_for_the_Sunrise({
-  weight: "400",
-});
+// const waiting_for_the_sunrise = Waiting_for_the_Sunrise({
+//   weight: "400",
+// });
 const quintessential = Quintessential({ weight: "400" });
-const dawning_of_a_new_day = Dawning_of_a_New_Day({
-  weight: "400",
-});
+// const dawning_of_a_new_day = Dawning_of_a_New_Day({
+//   weight: "400",
+// });
 const grenze_gotisch = Grenze_Gotisch();
 const fanwood_text = Fanwood_Text({ weight: "400" });
 const ephesis = Ephesis({ weight: "400" });
 const koho = KoHo({ weight: "400" });
 const gotu = Gotu({ weight: "400" });
-const imbue = Imbue();
-const over_the_rainbow = Over_the_Rainbow({ weight: "400" });
+// const imbue = Imbue();
+// const over_the_rainbow = Over_the_Rainbow({ weight: "400" });
 const pompiere = Pompiere({ weight: "400" });
 const aboreto = Aboreto({ weight: "400" });
 const major_mono_display = Major_Mono_Display({ weight: "400" });
 const notable = Notable({ weight: "400" });
 const square_peg = Square_Peg({ weight: "400" });
-const im_fell_english_sc = IM_Fell_English_SC({ weight: "400" });
+// const im_fell_english_sc = IM_Fell_English_SC({ weight: "400" });
 const aladin = Aladin({ weight: "400" });
 const hurricane = Hurricane({ weight: "400" });
 const quando = Quando({ weight: "400" });
@@ -426,13 +426,13 @@ const just_me_again_down_here = Just_Me_Again_Down_Here({
 });
 const gugi = Gugi({ weight: "400" });
 const elsie = Elsie({ weight: "400" });
-const supermercado_one = Supermercado_One({ weight: "400" });
+// const supermercado_one = Supermercado_One({ weight: "400" });
 const happy_monkey = Happy_Monkey({ weight: "400" });
 const iceberg = Iceberg({ weight: "400" });
 const vast_shadow = Vast_Shadow({ weight: "400" });
 const walter_turncoat = Walter_Turncoat({ weight: "400" });
 const sofadi_one = Sofadi_One({ weight: "400" });
-const kalnia = Kalnia();
+// const kalnia = Kalnia();
 const numans = Numans({ weight: "400" });
 const bilbo_swash_caps = Bilbo_Swash_Caps({ weight: "400" });
 const charmonman = Charmonman({ weight: "400" });
@@ -446,11 +446,11 @@ const the_girl_next_door = The_Girl_Next_Door({ weight: "400" });
 const wire_one = Wire_One({ weight: "400" });
 const grape_nuts = Grape_Nuts({ weight: "400" });
 const windsong = WindSong({ weight: "400" });
-const jacquard_24 = Jacquard_24({ weight: "400" });
+// const jacquard_24 = Jacquard_24({ weight: "400" });
 const delius_unicase = Delius_Unicase({ weight: "400" });
 const cherry_swash = Cherry_Swash({ weight: "400" });
 const hachi_maru_pop = Hachi_Maru_Pop({ weight: "400" });
-const swanky_and_moo_moo = Swanky_and_Moo_Moo({ weight: "400" });
+// const swanky_and_moo_moo = Swanky_and_Moo_Moo({ weight: "400" });
 const glass_antiqua = Glass_Antiqua({ weight: "400" });
 const fontdiner_swanky = Fontdiner_Swanky({ weight: "400" });
 const lobster_two = Lobster_Two({ weight: "400" });
@@ -526,11 +526,11 @@ export const fonts = [
   silkscreen,
   pirata_one,
   yellowtail,
-  sixtyfour,
+  // sixtyfour,
   crete_round,
   courgette,
   gloria_hallelujah,
-  bodoni_moda,
+  // bodoni_moda,
   mate_sc,
   sacramento,
   old_standard_tt,
@@ -575,7 +575,7 @@ export const fonts = [
   arsenal,
   nothing_you_could_do,
   six_caps,
-  nanum_pen_script,
+  // nanum_pen_script,
   bad_script,
   unica_one,
   monoton,
@@ -605,7 +605,7 @@ export const fonts = [
   kiwi_maru,
   marcellus_sc,
   gowun_batang,
-  fredericka_the_great,
+  // fredericka_the_great,
   italiana,
   shantell_sans,
   nixie_one,
@@ -616,22 +616,22 @@ export const fonts = [
   petit_formal_script,
   bokor,
   love_ya_like_a_sister,
-  waiting_for_the_sunrise,
+  // waiting_for_the_sunrise,
   quintessential,
-  dawning_of_a_new_day,
+  // dawning_of_a_new_day,
   grenze_gotisch,
   fanwood_text,
   ephesis,
   koho,
   gotu,
-  imbue,
-  over_the_rainbow,
+  // imbue,
+  // over_the_rainbow,
   pompiere,
   aboreto,
   major_mono_display,
   notable,
   square_peg,
-  im_fell_english_sc,
+  // im_fell_english_sc,
   aladin,
   hurricane,
   quando,
@@ -643,13 +643,13 @@ export const fonts = [
   just_me_again_down_here,
   gugi,
   elsie,
-  supermercado_one,
+  // supermercado_one,
   happy_monkey,
   iceberg,
   vast_shadow,
   walter_turncoat,
   sofadi_one,
-  kalnia,
+  // kalnia,
   numans,
   bilbo_swash_caps,
   charmonman,
@@ -663,11 +663,11 @@ export const fonts = [
   wire_one,
   grape_nuts,
   windsong,
-  jacquard_24,
+  // jacquard_24,
   delius_unicase,
   cherry_swash,
   hachi_maru_pop,
-  swanky_and_moo_moo,
+  // swanky_and_moo_moo,
   glass_antiqua,
   fontdiner_swanky,
   lobster_two,
