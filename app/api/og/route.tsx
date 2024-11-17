@@ -122,14 +122,20 @@ export async function GET(request: NextRequest) {
         </p>
         <div
           style={{ opacity: 0.5 }}
-          tw={`flex items-center justify-around ${weekdayLabel == "long" ? "w-1/2" : "w-1/3"}`}
+          // tw={`flex items-center justify-around ${weekdayLabel == "long" && "w-1/2"}`}
+          tw="flex items-center justify-around"
         >
           {weekStart.map((day, index) => (
             <p
               key={day}
               style={{
                 margin: 0,
-                width: "10rem",
+                width:
+                  weekdayLabel == "long"
+                    ? "24rem"
+                    : weekdayLabel == "short"
+                      ? "10rem"
+                      : "8rem",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -139,9 +145,6 @@ export async function GET(request: NextRequest) {
               }}
               tw={`${weekdayFont}`}
             >
-              {/* {weekdayLabel == "narrow" && day.charAt(0)}
-              {weekdayLabel == "short" && day.substring(0, 3)}
-              {weekdayLabel == "long" && day} */}
               {formatter({ weekdayLabel }).format(
                 parseDate(firstDate.add({ days: index }).toString()).toDate(
                   getLocalTimeZone(),
@@ -153,7 +156,9 @@ export async function GET(request: NextRequest) {
         {weekInMonth.map((week) => (
           <div
             key={week}
-            tw={`flex items-center justify-around ${weekdayLabel == "long" ? "w-1/2" : "w-1/3"}`}
+            // tw={`flex items-center justify-around ${weekdayLabel == "long" && "w-1/2"}`}
+            // tw={`flex items-center justify-around ${weekdayLabel == "long" ? "w-1/2" : "w-1/3"}`}
+            tw="flex items-center justify-around"
           >
             {daysInWeek.map((day) => (
               <p
@@ -166,7 +171,12 @@ export async function GET(request: NextRequest) {
                   )
                     ? 1
                     : 0.5,
-                  width: "10rem",
+                  width:
+                    weekdayLabel == "long"
+                      ? "24rem"
+                      : weekdayLabel == "short"
+                        ? "10rem"
+                        : "8rem",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",

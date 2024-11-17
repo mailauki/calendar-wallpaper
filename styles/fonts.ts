@@ -217,243 +217,315 @@ import {
 } from "next/font/google";
 
 // define your variable fonts
-const open_sans = Open_Sans();
-const roboto = Roboto({ weight: "400" });
-const dotgothic16 = DotGothic16({ weight: "400" });
-const montserrat = Montserrat();
-const poppins = Poppins({ weight: "400" });
-const inter = Inter();
-const roboto_condensed = Roboto_Condensed();
-const oswald = Oswald();
-const raleway = Raleway();
-const nunito = Nunito();
-const rubik = Rubik();
-const playfair_display = Playfair_Display();
-const kanit = Kanit({ weight: "400" });
-const merriweather = Merriweather({ weight: "400" });
-const lora = Lora();
-const quicksand = Quicksand();
-const bebas_neue = Bebas_Neue({ weight: "400" });
-const libre_franklin = Libre_Franklin();
-const josefin_sans = Josefin_Sans();
-const libre_baskerville = Libre_Baskerville({ weight: "400" });
-const arimo = Arimo();
-const source_code_pro = Source_Code_Pro();
-const dosis = Dosis();
-const dancing_script = Dancing_Script();
-const figtree = Figtree();
-const crimson_text = Crimson_Text({ weight: "400" });
-const eb_garamond = EB_Garamond();
-const bitter = Bitter();
-const fira_sans_condensed = Fira_Sans_Condensed({ weight: "400" });
-const anton = Anton({ weight: "400" });
-const abel = Abel({ weight: "400" });
-const barlow_condensed = Barlow_Condensed({ weight: "400" });
-const space_grotesk = Space_Grotesk();
-const exo = Exo();
-const teko = Teko();
-const oxygen = Oxygen({ weight: "400" });
-const red_hat_display = Red_Hat_Display();
-const pacifico = Pacifico({ weight: "400" });
-const lexend = Lexend();
-const comfortaa = Comfortaa();
-const caveat = Caveat();
-const cormorant_garamond = Cormorant_Garamond({ weight: "400" });
-const archivo_black = Archivo_Black({ weight: "400" });
-const arvo = Arvo({ weight: "400" });
-const lilita_one = Lilita_One({ weight: "400" });
-const shadows_into_light = Shadows_Into_Light({ weight: "400" });
-const satisfy = Satisfy({ weight: "400" });
-const permanent_marker = Permanent_Marker({ weight: "400" });
-const abril_fatface = Abril_Fatface({ weight: "400" });
-const play = Play({ weight: "400" });
-const indie_flower = Indie_Flower({ weight: "400" });
-const spicy_Rice = Spicy_Rice({ weight: "400" });
-const urbanist = Urbanist();
-const cinzel_decorative = Cinzel_Decorative({ weight: "400" });
-const vollkorn = Vollkorn();
-const marcellus = Marcellus({ weight: "400" });
-const saira_condensed = Saira_Condensed({ weight: "400" });
-const concert_one = Concert_One({ weight: "400" });
-const tinos = Tinos({ weight: "400" });
-const great_vibes = Great_Vibes({ weight: "400" });
-const francois_one = Francois_One({ weight: "400" });
-const orbitron = Orbitron();
-const amatic_sc = Amatic_SC({ weight: "400" });
+const open_sans = Open_Sans({ weight: "400", subsets: ["latin"] });
+const roboto = Roboto({ weight: "400", subsets: ["latin"] });
+const dotgothic16 = DotGothic16({ weight: "400", subsets: ["latin"] });
+const montserrat = Montserrat({ weight: "400", subsets: ["latin"] });
+const poppins = Poppins({ weight: "400", subsets: ["latin"] });
+const inter = Inter({ weight: "400", subsets: ["latin"] });
+const roboto_condensed = Roboto_Condensed({
+  weight: "400",
+  subsets: ["latin"],
+});
+const oswald = Oswald({ weight: "400", subsets: ["latin"] });
+const raleway = Raleway({ weight: "400", subsets: ["latin"] });
+const nunito = Nunito({ weight: "400", subsets: ["latin"] });
+const rubik = Rubik({ weight: "400", subsets: ["latin"] });
+const playfair_display = Playfair_Display({
+  weight: "400",
+  subsets: ["latin"],
+});
+const kanit = Kanit({ weight: "400", subsets: ["latin"] });
+const merriweather = Merriweather({ weight: "400", subsets: ["latin"] });
+const lora = Lora({ weight: "400", subsets: ["latin"] });
+const quicksand = Quicksand({ weight: "400", subsets: ["latin"] });
+const bebas_neue = Bebas_Neue({ weight: "400", subsets: ["latin"] });
+const libre_franklin = Libre_Franklin({ weight: "400", subsets: ["latin"] });
+const josefin_sans = Josefin_Sans({ weight: "400", subsets: ["latin"] });
+const libre_baskerville = Libre_Baskerville({
+  weight: "400",
+  subsets: ["latin"],
+});
+const arimo = Arimo({ weight: "400", subsets: ["latin"] });
+const source_code_pro = Source_Code_Pro({ weight: "400", subsets: ["latin"] });
+const dosis = Dosis({ weight: "400", subsets: ["latin"] });
+const dancing_script = Dancing_Script({ weight: "400", subsets: ["latin"] });
+const figtree = Figtree({ weight: "400", subsets: ["latin"] });
+const crimson_text = Crimson_Text({ weight: "400", subsets: ["latin"] });
+const eb_garamond = EB_Garamond({ weight: "400", subsets: ["latin"] });
+const bitter = Bitter({ weight: "400", subsets: ["latin"] });
+const fira_sans_condensed = Fira_Sans_Condensed({
+  weight: "400",
+  subsets: ["latin"],
+});
+const anton = Anton({ weight: "400", subsets: ["latin"] });
+const abel = Abel({ weight: "400", subsets: ["latin"] });
+const barlow_condensed = Barlow_Condensed({
+  weight: "400",
+  subsets: ["latin"],
+});
+const space_grotesk = Space_Grotesk({ weight: "400", subsets: ["latin"] });
+const exo = Exo({ weight: "400", subsets: ["latin"] });
+const teko = Teko({ weight: "400", subsets: ["latin"] });
+const oxygen = Oxygen({ weight: "400", subsets: ["latin"] });
+const red_hat_display = Red_Hat_Display({ weight: "400", subsets: ["latin"] });
+const pacifico = Pacifico({ weight: "400", subsets: ["latin"] });
+const lexend = Lexend({ weight: "400", subsets: ["latin"] });
+const comfortaa = Comfortaa({ weight: "400", subsets: ["latin"] });
+const caveat = Caveat({ weight: "400", subsets: ["latin"] });
+const cormorant_garamond = Cormorant_Garamond({
+  weight: "400",
+  subsets: ["latin"],
+});
+const archivo_black = Archivo_Black({ weight: "400", subsets: ["latin"] });
+const arvo = Arvo({ weight: "400", subsets: ["latin"] });
+const lilita_one = Lilita_One({ weight: "400", subsets: ["latin"] });
+const shadows_into_light = Shadows_Into_Light({
+  weight: "400",
+  subsets: ["latin"],
+});
+const satisfy = Satisfy({ weight: "400", subsets: ["latin"] });
+const permanent_marker = Permanent_Marker({
+  weight: "400",
+  subsets: ["latin"],
+});
+const abril_fatface = Abril_Fatface({ weight: "400", subsets: ["latin"] });
+const play = Play({ weight: "400", subsets: ["latin"] });
+const indie_flower = Indie_Flower({ weight: "400", subsets: ["latin"] });
+const spicy_Rice = Spicy_Rice({ weight: "400", subsets: ["latin"] });
+const urbanist = Urbanist({ weight: "400", subsets: ["latin"] });
+const cinzel_decorative = Cinzel_Decorative({
+  weight: "400",
+  subsets: ["latin"],
+});
+const vollkorn = Vollkorn({ weight: "400", subsets: ["latin"] });
+const marcellus = Marcellus({ weight: "400", subsets: ["latin"] });
+const saira_condensed = Saira_Condensed({ weight: "400", subsets: ["latin"] });
+const concert_one = Concert_One({ weight: "400", subsets: ["latin"] });
+const tinos = Tinos({ weight: "400", subsets: ["latin"] });
+const great_vibes = Great_Vibes({ weight: "400", subsets: ["latin"] });
+const francois_one = Francois_One({ weight: "400", subsets: ["latin"] });
+const orbitron = Orbitron({ weight: "400", subsets: ["latin"] });
+const amatic_sc = Amatic_SC({ weight: "400", subsets: ["latin"] });
 const montserrat_alternates = Montserrat_Alternates({
   weight: "400",
 });
-const oleo_script = Oleo_Script({ weight: "400" });
-const rubik_mono_one = Rubik_Mono_One({ weight: "400" });
-const creepster = Creepster({ weight: "400" });
-const silkscreen = Silkscreen({ weight: "400" });
-const pirata_one = Pirata_One({ weight: "400" });
-const yellowtail = Yellowtail({ weight: "400" });
-// const sixtyfour = Sixtyfour();
-const crete_round = Crete_Round({ weight: "400" });
-const courgette = Courgette({ weight: "400" });
-const gloria_hallelujah = Gloria_Hallelujah({ weight: "400" });
-// const bodoni_moda = Bodoni_Moda();
-const mate_sc = Mate_SC({ weight: "400" });
-const sacramento = Sacramento({ weight: "400" });
-const old_standard_tt = Old_Standard_TT({ weight: "400" });
-const philosopher = Philosopher({ weight: "400" });
-const yatra_one = Yatra_One({ weight: "400" });
-const gruppo = Gruppo({ weight: "400" });
-const macondo = Macondo({ weight: "400" });
-const neucha = Neucha({ weight: "400" });
-const zeyada = Zeyada({ weight: "400" });
-const itim = Itim({ weight: "400" });
-const allura = Allura({ weight: "400" });
-const poiret_one = Poiret_One({ weight: "400" });
-const advent_pro = Advent_Pro();
-const sofia = Sofia({ weight: "400" });
-const patrick_Hand = Patrick_Hand({ weight: "400" });
-const syne = Syne({ weight: "400" });
-const sarpanch = Sarpanch({ weight: "400" });
-const tangerine = Tangerine({ weight: "400" });
-const architects_daughter = Architects_Daughter({ weight: "400" });
-const special_elite = Special_Elite({ weight: "400" });
-const epilogue = Epilogue();
-const cuprum = Cuprum();
-const literata = Literata();
+const oleo_script = Oleo_Script({ weight: "400", subsets: ["latin"] });
+const rubik_mono_one = Rubik_Mono_One({ weight: "400", subsets: ["latin"] });
+const creepster = Creepster({ weight: "400", subsets: ["latin"] });
+const silkscreen = Silkscreen({ weight: "400", subsets: ["latin"] });
+const pirata_one = Pirata_One({ weight: "400", subsets: ["latin"] });
+const yellowtail = Yellowtail({ weight: "400", subsets: ["latin"] });
+// const sixtyfour = Sixtyfour({ weight: "400", subsets: ["latin"] });
+const crete_round = Crete_Round({ weight: "400", subsets: ["latin"] });
+const courgette = Courgette({ weight: "400", subsets: ["latin"] });
+const gloria_hallelujah = Gloria_Hallelujah({
+  weight: "400",
+  subsets: ["latin"],
+});
+// const bodoni_moda = Bodoni_Moda({ weight: "400", subsets: ["latin"] });
+const mate_sc = Mate_SC({ weight: "400", subsets: ["latin"] });
+const sacramento = Sacramento({ weight: "400", subsets: ["latin"] });
+const old_standard_tt = Old_Standard_TT({ weight: "400", subsets: ["latin"] });
+const philosopher = Philosopher({ weight: "400", subsets: ["latin"] });
+const yatra_one = Yatra_One({ weight: "400", subsets: ["latin"] });
+const gruppo = Gruppo({ weight: "400", subsets: ["latin"] });
+const macondo = Macondo({ weight: "400", subsets: ["latin"] });
+const neucha = Neucha({ weight: "400", subsets: ["latin"] });
+const zeyada = Zeyada({ weight: "400", subsets: ["latin"] });
+const itim = Itim({ weight: "400", subsets: ["latin"] });
+const allura = Allura({ weight: "400", subsets: ["latin"] });
+const poiret_one = Poiret_One({ weight: "400", subsets: ["latin"] });
+const advent_pro = Advent_Pro({ weight: "400", subsets: ["latin"] });
+const sofia = Sofia({ weight: "400", subsets: ["latin"] });
+const patrick_Hand = Patrick_Hand({ weight: "400", subsets: ["latin"] });
+const syne = Syne({ weight: "400", subsets: ["latin"] });
+const sarpanch = Sarpanch({ weight: "400", subsets: ["latin"] });
+const tangerine = Tangerine({ weight: "400", subsets: ["latin"] });
+const architects_daughter = Architects_Daughter({
+  weight: "400",
+  subsets: ["latin"],
+});
+const special_elite = Special_Elite({ weight: "400", subsets: ["latin"] });
+const epilogue = Epilogue({ weight: "400", subsets: ["latin"] });
+const cuprum = Cuprum({ weight: "400", subsets: ["latin"] });
+const literata = Literata({ weight: "400", subsets: ["latin"] });
 const fira_sans_extra_condensed = Fira_Sans_Extra_Condensed({
   weight: "400",
 });
-const pathway_gothic_one = Pathway_Gothic_One({ weight: "400" });
-const yeseva_one = Yeseva_One({ weight: "400" });
-const playfair_display_sc = Playfair_Display_SC({ weight: "400" });
-const bungee = Bungee({ weight: "400" });
-const parisienne = Parisienne({ weight: "400" });
-const comic_neue = Comic_Neue({ weight: "400" });
-const jura = Jura();
-const handlee = Handlee({ weight: "400" });
-const reenie_beanie = Reenie_Beanie({ weight: "400" });
-const faustina = Faustina();
-const forum = Forum({ weight: "400" });
-const homemade_apple = Homemade_Apple({ weight: "400" });
-const sriracha = Sriracha({ weight: "400" });
-const vt323 = VT323({ weight: "400" });
-const league_gothic = League_Gothic();
-const alex_brush = Alex_Brush({ weight: "400" });
-const antonio = Antonio();
-const arsenal = Arsenal({ weight: "400" });
+const pathway_gothic_one = Pathway_Gothic_One({
+  weight: "400",
+  subsets: ["latin"],
+});
+const yeseva_one = Yeseva_One({ weight: "400", subsets: ["latin"] });
+const playfair_display_sc = Playfair_Display_SC({
+  weight: "400",
+  subsets: ["latin"],
+});
+const bungee = Bungee({ weight: "400", subsets: ["latin"] });
+const parisienne = Parisienne({ weight: "400", subsets: ["latin"] });
+const comic_neue = Comic_Neue({ weight: "400", subsets: ["latin"] });
+const jura = Jura({ weight: "400", subsets: ["latin"] });
+const handlee = Handlee({ weight: "400", subsets: ["latin"] });
+const reenie_beanie = Reenie_Beanie({ weight: "400", subsets: ["latin"] });
+const faustina = Faustina({ weight: "400", subsets: ["latin"] });
+const forum = Forum({ weight: "400", subsets: ["latin"] });
+const homemade_apple = Homemade_Apple({ weight: "400", subsets: ["latin"] });
+const sriracha = Sriracha({ weight: "400", subsets: ["latin"] });
+const vt323 = VT323({ weight: "400", subsets: ["latin"] });
+const league_gothic = League_Gothic({ weight: "400", subsets: ["latin"] });
+const alex_brush = Alex_Brush({ weight: "400", subsets: ["latin"] });
+const antonio = Antonio({ weight: "400", subsets: ["latin"] });
+const arsenal = Arsenal({ weight: "400", subsets: ["latin"] });
 const nothing_you_could_do = Nothing_You_Could_Do({
   weight: "400",
 });
-const six_caps = Six_Caps({ weight: "400" });
-// const nanum_pen_script = Nanum_Pen_Script({ weight: "400" });
-const bad_script = Bad_Script({ weight: "400" });
-const unica_one = Unica_One({ weight: "400" });
-const monoton = Monoton({ weight: "400" });
-const alegreya_sans_sc = Alegreya_Sans_SC({ weight: "400" });
-const syncopate = Syncopate({ weight: "400" });
-const rock_salt = Rock_Salt({ weight: "400" });
-const quantico = Quantico({ weight: "400" });
+const six_caps = Six_Caps({ weight: "400", subsets: ["latin"] });
+// const nanum_pen_script = Nanum_Pen_Script({ weight: "400", subsets: ["latin"] });
+const bad_script = Bad_Script({ weight: "400", subsets: ["latin"] });
+const unica_one = Unica_One({ weight: "400", subsets: ["latin"] });
+const monoton = Monoton({ weight: "400", subsets: ["latin"] });
+const alegreya_sans_sc = Alegreya_Sans_SC({
+  weight: "400",
+  subsets: ["latin"],
+});
+const syncopate = Syncopate({ weight: "400", subsets: ["latin"] });
+const rock_salt = Rock_Salt({ weight: "400", subsets: ["latin"] });
+const quantico = Quantico({ weight: "400", subsets: ["latin"] });
 const big_shoulders_display = Big_Shoulders_Display({
   weight: "400",
 });
-const viga = Viga({ weight: "400" });
-const averia_serif_libre = Averia_Serif_Libre({ weight: "400" });
-const economica = Economica({ weight: "400" });
-const darker_grotesque = Darker_Grotesque();
+const viga = Viga({ weight: "400", subsets: ["latin"] });
+const averia_serif_libre = Averia_Serif_Libre({
+  weight: "400",
+  subsets: ["latin"],
+});
+const economica = Economica({ weight: "400", subsets: ["latin"] });
+const darker_grotesque = Darker_Grotesque({
+  weight: "400",
+  subsets: ["latin"],
+});
 const covered_by_your_grace = Covered_By_Your_Grace({
   weight: "400",
 });
-const berkshire_swash = Berkshire_Swash({ weight: "400" });
-const days_one = Days_One({ weight: "400" });
-const mrs_saint_delafield = Mrs_Saint_Delafield({ weight: "400" });
-const gochi_hand = Gochi_Hand({ weight: "400" });
-const charm = Charm({ weight: "400" });
-const just_another_hand = Just_Another_Hand({ weight: "400" });
-const corben = Corben({ weight: "400" });
-const allison = Allison({ weight: "400" });
-const laila = Laila({ weight: "400" });
-const palanquin = Palanquin({ weight: "400" });
+const berkshire_swash = Berkshire_Swash({ weight: "400", subsets: ["latin"] });
+const days_one = Days_One({ weight: "400", subsets: ["latin"] });
+const mrs_saint_delafield = Mrs_Saint_Delafield({
+  weight: "400",
+  subsets: ["latin"],
+});
+const gochi_hand = Gochi_Hand({ weight: "400", subsets: ["latin"] });
+const charm = Charm({ weight: "400", subsets: ["latin"] });
+const just_another_hand = Just_Another_Hand({
+  weight: "400",
+  subsets: ["latin"],
+});
+const corben = Corben({ weight: "400", subsets: ["latin"] });
+const allison = Allison({ weight: "400", subsets: ["latin"] });
+const laila = Laila({ weight: "400", subsets: ["latin"] });
+const palanquin = Palanquin({ weight: "400", subsets: ["latin"] });
 const herr_von_muellerhoff = Herr_Von_Muellerhoff({
   weight: "400",
 });
-const la_belle_aurore = La_Belle_Aurore({ weight: "400" });
-const delius = Delius({ weight: "400" });
-const kiwi_maru = Kiwi_Maru({ weight: "400" });
-const marcellus_sc = Marcellus_SC({ weight: "400" });
-const gowun_batang = Gowun_Batang({ weight: "400" });
+const la_belle_aurore = La_Belle_Aurore({ weight: "400", subsets: ["latin"] });
+const delius = Delius({ weight: "400", subsets: ["latin"] });
+const kiwi_maru = Kiwi_Maru({ weight: "400", subsets: ["latin"] });
+const marcellus_sc = Marcellus_SC({ weight: "400", subsets: ["latin"] });
+const gowun_batang = Gowun_Batang({ weight: "400", subsets: ["latin"] });
 // const fredericka_the_great = Fredericka_the_Great({
 //   weight: "400",
 // });
-const italiana = Italiana({ weight: "400" });
-const shantell_sans = Shantell_Sans();
-const nixie_one = Nixie_One({ weight: "400" });
-const ms_madi = Ms_Madi({ weight: "400" });
-const klee_one = Klee_One({ weight: "400" });
-const yesteryear = Yesteryear({ weight: "400" });
-const limelight = Limelight({ weight: "400" });
-const petit_formal_script = Petit_Formal_Script({ weight: "400" });
-const bokor = Bokor({ weight: "400" });
+const italiana = Italiana({ weight: "400", subsets: ["latin"] });
+const shantell_sans = Shantell_Sans({ weight: "400", subsets: ["latin"] });
+const nixie_one = Nixie_One({ weight: "400", subsets: ["latin"] });
+const ms_madi = Ms_Madi({ weight: "400", subsets: ["latin"] });
+const klee_one = Klee_One({ weight: "400", subsets: ["latin"] });
+const yesteryear = Yesteryear({ weight: "400", subsets: ["latin"] });
+const limelight = Limelight({ weight: "400", subsets: ["latin"] });
+const petit_formal_script = Petit_Formal_Script({
+  weight: "400",
+  subsets: ["latin"],
+});
+const bokor = Bokor({ weight: "400", subsets: ["latin"] });
 const love_ya_like_a_sister = Love_Ya_Like_A_Sister({
   weight: "400",
 });
 // const waiting_for_the_sunrise = Waiting_for_the_Sunrise({
 //   weight: "400",
 // });
-const quintessential = Quintessential({ weight: "400" });
+const quintessential = Quintessential({ weight: "400", subsets: ["latin"] });
 // const dawning_of_a_new_day = Dawning_of_a_New_Day({
 //   weight: "400",
 // });
-const grenze_gotisch = Grenze_Gotisch();
-const fanwood_text = Fanwood_Text({ weight: "400" });
-const ephesis = Ephesis({ weight: "400" });
-const koho = KoHo({ weight: "400" });
-const gotu = Gotu({ weight: "400" });
-// const imbue = Imbue();
-// const over_the_rainbow = Over_the_Rainbow({ weight: "400" });
-const pompiere = Pompiere({ weight: "400" });
-const aboreto = Aboreto({ weight: "400" });
-const major_mono_display = Major_Mono_Display({ weight: "400" });
-const notable = Notable({ weight: "400" });
-const square_peg = Square_Peg({ weight: "400" });
-// const im_fell_english_sc = IM_Fell_English_SC({ weight: "400" });
-const aladin = Aladin({ weight: "400" });
-const hurricane = Hurricane({ weight: "400" });
-const quando = Quando({ weight: "400" });
-const fondamento = Fondamento({ weight: "400" });
-const sue_ellen_francisco = Sue_Ellen_Francisco({ weight: "400" });
-const federo = Federo({ weight: "400" });
-const league_script = League_Script({ weight: "400" });
-const meow_script = Meow_Script({ weight: "400" });
+const grenze_gotisch = Grenze_Gotisch({ weight: "400", subsets: ["latin"] });
+const fanwood_text = Fanwood_Text({ weight: "400", subsets: ["latin"] });
+const ephesis = Ephesis({ weight: "400", subsets: ["latin"] });
+const koho = KoHo({ weight: "400", subsets: ["latin"] });
+const gotu = Gotu({ weight: "400", subsets: ["latin"] });
+// const imbue = Imbue({ weight: "400", subsets: ["latin"] });
+// const over_the_rainbow = Over_the_Rainbow({ weight: "400", subsets: ["latin"] });
+const pompiere = Pompiere({ weight: "400", subsets: ["latin"] });
+const aboreto = Aboreto({ weight: "400", subsets: ["latin"] });
+const major_mono_display = Major_Mono_Display({
+  weight: "400",
+  subsets: ["latin"],
+});
+const notable = Notable({ weight: "400", subsets: ["latin"] });
+const square_peg = Square_Peg({ weight: "400", subsets: ["latin"] });
+// const im_fell_english_sc = IM_Fell_English_SC({ weight: "400", subsets: ["latin"] });
+const aladin = Aladin({ weight: "400", subsets: ["latin"] });
+const hurricane = Hurricane({ weight: "400", subsets: ["latin"] });
+const quando = Quando({ weight: "400", subsets: ["latin"] });
+const fondamento = Fondamento({ weight: "400", subsets: ["latin"] });
+const sue_ellen_francisco = Sue_Ellen_Francisco({
+  weight: "400",
+  subsets: ["latin"],
+});
+const federo = Federo({ weight: "400", subsets: ["latin"] });
+const league_script = League_Script({ weight: "400", subsets: ["latin"] });
+const meow_script = Meow_Script({ weight: "400", subsets: ["latin"] });
 const just_me_again_down_here = Just_Me_Again_Down_Here({
   weight: "400",
 });
-const gugi = Gugi({ weight: "400" });
-const elsie = Elsie({ weight: "400" });
-// const supermercado_one = Supermercado_One({ weight: "400" });
-const happy_monkey = Happy_Monkey({ weight: "400" });
-const iceberg = Iceberg({ weight: "400" });
-const vast_shadow = Vast_Shadow({ weight: "400" });
-const walter_turncoat = Walter_Turncoat({ weight: "400" });
-const sofadi_one = Sofadi_One({ weight: "400" });
-// const kalnia = Kalnia();
-const numans = Numans({ weight: "400" });
-const bilbo_swash_caps = Bilbo_Swash_Caps({ weight: "400" });
-const charmonman = Charmonman({ weight: "400" });
-const bubbler_one = Bubbler_One({ weight: "400" });
-const carme = Carme({ weight: "400" });
-const amarante = Amarante({ weight: "400" });
-const metamorphous = Metamorphous({ weight: "400" });
-const gaegu = Gaegu({ weight: "400" });
-const uncial_antiqua = Uncial_Antiqua({ weight: "400" });
-const the_girl_next_door = The_Girl_Next_Door({ weight: "400" });
-const wire_one = Wire_One({ weight: "400" });
-const grape_nuts = Grape_Nuts({ weight: "400" });
-const windsong = WindSong({ weight: "400" });
-// const jacquard_24 = Jacquard_24({ weight: "400" });
-const delius_unicase = Delius_Unicase({ weight: "400" });
-const cherry_swash = Cherry_Swash({ weight: "400" });
-const hachi_maru_pop = Hachi_Maru_Pop({ weight: "400" });
-// const swanky_and_moo_moo = Swanky_and_Moo_Moo({ weight: "400" });
-const glass_antiqua = Glass_Antiqua({ weight: "400" });
-const fontdiner_swanky = Fontdiner_Swanky({ weight: "400" });
-const lobster_two = Lobster_Two({ weight: "400" });
+const gugi = Gugi({ weight: "400", subsets: ["latin"] });
+const elsie = Elsie({ weight: "400", subsets: ["latin"] });
+// const supermercado_one = Supermercado_One({ weight: "400", subsets: ["latin"] });
+const happy_monkey = Happy_Monkey({ weight: "400", subsets: ["latin"] });
+const iceberg = Iceberg({ weight: "400", subsets: ["latin"] });
+const vast_shadow = Vast_Shadow({ weight: "400", subsets: ["latin"] });
+const walter_turncoat = Walter_Turncoat({ weight: "400", subsets: ["latin"] });
+const sofadi_one = Sofadi_One({ weight: "400", subsets: ["latin"] });
+// const kalnia = Kalnia({ weight: "400", subsets: ["latin"] });
+const numans = Numans({ weight: "400", subsets: ["latin"] });
+const bilbo_swash_caps = Bilbo_Swash_Caps({
+  weight: "400",
+  subsets: ["latin"],
+});
+const charmonman = Charmonman({ weight: "400", subsets: ["latin"] });
+const bubbler_one = Bubbler_One({ weight: "400", subsets: ["latin"] });
+const carme = Carme({ weight: "400", subsets: ["latin"] });
+const amarante = Amarante({ weight: "400", subsets: ["latin"] });
+const metamorphous = Metamorphous({ weight: "400", subsets: ["latin"] });
+const gaegu = Gaegu({ weight: "400", subsets: ["latin"] });
+const uncial_antiqua = Uncial_Antiqua({ weight: "400", subsets: ["latin"] });
+const the_girl_next_door = The_Girl_Next_Door({
+  weight: "400",
+  subsets: ["latin"],
+});
+const wire_one = Wire_One({ weight: "400", subsets: ["latin"] });
+const grape_nuts = Grape_Nuts({ weight: "400", subsets: ["latin"] });
+const windsong = WindSong({ weight: "400", subsets: ["latin"] });
+// const jacquard_24 = Jacquard_24({ weight: "400", subsets: ["latin"] });
+const delius_unicase = Delius_Unicase({ weight: "400", subsets: ["latin"] });
+const cherry_swash = Cherry_Swash({ weight: "400", subsets: ["latin"] });
+const hachi_maru_pop = Hachi_Maru_Pop({ weight: "400", subsets: ["latin"] });
+// const swanky_and_moo_moo = Swanky_and_Moo_Moo({ weight: "400", subsets: ["latin"] });
+const glass_antiqua = Glass_Antiqua({ weight: "400", subsets: ["latin"] });
+const fontdiner_swanky = Fontdiner_Swanky({
+  weight: "400",
+  subsets: ["latin"],
+});
+const lobster_two = Lobster_Two({ weight: "400", subsets: ["latin"] });
 
 export const fonts = [
   open_sans,

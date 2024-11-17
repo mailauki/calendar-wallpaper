@@ -14,9 +14,10 @@ import Box from "./box";
 import MonthsSelect from "./select/months";
 import YearSelect from "./select/year";
 import ColorsSelect from "./select/colors";
-import FontSelect from "./select/font";
-import LabelSelect from "./select/label";
 import SizeSelect from "./select/size";
+import CalendarStyleSelect from "./select/style/calendar";
+import MonthStyleSelect from "./select/style/month";
+import WeekdayStyleSelect from "./select/style/weekday";
 
 import {
   AspectRatio,
@@ -26,6 +27,7 @@ import {
   WeekdayStart,
   YearLabel,
 } from "@/types";
+
 
 export default function SelectOptions() {
   // current date
@@ -114,34 +116,6 @@ export default function SelectOptions() {
               textColor={textColor}
             />
           </Tab>
-          <Tab key="font" title="Font">
-            <Box>
-              <FontSelect
-                monthFont={monthFont}
-                monthSize={monthSize}
-                setMonthFont={setMonthFont}
-                setMonthSize={setMonthSize}
-                setWeekdayFont={setWeekdayFont}
-                setWeekdaySize={setWeekdaySize}
-                weekdayFont={weekdayFont}
-                weekdaySize={weekdaySize}
-              />
-            </Box>
-          </Tab>
-          <Tab key="label" title="Label">
-            <div className="flex flex-col gap-4">
-              <LabelSelect
-                monthLabel={monthLabel}
-                setMonthLabel={setMonthLabel}
-                setStart={setStart}
-                setWeekdayLabel={setWeekdayLabel}
-                setYearLabel={setYearLabel}
-                start={start}
-                weekdayLabel={weekdayLabel}
-                yearLabel={yearLabel}
-              />
-            </div>
-          </Tab>
           <Tab key="size" title="Size">
             <Box>
               <SizeSelect
@@ -151,6 +125,53 @@ export default function SelectOptions() {
                 size={size}
               />
             </Box>
+          </Tab>
+          <Tab key="style" title="Style">
+            <div className="flex flex-col gap-4">
+              {/* <StyleSelect
+                monthFont={monthFont}
+                monthLabel={monthLabel}
+                monthSize={monthSize}
+                setMonthFont={setMonthFont}
+                setMonthLabel={setMonthLabel}
+                setMonthSize={setMonthSize}
+                setStart={setStart}
+                setWeekdayFont={setWeekdayFont}
+                setWeekdayLabel={setWeekdayLabel}
+                setWeekdaySize={setWeekdaySize}
+                setYearLabel={setYearLabel}
+                start={start}
+                weekdayFont={weekdayFont}
+                weekdayLabel={weekdayLabel}
+                weekdaySize={weekdaySize}
+                yearLabel={yearLabel}
+              /> */}
+              <MonthStyleSelect
+                monthFont={monthFont}
+                monthLabel={monthLabel}
+                monthSize={monthSize}
+                setMonthFont={setMonthFont}
+                setMonthLabel={setMonthLabel}
+                setMonthSize={setMonthSize}
+                setWeekdaySize={setWeekdaySize}
+                setYearLabel={setYearLabel}
+                yearLabel={yearLabel}
+              />
+              <CalendarStyleSelect
+                setStart={setStart}
+                setWeekdayFont={setWeekdayFont}
+                setWeekdaySize={setWeekdaySize}
+                start={start}
+                weekdayFont={weekdayFont}
+                weekdaySize={weekdaySize}
+              />
+              <WeekdayStyleSelect
+                setStart={setStart}
+                setWeekdayLabel={setWeekdayLabel}
+                start={start}
+                weekdayLabel={weekdayLabel}
+              />
+            </div>
           </Tab>
           <Tab key="date" title="Date">
             <div className="flex flex-col gap-4">
