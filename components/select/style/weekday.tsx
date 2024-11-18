@@ -1,8 +1,9 @@
-import { CardHeader, Chip, RadioGroup } from "@nextui-org/react";
+import { CardBody, CardHeader, Chip, RadioGroup } from "@nextui-org/react";
 
 import { WeekdayLabel, WeekdayStart } from "@/types";
 import Box from "@/components/box";
 import Radio from "@/components/radio-button";
+import { weekdayStyles } from "@/helpers/sizes";
 
 export default function WeekdayStyleSelect({
   start,
@@ -32,39 +33,41 @@ export default function WeekdayStyleSelect({
             </Chip>
           )}
         </CardHeader>
-        <RadioGroup
-          className="w-full min-w-full p-4"
-          label="Select weekday start"
-          orientation="horizontal"
-          value={start}
-          onValueChange={(value: string) => setStart(value as WeekdayStart)}
-        >
-          <Radio key={0} value="0">
-            Sunday
-          </Radio>
-          <Radio key={1} value="1">
-            Monday
-          </Radio>
-        </RadioGroup>
-        <RadioGroup
-          className="w-full min-w-full p-4"
-          label="Select weekday label size"
-          orientation="horizontal"
-          value={weekdayLabel}
-          onValueChange={(value: string) =>
-            setWeekdayLabel(value as WeekdayLabel)
-          }
-        >
-          <Radio description="Ex: S" value="narrow">
-            Narrow
-          </Radio>
-          <Radio description="Ex: SUN" value="short">
-            Short
-          </Radio>
-          <Radio description="Ex: SUNDAY" value="long">
-            Long
-          </Radio>
-        </RadioGroup>
+        <CardBody className="gap-4">
+          <RadioGroup
+            className="w-full min-w-full"
+            label="Select weekday start"
+            orientation="horizontal"
+            value={start}
+            onValueChange={(value: string) => setStart(value as WeekdayStart)}
+          >
+            <Radio key={0} value="0">
+              Sunday
+            </Radio>
+            <Radio key={1} value="1">
+              Monday
+            </Radio>
+          </RadioGroup>
+          <RadioGroup
+            className="w-full min-w-full"
+            label="Select weekday label size"
+            orientation="horizontal"
+            value={weekdayLabel}
+            onValueChange={(value: string) =>
+              setWeekdayLabel(value as WeekdayLabel)
+            }
+          >
+            {weekdayStyles.map((type) => (
+              <Radio
+                key={type.value}
+                description={type.description}
+                value={type.value}
+              >
+                {type.label}
+              </Radio>
+            ))}
+          </RadioGroup>
+        </CardBody>
       </Box>
     </>
   );

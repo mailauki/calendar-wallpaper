@@ -23,3 +23,17 @@ export const sizes: Sizes = {
     { width: 400, height: 400 },
   ],
 };
+
+export const monthStyles = [
+  { description: "Ex: 1", value: "numeric", label: "Numeric" },
+  { description: "Ex: 01", value: "2-digit", label: "2-Digit" },
+  { description: "Ex: J", value: "narrow", label: "Narrow" },
+  { description: "Ex: Jan", value: "short", label: "Short" },
+  { description: "Ex: January", value: "long", label: "Long" },
+];
+
+export const weekdayStyles = [
+  { description: "Ex: S", value: "narrow", label: "Narrow" },
+  { description: "Ex: Sun", value: "short", label: "Short" },
+  { description: "Ex: Sunday", value: "long", label: "Long" },
+];

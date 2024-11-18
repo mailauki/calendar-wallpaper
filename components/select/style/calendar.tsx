@@ -1,15 +1,9 @@
-import {
-  CardBody,
-  CardHeader,
-  Input,
-  Select,
-  SelectItem,
-  SelectSection,
-} from "@nextui-org/react";
+import { CardBody, CardHeader, Input, RadioGroup } from "@nextui-org/react";
 
-import { Font, WeekdayStart } from "@/types";
-import { mainFonts, otherFonts } from "@/helpers/fonts";
+import { WeekdayStart } from "@/types";
+import { mainFonts } from "@/helpers/fonts";
 import Box from "@/components/box";
+import Radio from "@/components/radio-button";
 
 export default function CalendarStyleSelect({
   weekdayFont,
@@ -17,8 +11,8 @@ export default function CalendarStyleSelect({
   weekdaySize,
   setWeekdaySize,
 }: {
-  weekdayFont: Font;
-  setWeekdayFont: React.Dispatch<React.SetStateAction<Font>>;
+  weekdayFont: string;
+  setWeekdayFont: React.Dispatch<React.SetStateAction<string>>;
   weekdaySize: number;
   start: string;
   setStart: React.Dispatch<React.SetStateAction<WeekdayStart>>;
@@ -29,35 +23,19 @@ export default function CalendarStyleSelect({
       <Box>
         <CardHeader>Calendar style</CardHeader>
         <CardBody className="gap-4">
-          <Select
-            label="Font style"
-            placeholder="Select a font style"
+          <RadioGroup
+            className="w-full min-w-full"
+            label="Select weekday and calendar font"
+            orientation="horizontal"
             value={weekdayFont}
-            onChange={(event) => setWeekdayFont(event.target.value as Font)}
+            onValueChange={setWeekdayFont}
           >
-            <SelectSection showDivider>
-              {mainFonts.map((font) => (
-                <SelectItem
-                  key={font.key}
-                  className={font.key}
-                  value={font.value}
-                >
-                  {font.label}
-                </SelectItem>
-              ))}
-            </SelectSection>
-            <SelectSection>
-              {otherFonts.map((font) => (
-                <SelectItem
-                  key={font.key}
-                  className={font.key}
-                  value={font.value}
-                >
-                  {font.label}
-                </SelectItem>
-              ))}
-            </SelectSection>
-          </Select>
+            {mainFonts.map((font) => (
+              <Radio key={font.key} className={font.key} value={font.value}>
+                {font.label}
+              </Radio>
+            ))}
+          </RadioGroup>
           <Input
             label="Font size"
             type="number"

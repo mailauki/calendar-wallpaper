@@ -13,7 +13,6 @@ import { BsArrowRight as ArrowRightIcon } from "react-icons/bs";
 import { useSearchParams } from "next/navigation";
 
 import {
-  Font,
   MonthLabel,
   QueryParams,
   WeekdayLabel,
@@ -41,10 +40,10 @@ export default function Preview({
   textColor: string;
   weekdayStart: WeekdayStart;
   weekdayLabel: WeekdayLabel;
-  weekdayFont: Font;
+  weekdayFont: string;
   weekdaySize: number;
   monthLabel: MonthLabel;
-  monthFont: Font;
+  monthFont: string;
   monthSize: number;
   yearLabel: YearLabel;
   wallpaperSize: string;

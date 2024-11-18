@@ -1,4 +1,4 @@
-import { RadioGroup } from "@nextui-org/react";
+import { CardHeader, Chip, RadioGroup } from "@nextui-org/react";
 import React from "react";
 
 import Radio from "../radio-button";
@@ -28,6 +28,19 @@ export default function SizeSelect({
 
   return (
     <>
+      <CardHeader>
+        {index !== "0" && (
+          <Chip
+            className="pe-2"
+            color="warning"
+            size="sm"
+            startContent={<p className="px-2">!</p>}
+            variant="flat"
+          >
+            Recommended to change font size for lower quality
+          </Chip>
+        )}
+      </CardHeader>
       <RadioGroup
         className="w-full min-w-full p-4"
         label="Select aspect ratio"

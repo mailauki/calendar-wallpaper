@@ -1,5 +1,6 @@
-import { MonthLabel, WeekdayLabel, YearLabel } from "@/types";
 import { DateFormatter } from "@internationalized/date";
+
+import { MonthLabel, WeekdayLabel, YearLabel } from "@/types";
 
 export function formatter({
   weekdayLabel,
@@ -23,10 +24,7 @@ export function formatter({
 
   return weekdayLabel ? weekday : yearLabel == "show" ? monthYear : month;
 }
-export const monthYearFormatter = new DateFormatter("en-US", {
-  month: "long",
-  year: "numeric",
-});
+
 export const dayFormatter = new DateFormatter("en-US", {
   day: "2-digit",
 });

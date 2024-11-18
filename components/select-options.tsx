@@ -73,12 +73,12 @@ export default function SelectOptions() {
   const [start, setStart] = React.useState<WeekdayStart>("0");
   const [weekdayLabel, setWeekdayLabel] =
     React.useState<WeekdayLabel>("narrow");
-  const [weekdayFont, setWeekdayFont] = React.useState<Font>("font-sans");
+  const [weekdayFont, setWeekdayFont] = React.useState<string>("sans");
   const [weekdaySize, setWeekdaySize] = React.useState<number>(55);
 
   // month/year label length, font family, and size
   const [monthLabel, setMonthLabel] = React.useState<MonthLabel>("long");
-  const [monthFont, setMonthFont] = React.useState<Font>("font-sans");
+  const [monthFont, setMonthFont] = React.useState<string>("sans");
   const [monthSize, setMonthSize] = React.useState<number>(65);
   const [yearLabel, setYearLabel] = React.useState<YearLabel>("show");
 

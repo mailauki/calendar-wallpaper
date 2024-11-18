@@ -4,15 +4,15 @@ import {
   Checkbox,
   Chip,
   Input,
-  Select,
-  SelectItem,
-  SelectSection,
+  RadioGroup,
   cn,
 } from "@nextui-org/react";
 
-import { Font, MonthLabel, YearLabel } from "@/types";
-import { mainFonts, otherFonts } from "@/helpers/fonts";
+import { MonthLabel, YearLabel } from "@/types";
+import { mainFonts } from "@/helpers/fonts";
 import Box from "@/components/box";
+import Radio from "@/components/radio-button";
+import { monthStyles } from "@/helpers/sizes";
 
 export default function MonthStyleSelect({
   monthFont,
@@ -24,8 +24,8 @@ export default function MonthStyleSelect({
   yearLabel,
   setYearLabel,
 }: {
-  monthFont: Font;
-  setMonthFont: React.Dispatch<React.SetStateAction<Font>>;
+  monthFont: string;
+  setMonthFont: React.Dispatch<React.SetStateAction<string>>;
   monthSize: number;
   setMonthSize: React.Dispatch<React.SetStateAction<number>>;
   monthLabel: string;
@@ -39,35 +39,19 @@ export default function MonthStyleSelect({
       <Box>
         <CardHeader>Month and year style</CardHeader>
         <CardBody className="gap-4">
-          <Select
-            label="Font style"
-            placeholder="Select a font style"
+          <RadioGroup
+            className="w-full min-w-full"
+            label="Select month and year font"
+            orientation="horizontal"
             value={monthFont}
-            onChange={(event) => setMonthFont(event.target.value as Font)}
+            onValueChange={setMonthFont}
           >
-            <SelectSection showDivider>
-              {mainFonts.map((font) => (
-                <SelectItem
-                  key={font.key}
-                  className={font.key}
-                  value={font.value}
-                >
-                  {font.label}
-                </SelectItem>
-              ))}
-            </SelectSection>
-            <SelectSection>
-              {otherFonts.map((font) => (
-                <SelectItem
-                  key={font.key}
-                  className={font.key}
-                  value={font.value}
-                >
-                  {font.label}
-                </SelectItem>
-              ))}
-            </SelectSection>
-          </Select>
+            {mainFonts.map((font) => (
+              <Radio key={font.key} className={font.key} value={font.value}>
+                {font.label}
+              </Radio>
+            ))}
+          </RadioGroup>
           <Input
             label="Font size"
             type="number"
@@ -76,20 +60,25 @@ export default function MonthStyleSelect({
           >
             {monthSize}
           </Input>
-          <Select
-            label="Month label"
-            placeholder="Select month label size"
+          <RadioGroup
+            className="w-full min-w-full"
+            label="Select month and year label size"
+            orientation="horizontal"
             value={monthLabel}
-            onChange={(event) =>
-              setMonthLabel(event.target.value as MonthLabel)
+            onValueChange={(value: string) =>
+              setMonthLabel(value as MonthLabel)
             }
           >
-            {["numeric", "2-digit", "long", "short", "narrow"].map((type) => (
-              <SelectItem key={type} className={type} value={type}>
-                {type}
-              </SelectItem>
+            {monthStyles.map((type) => (
+              <Radio
+                key={type.value}
+                description={type.description}
+                value={type.value}
+              >
+                {type.label}
+              </Radio>
             ))}
-          </Select>
+          </RadioGroup>
           <Checkbox
             classNames={{
               base: cn(

@@ -10,14 +10,9 @@ import {
   getWeeksInMonth,
 } from "@internationalized/date";
 import { NextRequest } from "next/server";
+import "@/styles/fonts.css";
 
-import {
-  Font,
-  MonthLabel,
-  WeekdayLabel,
-  WeekdayStart,
-  YearLabel,
-} from "@/types";
+import { MonthLabel, WeekdayLabel, WeekdayStart, YearLabel } from "@/types";
 import { dayFormatter, formatter } from "@/helpers/formats";
 
 export async function GET(request: NextRequest) {
@@ -33,19 +28,16 @@ export async function GET(request: NextRequest) {
     (searchParams.get("start") as WeekdayStart) || "0";
   const weekdayLabel: WeekdayLabel =
     (searchParams.get("week-label") as WeekdayLabel) || "narrow";
-  const weekdayFont: Font =
-    (searchParams.get("week-font") as Font) || "font-sans";
+  // const weekdayFont = searchParams.get("week-font") || "sans";
   const weekdaySize: number = Number(searchParams.get("week-size")) || 55;
 
   const monthLabel: MonthLabel =
     (searchParams.get("month-label") as MonthLabel) || "long";
-  const monthFont: Font =
-    (searchParams.get("month-font") as Font) || "font-sans";
+  // const monthFont = searchParams.get("month-font") || "sans";
   const monthSize: number = Number(searchParams.get("month-size")) || 65;
 
   const yearLabel: YearLabel =
     (searchParams.get("year-label") as YearLabel) || "show";
-  // const ratio: AspectRatio = (searchParams.get("ar") as AspectRatio) || "16:9";
   const size: string = searchParams.get("size") || "3840x2160";
 
   const bgColor = bg.split("-");
@@ -112,7 +104,15 @@ export async function GET(request: NextRequest) {
           gap: "3rem",
         }}
       >
-        <p style={{ fontSize: monthSize, margin: 0 }} tw={`${monthFont}`}>
+        <p
+          // tw={`font-${monthFont}`}
+          // tw="font-serif"
+          style={{
+            fontSize: monthSize,
+            margin: 0,
+            // fontFamily: `var(--font-serif)`,
+          }}
+        >
           {/* {monthYearFormatter.format(
             parseDate(date).toDate(getLocalTimeZone()),
           )} */}
@@ -143,7 +143,7 @@ export async function GET(request: NextRequest) {
                 textTransform: "uppercase",
                 // fontFamily: "serif",
               }}
-              tw={`${weekdayFont}`}
+              // tw={`${weekdayFont}`}
             >
               {formatter({ weekdayLabel }).format(
                 parseDate(firstDate.add({ days: index }).toString()).toDate(
@@ -183,7 +183,7 @@ export async function GET(request: NextRequest) {
                   textAlign: "center",
                   // fontFamily: "serif",
                 }}
-                tw={`${weekdayFont}`}
+                // tw={`${weekdayFont}`}
               >
                 {dayFormatter.format(
                   firstDate
