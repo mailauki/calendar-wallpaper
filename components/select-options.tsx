@@ -13,7 +13,7 @@ import Preview from "./preview";
 import Box from "./box";
 import MonthsSelect from "./select/months";
 import YearSelect from "./select/year";
-import ColorsSelect from "./select/colors";
+import ColorsSelect from "./select/colors/colors";
 import SizeSelect from "./select/size";
 import CalendarStyleSelect from "./select/style/calendar";
 import MonthStyleSelect from "./select/style/month";

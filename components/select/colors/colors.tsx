@@ -14,10 +14,10 @@ import a11yPlugin from "colord/plugins/a11y";
 import React from "react";
 extend([a11yPlugin]);
 
-import ColorButton from "../button";
-import ColorInput from "../color";
-import Box from "../box";
+import ColorButton from "./button";
+import ColorInput from "./color";
 
+import Box from "@/components/box";
 import { ColorProps } from "@/types";
 import { colors, reverseColors } from "@/helpers/colors";
 
@@ -62,6 +62,7 @@ export default function ColorsSelect({
             <Button
               radius="full"
               size="sm"
+              variant="flat"
               onPress={() => {
                 setSwap(!swap);
                 setBgColor([textColor]);

@@ -16,7 +16,6 @@ import { MonthLabel, WeekdayLabel, WeekdayStart, YearLabel } from "@/types";
 import { dayFormatter, formatter } from "@/helpers/formats";
 
 export async function GET(request: NextRequest) {
-  // const { searchParams } = new URL(request.url);
   const { searchParams } = request.nextUrl;
 
   const date = searchParams.get("date");
