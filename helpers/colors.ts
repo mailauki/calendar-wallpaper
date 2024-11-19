@@ -1,3 +1,5 @@
+import { ColorProps } from "@/types";
+
 export const colors = [
   { bg: ["#ebebeb"], text: "#000000" },
   { bg: ["#111111"], text: "#ebebeb" },
@@ -13,6 +15,132 @@ export const colors = [
   {
     bg: ["#02197f", "#9198e5", "#ffc677", "#ff8647"],
     text: "#000000",
+  },
+];
+
+export const solidColors: ColorProps[] = [
+  {
+    bg: [{ name: "Light Green", hex: "#bef49a" }],
+    text: { name: "Prussian Blue", hex: "#1e3445" },
+  },
+  {
+    bg: [{ name: "Dark Slate Gray", hex: "#3b4f52" }],
+    text: { name: "Cambridge Blue", hex: "#8ca88e" },
+  },
+  {
+    bg: [{ name: "Naples Yellow", hex: "#f5dc71" }],
+    text: { name: "Red Crayola", hex: "#db3d53" },
+  },
+  {
+    bg: [{ name: "Oxford Blue", hex: "#061934" }],
+    text: { name: "Glaucous", hex: "#6380b8" },
+  },
+  {
+    bg: [{ name: "Vista Blue", hex: "#8395eb" }],
+    text: { name: "Linen", hex: "#fef5ec" },
+  },
+  // ----
+  {
+    bg: [{ name: "Pink Lady", hex: "#f98866" }],
+    text: { name: "Tan Hide", hex: "#fff2d7" },
+  },
+  {
+    bg: [{ name: "Breaker Bay", hex: "#66a5ad" }],
+    text: { name: "Botticelli", hex: "#c4dfe6" },
+  },
+  {
+    bg: [{ name: "Lunar Green", hex: "#31473a" }],
+    text: { name: "Aqua Haze", hex: "#edf4f2" },
+  },
+  {
+    bg: [{ name: "Red Ribbon", hex: "#f52549" }],
+    text: { name: "Froly", hex: "#f4808b" },
+  },
+  {
+    bg: [{ name: "Prussian Blue", hex: "#002c54" }],
+    text: { name: "Monza", hex: "#c5001a" },
+  },
+  // ----
+  {
+    bg: [{ name: "Feldgrau", hex: "#415a51" }],
+    text: { name: "Khaki", hex: "#bca681" },
+  },
+  {
+    bg: [{ name: "Indigo Dye", hex: "#1a4070" }],
+    text: { name: "Princeton Orange", hex: "#f09536" },
+  },
+  {
+    bg: [{ name: "Mauve", hex: "#b6a8f9" }],
+    text: { name: "Hunter Green", hex: "#475c45" },
+  },
+  {
+    bg: [{ name: "Blue Crayola", hex: "#4375f6" }],
+    text: { name: "Sunglow", hex: "#bca681" },
+  },
+  {
+    bg: [{ name: "Lavender Pink", hex: "#e5b4d3" }],
+    text: { name: "Honeydew", hex: "#e3eedc" },
+  },
+  // ----
+  {
+    bg: [{ name: "Pink", hex: "#fdbbc6" }],
+    text: { name: "Blue Ribbon", hex: "#0e3cf6" },
+  },
+  {
+    bg: [{ name: "Breaker Bay", hex: "#599da6" }],
+    text: { name: "Golden Fizz", hex: "#ffeb33" },
+  },
+  {
+    bg: [{ name: "Cannon Black", hex: "#1e1005" }],
+    text: { name: "Pearl Lusta", hex: "#fbf0da" },
+  },
+  {
+    bg: [{ name: "Bison Hide", hex: "#c2b9a9" }],
+    text: { name: "Red Violet", hex: "#e9218f" },
+  },
+  {
+    bg: [{ name: "Picton Blue", hex: "#55c2f0" }],
+    text: { name: "Violet Red", hex: "#f02a71" },
+  },
+  // ----
+  {
+    bg: [{ name: "Wild Strawberry", hex: "#fd3d8a" }],
+    text: { name: "Sidecar", hex: "#f5efc1" },
+  },
+  {
+    bg: [{ name: "Persian Indigo", hex: "#3e188f" }],
+    text: { name: "Starship", hex: "#e3f449" },
+  },
+  {
+    bg: [{ name: "Russian Violet", hex: "#0c0a3e" }],
+    text: { name: "Purple", hex: "#7b1e7a" },
+  },
+  {
+    bg: [{ name: "Glaucous", hex: "#777da7" }],
+    text: { name: "Tea Green", hex: "#c6ecae" },
+  },
+  {
+    bg: [{ name: "Moss Green", hex: "#55a61c" }],
+    text: { name: "Vida Loca", hex: "#c7e3b3" },
+  },
+];
+
+export const gradientColors: ColorProps[] = [
+  {
+    bg: [
+      { name: "", hex: "#e66465" },
+      { name: "", hex: "#9198e5" },
+    ],
+    text: { name: "White", hex: "#ffffff" },
+  },
+  {
+    bg: [
+      { name: "", hex: "#02197f" },
+      { name: "", hex: "#9198e5" },
+      { name: "", hex: "#ffc677" },
+      { name: "", hex: "#ff8647" },
+    ],
+    text: { name: "Black", hex: "#000000" },
   },
 ];
 

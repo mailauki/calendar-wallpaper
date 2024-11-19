@@ -16,8 +16,13 @@ import a11yPlugin from "colord/plugins/a11y";
 extend([a11yPlugin]);
 
 import Box from "@/components/box";
-import { BgColorProps, BgImageProps, TextColorProps } from "@/types";
-import { colors, reverseColors } from "@/helpers/colors";
+import {
+  BgColorProps,
+  BgImageProps,
+  ColorProps,
+  TextColorProps,
+} from "@/types";
+import { gradientColors, solidColors } from "@/helpers/colors";
 
 import ColorInput from "./color";
 import ColorButton from "./button";
@@ -34,7 +39,10 @@ export default function ColorsSelect({
   // const color1 = hex2rgb(bgColor[0] as string) as RGB;
   // const color2 = hex2rgb(textColor) as RGB;
   // const contrastRatio = getContrastRatio(color1, color2);
-  const isReadable = colord(textColor).isReadable(bgColor[0]);
+  const isReadable = colord(textColor).isReadable(bgColor[0], { level: "AAA" });
+  const maybeReadable = colord(textColor).isReadable(bgColor[0], {
+    level: "AA",
+  });
   // const contrastColor1 = getContrastColor(color1, 4.5);
   // const contrastColor2 = getContrastColor(color2, 4.5);
   // const contrastBgColor = rgb2hex(contrastColor1 as number[]);
@@ -78,13 +86,32 @@ export default function ColorsSelect({
           </CardHeader>
           <CardBody>
             <div className="flex flex-wrap items-center justify-between gap-3">
-              {(swap ? reverseColors : colors).map((color, index) => (
+              {(swap
+                ? solidColors
+                    .map(
+                      (color) =>
+                        Object.assign({
+                          bg: [color.text],
+                          text: color.bg[0],
+                        }) as ColorProps,
+                    )
+                    .concat(
+                      gradientColors.map(
+                        (color) =>
+                          Object.assign({
+                            bg: [...color.bg].reverse(),
+                            text: color.text,
+                          }) as ColorProps,
+                      ),
+                    )
+                : solidColors.concat(gradientColors)
+              ).map((color, index) => (
                 <ColorButton
                   key={index}
-                  bgColor={color.bg}
+                  bgColor={color.bg.map((color) => color.hex)}
                   setBgColor={setBgColor}
                   setTextColor={setTextColor}
-                  textColor={color.text}
+                  textColor={color.text.hex}
                 >
                   {index + 1}
                 </ColorButton>
@@ -95,15 +122,18 @@ export default function ColorsSelect({
         <Box>
           <CardHeader className="flex items-center justify-between gap-1">
             Text
-            {!isReadable && (
+            {(!isReadable || bgColor.length > 1 || !maybeReadable) && (
               <Chip
                 className="pe-2"
-                color={bgColor.length > 1 ? "warning" : "danger"}
+                color={
+                  bgColor.length > 1 || maybeReadable ? "warning" : "danger"
+                }
                 size="sm"
                 startContent={<p className="px-2">!</p>}
                 variant="flat"
               >
-                Not readable
+                {bgColor.length > 1 || maybeReadable ? "Might not be" : "Not"}
+                {" readable"}
               </Chip>
             )}
           </CardHeader>
@@ -120,19 +150,20 @@ export default function ColorsSelect({
         <Box>
           <CardHeader className="flex flex-col items-start justify-between gap-1">
             Background
-            {!isReadable && bgColor.length > 1 && (
-              <Chip
-                className="pe-2"
-                color="warning"
-                size="sm"
-                startContent={<p className="px-2">!</p>}
-                variant="flat"
-              >
-                {bgColor.length > 1 && "Gradient"}
-                {bgImage && "Image"} backgrounds may make the calendar harder to
-                read
-              </Chip>
-            )}
+            {(!isReadable || !maybeReadable) &&
+              (bgColor.length > 1 || bgImage) && (
+                <Chip
+                  className="pe-2"
+                  color="warning"
+                  size="sm"
+                  startContent={<p className="px-2">!</p>}
+                  variant="flat"
+                >
+                  {bgColor.length > 1 && "Gradient"}
+                  {bgImage && "Image"} backgrounds may make the calendar harder
+                  to read
+                </Chip>
+              )}
           </CardHeader>
           <CardBody>
             <Tabs fullWidth aria-label="Background options">

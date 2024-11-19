@@ -27,6 +27,15 @@ export interface DateProps {
   setDate: React.Dispatch<React.SetStateAction<CalendarDate>>;
 }
 
+export interface Color {
+  name: string;
+  hex: string;
+}
+export interface ColorProps {
+  bg: Color[];
+  text: Color;
+}
+
 export interface BgColorProps {
   bgColor: string[];
   setBgColor: React.Dispatch<React.SetStateAction<string[]>>;

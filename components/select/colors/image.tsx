@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import React from "react";
@@ -11,11 +10,13 @@ export default function ImageSelect({ bgImage, setBgImage }: BgImageProps) {
     <Input
       isClearable
       accept="image/png, image/jpeg"
+      classNames={{ label: "hidden" }}
       label="Image"
       type="file"
+      value={bgImage}
       variant="flat"
-      // eslint-disable-next-line no-console
-      onClear={() => console.log("input cleared")}
+      onChange={(event) => setBgImage(event.target.value)}
+      onClear={() => setBgImage(undefined)}
     />
   );
 }
