@@ -1,6 +1,8 @@
+"use client";
+
+import React from "react";
 import {
   Button,
-  CalendarDate,
   Card,
   CardFooter,
   Link,
@@ -8,17 +10,10 @@ import {
   CardBody,
   CardHeader,
 } from "@nextui-org/react";
-import React from "react";
 import { BsArrowRight as ArrowRightIcon } from "react-icons/bs";
 import { useSearchParams } from "next/navigation";
 
-import {
-  MonthLabel,
-  QueryParams,
-  WeekdayLabel,
-  WeekdayStart,
-  YearLabel,
-} from "@/types";
+import { PreviewProps, QueryParams } from "@/types";
 
 export default function Preview({
   date,
@@ -34,21 +29,7 @@ export default function Preview({
   yearLabel,
   wallpaperSize,
   ratio,
-}: {
-  date: CalendarDate;
-  bgColor: string[];
-  textColor: string;
-  weekdayStart: WeekdayStart;
-  weekdayLabel: WeekdayLabel;
-  weekdayFont: string;
-  weekdaySize: number;
-  monthLabel: MonthLabel;
-  monthFont: string;
-  monthSize: number;
-  yearLabel: YearLabel;
-  wallpaperSize: string;
-  ratio: string;
-}) {
+}: PreviewProps) {
   const searchParams = useSearchParams();
   const text = textColor.split("#")[1];
   const bg = bgColor.map((color) => color.split("#").join("")).join("-");
@@ -90,8 +71,6 @@ export default function Preview({
     "&" +
     setParams("year-label", yearLabel) +
     "&" +
-    // setParams("ratio", ratio) +
-    // "&" +
     setParams("size", wallpaperSize);
   const [imageUrl, setImageUrl] = React.useState<string | undefined>(undefined);
   const [imageError, setImageError] = React.useState<string | null>(null);
@@ -109,50 +88,45 @@ export default function Preview({
   }, [url]);
 
   return (
-    <>
-      <Card isFooterBlurred className="overflow-hidden">
-        {imageError && <CardHeader>{imageError}</CardHeader>}
-        {!imageError && (
-          <CardBody className="items-center">
-            <Image
-              alt={date.toString()}
-              height={440}
-              isLoading={!Boolean(imageUrl)}
-              src={imageUrl}
-              style={{
-                // maxHeight: "440px",
-                aspectRatio: ratio,
-                // objectFit: "contain",
-                objectFit: "cover",
-              }}
-              // width={784}
-            />
-          </CardBody>
-        )}
-        <CardFooter className="justify-between gap-4">
-          <Button
-            as={Link}
-            className="w-2/5 min-w-fit"
-            color="primary"
-            download={imageUrl}
-            radius="full"
-          >
-            Download
-          </Button>
-          <Button
-            as={Link}
-            className="w-1/5 min-w-fit"
-            color="default"
-            endContent={<ArrowRightIcon />}
-            href={imageUrl}
-            radius="full"
-            target="_blank"
-            variant="light"
-          >
-            Preview
-          </Button>
-        </CardFooter>
-      </Card>
-    </>
+    <Card isFooterBlurred className="overflow-hidden">
+      {imageError && <CardHeader>{imageError}</CardHeader>}
+      {!imageError && (
+        <CardBody className="items-center">
+          <Image
+            alt={date.toString()}
+            height={440}
+            isLoading={!imageUrl}
+            src={imageUrl}
+            style={{
+              aspectRatio: ratio,
+              objectFit: "cover",
+            }}
+          />
+        </CardBody>
+      )}
+      <CardFooter className="justify-between gap-4">
+        <Button
+          as={Link}
+          className="w-2/5 min-w-fit"
+          color="primary"
+          download={imageUrl}
+          radius="full"
+        >
+          Download
+        </Button>
+        <Button
+          as={Link}
+          className="w-1/5 min-w-fit"
+          color="default"
+          endContent={<ArrowRightIcon />}
+          href={imageUrl}
+          radius="full"
+          target="_blank"
+          variant="light"
+        >
+          Preview
+        </Button>
+      </CardFooter>
+    </Card>
   );
 }

@@ -1,4 +1,7 @@
+"use client";
+
 import { CardBody, CardHeader, Chip, RadioGroup } from "@nextui-org/react";
+import React from "react";
 
 import { WeekdayLabel, WeekdayStart } from "@/types";
 import Box from "@/components/box";

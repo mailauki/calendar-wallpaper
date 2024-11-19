@@ -1,6 +1,9 @@
+"use client";
+
+import React from "react";
 import { CardBody, CardHeader, Input, RadioGroup } from "@nextui-org/react";
 
-import { WeekdayStart } from "@/types";
+import { WeekdayFontProps, WeekdaySizeProps } from "@/types";
 import { mainFonts } from "@/helpers/fonts";
 import Box from "@/components/box";
 import Radio from "@/components/radio-button";
@@ -10,14 +13,7 @@ export default function CalendarStyleSelect({
   setWeekdayFont,
   weekdaySize,
   setWeekdaySize,
-}: {
-  weekdayFont: string;
-  setWeekdayFont: React.Dispatch<React.SetStateAction<string>>;
-  weekdaySize: number;
-  start: string;
-  setStart: React.Dispatch<React.SetStateAction<WeekdayStart>>;
-  setWeekdaySize: React.Dispatch<React.SetStateAction<number>>;
-}) {
+}: WeekdayFontProps & WeekdaySizeProps) {
   return (
     <>
       <Box>

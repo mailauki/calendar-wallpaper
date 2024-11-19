@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { cn, Radio as NextUIRadio, RadioProps } from "@nextui-org/react";
 
@@ -18,4 +20,4 @@ export default function Radio(props: RadioProps) {
       {children}
     </NextUIRadio>
   );
-};
+}

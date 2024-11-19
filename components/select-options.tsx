@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import {
   today,
   getLocalTimeZone,
@@ -8,6 +8,14 @@ import {
   DateValue,
 } from "@internationalized/date";
 import { Tab, Tabs } from "@nextui-org/react";
+
+import {
+  AspectRatio,
+  MonthLabel,
+  WeekdayLabel,
+  WeekdayStart,
+  YearLabel,
+} from "@/types";
 
 import Preview from "./preview";
 import Box from "./box";
@@ -18,16 +26,7 @@ import SizeSelect from "./select/size";
 import CalendarStyleSelect from "./select/style/calendar";
 import MonthStyleSelect from "./select/style/month";
 import WeekdayStyleSelect from "./select/style/weekday";
-
-import {
-  AspectRatio,
-  Font,
-  MonthLabel,
-  WeekdayLabel,
-  WeekdayStart,
-  YearLabel,
-} from "@/types";
-
+import LoadingPreview from "./loading/preview";
 
 export default function SelectOptions() {
   // current date
@@ -54,6 +53,7 @@ export default function SelectOptions() {
   // selected colors values
   const [bgColor, setBgColor] = React.useState(["#ebebeb"]); // #f6f6f6
   const [textColor, setTextColor] = React.useState("#000000");
+  const [bgImage, setBgImage] = React.useState<string | undefined>(undefined);
 
   // date value for calendar preview
   let calDate = new CalendarDate(selectedYear, Number(selectedMonth), 1);
@@ -89,21 +89,23 @@ export default function SelectOptions() {
   return (
     <>
       <div className="w-full">
-        <Preview
-          bgColor={bgColor}
-          date={calDate}
-          monthFont={monthFont}
-          monthLabel={monthLabel}
-          monthSize={monthSize}
-          ratio={ratio}
-          textColor={textColor}
-          wallpaperSize={size}
-          weekdayFont={weekdayFont}
-          weekdayLabel={weekdayLabel}
-          weekdaySize={weekdaySize}
-          weekdayStart={start}
-          yearLabel={yearLabel}
-        />
+        <Suspense fallback={<LoadingPreview />}>
+          <Preview
+            bgColor={bgColor}
+            date={calDate}
+            monthFont={monthFont}
+            monthLabel={monthLabel}
+            monthSize={monthSize}
+            ratio={ratio}
+            textColor={textColor}
+            wallpaperSize={size}
+            weekdayFont={weekdayFont}
+            weekdayLabel={weekdayLabel}
+            weekdaySize={weekdaySize}
+            weekdayStart={start}
+            yearLabel={yearLabel}
+          />
+        </Suspense>
       </div>
 
       <div className="flex flex-col w-full lg:max-w-md md:max-w-md">
@@ -111,7 +113,9 @@ export default function SelectOptions() {
           <Tab key="color" title="Color">
             <ColorsSelect
               bgColor={bgColor}
+              bgImage={bgImage}
               setBgColor={setBgColor}
+              setBgImage={setBgImage}
               setTextColor={setTextColor}
               textColor={textColor}
             />
@@ -128,24 +132,6 @@ export default function SelectOptions() {
           </Tab>
           <Tab key="style" title="Style">
             <div className="flex flex-col gap-4">
-              {/* <StyleSelect
-                monthFont={monthFont}
-                monthLabel={monthLabel}
-                monthSize={monthSize}
-                setMonthFont={setMonthFont}
-                setMonthLabel={setMonthLabel}
-                setMonthSize={setMonthSize}
-                setStart={setStart}
-                setWeekdayFont={setWeekdayFont}
-                setWeekdayLabel={setWeekdayLabel}
-                setWeekdaySize={setWeekdaySize}
-                setYearLabel={setYearLabel}
-                start={start}
-                weekdayFont={weekdayFont}
-                weekdayLabel={weekdayLabel}
-                weekdaySize={weekdaySize}
-                yearLabel={yearLabel}
-              /> */}
               <MonthStyleSelect
                 monthFont={monthFont}
                 monthLabel={monthLabel}
@@ -158,10 +144,8 @@ export default function SelectOptions() {
                 yearLabel={yearLabel}
               />
               <CalendarStyleSelect
-                setStart={setStart}
                 setWeekdayFont={setWeekdayFont}
                 setWeekdaySize={setWeekdaySize}
-                start={start}
                 weekdayFont={weekdayFont}
                 weekdaySize={weekdaySize}
               />

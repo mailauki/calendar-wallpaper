@@ -1,5 +1,7 @@
-import { Card } from "@nextui-org/react";
+"use client";
+
 import React from "react";
+import { Card } from "@nextui-org/react";
 
 export default function Box({
   children,

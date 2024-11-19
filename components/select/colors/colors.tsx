@@ -1,32 +1,36 @@
+"use client";
+
 import "@/styles/color-picker.css";
 
+import React from "react";
 import {
   CardBody,
   CardHeader,
   Button,
   Tabs,
   Tab,
-  CardFooter,
   Chip,
 } from "@nextui-org/react";
 import { colord, extend } from "colord";
 import a11yPlugin from "colord/plugins/a11y";
-import React from "react";
 extend([a11yPlugin]);
 
-import ColorButton from "./button";
-import ColorInput from "./color";
-
 import Box from "@/components/box";
-import { ColorProps } from "@/types";
+import { BgColorProps, BgImageProps, TextColorProps } from "@/types";
 import { colors, reverseColors } from "@/helpers/colors";
+
+import ColorInput from "./color";
+import ColorButton from "./button";
+import ImageSelect from "./image";
 
 export default function ColorsSelect({
   bgColor,
+  bgImage,
   setBgColor,
+  setBgImage,
   setTextColor,
   textColor,
-}: ColorProps) {
+}: BgColorProps & TextColorProps & BgImageProps) {
   // const color1 = hex2rgb(bgColor[0] as string) as RGB;
   // const color2 = hex2rgb(textColor) as RGB;
   // const contrastRatio = getContrastRatio(color1, color2);
@@ -124,7 +128,9 @@ export default function ColorsSelect({
                 startContent={<p className="px-2">!</p>}
                 variant="flat"
               >
-                Gradient backgrounds may make the calendar harder to read
+                {bgColor.length > 1 && "Gradient"}
+                {bgImage && "Image"} backgrounds may make the calendar harder to
+                read
               </Chip>
             )}
           </CardHeader>
@@ -144,24 +150,22 @@ export default function ColorsSelect({
                       }) => updateBgColor(index, event.currentTarget.value)}
                     />
                   ))}
+                  <Button
+                    className="mt-4 w-1/5 min-w-fit"
+                    radius="full"
+                    size="sm"
+                    variant="flat"
+                    onPress={() => setBgColor([...bgColor, "#000000"])}
+                  >
+                    Add
+                  </Button>
                 </div>
               </Tab>
               <Tab key="bg-image" title="Image">
-                <></>
+                <ImageSelect bgImage={bgImage} setBgImage={setBgImage} />
               </Tab>
             </Tabs>
           </CardBody>
-          <CardFooter>
-            <Button
-              radius="full"
-              size="sm"
-              variant="flat"
-              // onPress={() => setNumber(number + 1)}
-              onPress={() => setBgColor([...bgColor, "#000000"])}
-            >
-              Add
-            </Button>
-          </CardFooter>
         </Box>
       </div>
     </>

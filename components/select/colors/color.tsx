@@ -1,12 +1,14 @@
+"use client";
+
 import "@/styles/color-picker.css";
 
+import React from "react";
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 // import { getContrastRatio, getContrastColor, RGB } from "a11y-contrast-color";
 // import { hex2rgb, rgb2hex } from "@nextcss/color-tools";
 import { colord, extend } from "colord";
 import namesPlugin from "colord/plugins/names";
-import React from "react";
 import { Snippet } from "@nextui-org/snippet";
 import { Chip } from "@nextui-org/react";
 import { BsXLg as RemoveIcon } from "react-icons/bs";

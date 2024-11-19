@@ -1,8 +1,9 @@
-import { CardHeader, Chip, RadioGroup } from "@nextui-org/react";
+"use client";
+
 import React from "react";
+import { CardHeader, Chip, RadioGroup } from "@nextui-org/react";
 
-import Radio from "../radio-button";
-
+import Radio from "@/components/radio-button";
 import { sizes } from "@/helpers/sizes";
 import { AspectRatio, WallpaperQuality } from "@/types";
 import { getWxH } from "@/helpers";

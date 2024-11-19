@@ -1,6 +1,9 @@
+"use client";
+
+import React from "react";
 import { Button } from "@nextui-org/button";
 
-import { ColorProps } from "@/types";
+import { BgColorProps, TextColorProps } from "@/types";
 
 export default function ColorButton({
   children,
@@ -10,7 +13,8 @@ export default function ColorButton({
   textColor,
 }: {
   children: React.ReactNode;
-} & ColorProps) {
+} & BgColorProps &
+  TextColorProps) {
   const gradient = bgColor.join(", ");
 
   return (

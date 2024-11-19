@@ -1,9 +1,9 @@
 "use client";
 
+import React from "react";
 import { Checkbox } from "@nextui-org/checkbox";
 import { Input } from "@nextui-org/input";
 import { Accordion, AccordionItem } from "@nextui-org/accordion";
-import React from "react";
 import { CalendarDate, Chip, cn } from "@nextui-org/react";
 
 export default function YearSelect({

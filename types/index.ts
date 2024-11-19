@@ -1,14 +1,73 @@
-import { SVGProps } from "react";
+import React, { SVGProps } from "react";
+import { CalendarDate } from "@nextui-org/react";
 
+// eslint-disable-next-line no-undef
 export type IconSvgProps = SVGProps<SVGSVGElement> & {
   size?: number;
 };
 
-export interface ColorProps {
+export interface PreviewProps {
+  date: CalendarDate;
+  bgColor: string[];
+  textColor: string;
+  weekdayStart: WeekdayStart;
+  weekdayLabel: WeekdayLabel;
+  weekdayFont: string;
+  weekdaySize: number;
+  monthLabel: MonthLabel;
+  monthFont: string;
+  monthSize: number;
+  yearLabel: YearLabel;
+  wallpaperSize: string;
+  ratio: string;
+}
+
+export interface DateProps {
+  date: CalendarDate;
+  setDate: React.Dispatch<React.SetStateAction<CalendarDate>>;
+}
+
+export interface BgColorProps {
   bgColor: string[];
   setBgColor: React.Dispatch<React.SetStateAction<string[]>>;
-  setTextColor: React.Dispatch<React.SetStateAction<string>>;
+}
+export interface TextColorProps {
   textColor: string;
+  setTextColor: React.Dispatch<React.SetStateAction<string>>;
+}
+export interface BgImageProps {
+  bgImage?: string;
+  setBgImage: React.Dispatch<React.SetStateAction<string | undefined>>;
+}
+
+export interface WeekdayStartProps {
+  weekdayStart: WeekdayStart;
+  setWeekdayStart: React.Dispatch<React.SetStateAction<WeekdayStart>>;
+}
+export interface WeekdayLabelProps {
+  weekdayLabel: WeekdayLabel;
+  setWeekdayLabel: React.Dispatch<React.SetStateAction<WeekdayLabel>>;
+}
+export interface WeekdayFontProps {
+  weekdayFont: string;
+  setWeekdayFont: React.Dispatch<React.SetStateAction<string>>;
+}
+export interface WeekdaySizeProps {
+  weekdaySize: number;
+  setWeekdaySize: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export interface MonthLabelProps {
+  monthLabel: MonthLabel;
+  setMonthLabel: React.Dispatch<React.SetStateAction<MonthLabel>>;
+}
+export interface MonthFontProps {
+  monthFont: string;
+  setMonthFont: React.Dispatch<React.SetStateAction<string>>;
+}
+export interface MonthSizeProps {
+  monthSize: number;
+  setMonthSize: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export type ColorParams = "bg" | "text";
