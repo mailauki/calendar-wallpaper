@@ -24,7 +24,8 @@ import {
 } from "@/types";
 import { gradientColors, solidColors } from "@/helpers/colors";
 
-import ColorInput from "./color";
+import ColorPicker from "../color-picker";
+
 import ColorButton from "./button";
 import ImageSelect from "./image";
 
@@ -36,28 +37,23 @@ export default function ColorsSelect({
   setTextColor,
   textColor,
 }: BgColorProps & TextColorProps & BgImageProps) {
-  // const color1 = hex2rgb(bgColor[0] as string) as RGB;
-  // const color2 = hex2rgb(textColor) as RGB;
-  // const contrastRatio = getContrastRatio(color1, color2);
   const isReadable = colord(textColor).isReadable(bgColor[0], { level: "AAA" });
   const maybeReadable = colord(textColor).isReadable(bgColor[0], {
     level: "AA",
   });
-  // const contrastColor1 = getContrastColor(color1, 4.5);
-  // const contrastColor2 = getContrastColor(color2, 4.5);
-  // const contrastBgColor = rgb2hex(contrastColor1 as number[]);
-  // const contrastTextColor = rgb2hex(contrastColor2 as number[]);
   const [swap, setSwap] = React.useState(false);
 
-  // Update an item at a specific index
-  const updateBgColor = (index: number, newValue: string) => {
-    setBgColor((prevArray) => {
-      const newArray = [...prevArray];
+  // Update an color at a specific index or individual for text
+  const updateColor = (newValue: string, index?: number) => {
+    if (index !== undefined) {
+      setBgColor((prevArray) => {
+        const newArray = [...prevArray];
 
-      newArray[index] = newValue;
+        newArray[index] = newValue;
 
-      return newArray;
-    });
+        return newArray;
+      });
+    } else setTextColor(newValue);
   };
 
   // Remove an item at a specific index
@@ -108,10 +104,10 @@ export default function ColorsSelect({
               ).map((color, index) => (
                 <ColorButton
                   key={index}
-                  bgColor={color.bg.map((color) => color.hex)}
+                  bgColor={color.bg.map((color) => color)}
                   setBgColor={setBgColor}
                   setTextColor={setTextColor}
-                  textColor={color.text.hex}
+                  textColor={color.text}
                 >
                   {index + 1}
                 </ColorButton>
@@ -138,13 +134,7 @@ export default function ColorsSelect({
             )}
           </CardHeader>
           <CardBody>
-            <div className="flex items-center gap-3">
-              <ColorInput
-                color={textColor}
-                setColor={setTextColor}
-                showRemove={false}
-              />
-            </div>
+            <ColorPicker color={textColor} updateColor={updateColor} />
           </CardBody>
         </Box>
         <Box>
@@ -170,15 +160,11 @@ export default function ColorsSelect({
               <Tab key="bg-color" title="Color">
                 <div className="flex flex-col gap-3">
                   {bgColor.map((color, index) => (
-                    <ColorInput
+                    <ColorPicker
                       key={index}
                       color={color}
                       index={index}
-                      removeColor={() => removeBgColor(index)}
-                      showRemove={bgColor.length > 1}
-                      updateColor={(event: {
-                        currentTarget: { value: string };
-                      }) => updateBgColor(index, event.currentTarget.value)}
+                      updateColor={updateColor}
                     />
                   ))}
                   <Button

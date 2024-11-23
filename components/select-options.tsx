@@ -51,7 +51,7 @@ export default function SelectOptions() {
   );
 
   // selected colors values
-  const [bgColor, setBgColor] = React.useState(["#ebebeb"]); // #f6f6f6
+  const [bgColor, setBgColor] = React.useState(["#EBEBEB"]); // #f6f6f6
   const [textColor, setTextColor] = React.useState("#000000");
   const [bgImage, setBgImage] = React.useState<string | undefined>(undefined);
 

@@ -32,8 +32,10 @@ export interface Color {
   hex: string;
 }
 export interface ColorProps {
-  bg: Color[];
-  text: Color;
+  // bg: Color[];
+  // text: Color;
+  bg: string[];
+  text: string;
 }
 
 export interface BgColorProps {
