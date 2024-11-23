@@ -55,6 +55,26 @@ export default function ColorsSelect({
       });
     } else setTextColor(newValue);
   };
+  const moveUpBgColor = (index: number, newValue: string) => {
+    setBgColor((prevArray) => {
+      const newArray = [...prevArray];
+
+      newArray[index] = newArray[index - 1];
+      newArray[index - 1] = newValue;
+
+      return newArray;
+    });
+  };
+  const moveDownBgColor = (index: number, newValue: string) => {
+    setBgColor((prevArray) => {
+      const newArray = [...prevArray];
+
+      newArray[index] = newArray[index + 1];
+      newArray[index + 1] = newValue;
+
+      return newArray;
+    });
+  };
 
   // Remove an item at a specific index
   const removeBgColor = (index: number) => {
@@ -164,6 +184,11 @@ export default function ColorsSelect({
                       key={index}
                       color={color}
                       index={index}
+                      length={bgColor.length}
+                      moveDown={moveDownBgColor}
+                      moveUp={moveUpBgColor}
+                      removeColor={removeBgColor}
+                      showRemove={bgColor.length > 1}
                       updateColor={updateColor}
                     />
                   ))}
