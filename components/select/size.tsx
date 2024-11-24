@@ -1,7 +1,15 @@
 "use client";
 
 import React from "react";
-import { CardHeader, Chip, RadioGroup } from "@nextui-org/react";
+import {
+  Accordion,
+  AccordionItem,
+  CardFooter,
+  CardHeader,
+  Chip,
+  Input,
+  RadioGroup,
+} from "@nextui-org/react";
 
 import Radio from "@/components/radio-button";
 import { sizes } from "@/helpers/sizes";
@@ -9,6 +17,7 @@ import { AspectRatio, WallpaperQuality } from "@/types";
 import { getWxH } from "@/helpers";
 
 export default function SizeSelect({
+  size,
   setSize,
   ratio,
   setRatio,
@@ -69,6 +78,66 @@ export default function SizeSelect({
           </Radio>
         ))}
       </RadioGroup>
+      <CardFooter>
+        <Accordion variant="bordered">
+          <AccordionItem
+            key="custom"
+            aria-label="Custom size"
+            title="Custom size"
+          >
+            <div className="flex flex-row gap-4">
+              <Input
+                label="Width"
+                labelPlacement="outside"
+                type="number"
+                value={size.split("x")[0]}
+                variant="bordered"
+                onValueChange={(value) =>
+                  setSize(
+                    getWxH(
+                      Object.assign({
+                        width: value,
+                        height: size.split("x")[1],
+                      }),
+                    ),
+                  )
+                }
+              />
+              <Input
+                label="Height"
+                labelPlacement="outside"
+                type="number"
+                value={size.split("x")[1]}
+                variant="bordered"
+                onValueChange={(value) =>
+                  setSize(
+                    getWxH(
+                      Object.assign({
+                        width: size.split("x")[0],
+                        height: value,
+                      }),
+                    ),
+                  )
+                }
+              />
+            </div>
+          </AccordionItem>
+        </Accordion>
+        {/* <Input
+          label="Width"
+          labelPlacement="outside"
+          type="number"
+          value={size.split("x")[0]}
+          variant="bordered"
+        />
+        <Input
+          label="Height"
+          labelPlacement="outside"
+          type="number"
+          value={size.split("x")[1]}
+          variant="bordered"
+        /> */}
+      </CardFooter>
     </>
   );
 }

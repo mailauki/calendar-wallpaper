@@ -12,7 +12,6 @@ import {
 } from "@nextui-org/react";
 
 import { MonthLabel, YearLabel } from "@/types";
-import { mainFonts } from "@/helpers/fonts";
 import Box from "@/components/box";
 import Radio from "@/components/radio-button";
 import { monthStyles } from "@/helpers/sizes";
@@ -42,7 +41,7 @@ export default function MonthStyleSelect({
       <Box>
         <CardHeader>Month and year style</CardHeader>
         <CardBody className="gap-4">
-          <RadioGroup
+          {/* <RadioGroup
             className="w-full min-w-full"
             label="Select month and year font"
             orientation="horizontal"
@@ -54,11 +53,13 @@ export default function MonthStyleSelect({
                 {font.label}
               </Radio>
             ))}
-          </RadioGroup>
+          </RadioGroup> */}
           <Input
             label="Font size"
+            labelPlacement="outside"
             type="number"
             value={String(monthSize)}
+            variant="bordered"
             onChange={(event) => setMonthSize(Number(event.target.value))}
           >
             {monthSize}

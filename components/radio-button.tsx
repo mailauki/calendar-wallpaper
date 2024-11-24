@@ -12,7 +12,7 @@ export default function Radio(props: RadioProps) {
       classNames={{
         base: cn(
           "inline-flex m-0 bg-content1 hover:bg-content2 items-center justify-between",
-          "flex-grow flex-row-reverse min-w-sm max-w-full cursor-pointer rounded-lg gap-4 p-4 border-2 border-transparent",
+          "flex-grow flex-row-reverse min-w-sm max-w-full cursor-pointer rounded-large gap-4 p-4 border-2 border-transparent",
           "data-[selected=true]:border-primary",
         ),
       }}

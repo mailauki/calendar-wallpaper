@@ -24,8 +24,7 @@ import {
 } from "@/types";
 import { gradientColors, solidColors } from "@/helpers/colors";
 
-import ColorPicker from "../color-picker";
-
+import ColorPicker from "./color-picker";
 import ColorButton from "./button";
 import ImageSelect from "./image";
 

@@ -74,10 +74,11 @@ export default function ColorPicker({
             <Button
               isIconOnly
               color="default"
+              radius="full"
               style={{
                 background: `${color}`,
               }}
-              variant="solid"
+              variant="bordered"
             >
               {/* <PaletteIcon /> */}
             </Button>
@@ -118,7 +119,7 @@ export default function ColorPicker({
           className="w-fit"
           classNames={{ pre: "font-sans" }}
           symbol="#"
-          variant="solid"
+          variant="flat"
         >
           {dehashHex(color).toUpperCase()}
         </Snippet>
