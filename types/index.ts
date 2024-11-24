@@ -11,13 +11,14 @@ export interface PreviewProps {
   bgColor: string[];
   textColor: string;
   weekdayStart: WeekdayStart;
-  weekdayLabel: WeekdayLabel;
+  weekdayStyle: WeekdayStyle;
   weekdayFont: string;
   weekdaySize: number;
-  monthLabel: MonthLabel;
+  monthStyle: MonthStyle;
+  monthLabel: LabelVisibility;
   monthFont: string;
   monthSize: number;
-  yearLabel: YearLabel;
+  yearLabel: LabelVisibility;
   wallpaperSize: string;
   ratio: string;
 }
@@ -55,9 +56,9 @@ export interface WeekdayStartProps {
   weekdayStart: WeekdayStart;
   setWeekdayStart: React.Dispatch<React.SetStateAction<WeekdayStart>>;
 }
-export interface WeekdayLabelProps {
-  weekdayLabel: WeekdayLabel;
-  setWeekdayLabel: React.Dispatch<React.SetStateAction<WeekdayLabel>>;
+export interface WeekdayStyleProps {
+  weekdayStyle: WeekdayStyle;
+  setWeekdayStyle: React.Dispatch<React.SetStateAction<WeekdayStyle>>;
 }
 export interface WeekdayFontProps {
   weekdayFont: string;
@@ -68,9 +69,9 @@ export interface WeekdaySizeProps {
   setWeekdaySize: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export interface MonthLabelProps {
-  monthLabel: MonthLabel;
-  setMonthLabel: React.Dispatch<React.SetStateAction<MonthLabel>>;
+export interface MonthStyleProps {
+  monthStyle: MonthStyle;
+  setMonthStyle: React.Dispatch<React.SetStateAction<MonthStyle>>;
 }
 export interface MonthFontProps {
   monthFont: string;
@@ -81,9 +82,24 @@ export interface MonthSizeProps {
   setMonthSize: React.Dispatch<React.SetStateAction<number>>;
 }
 
+export interface LabelVisibilityProps {
+  monthLabel: LabelVisibility;
+  setMonthLabel: React.Dispatch<React.SetStateAction<LabelVisibility>>;
+  yearLabel: LabelVisibility;
+  setYearLabel: React.Dispatch<React.SetStateAction<LabelVisibility>>;
+}
+
 export type ColorParams = "bg" | "text";
-export type WeekdayParams = "start" | "week-label" | "week-font" | "week-size";
-export type MonthParams = "month-label" | "month-font" | "month-size";
+export type WeekdayParams =
+  | "week-start"
+  | "week-style"
+  | "week-font"
+  | "week-size";
+export type MonthParams =
+  | "month-style"
+  | "month-font"
+  | "month-size"
+  | "month-label";
 export type YearParams = "year-label";
 export type WallpaperParams = "ratio" | "size";
 export type QueryParams =
@@ -96,9 +112,9 @@ export type QueryParams =
 
 export type WeekdayStart = "0" | "1";
 
-export type WeekdayLabel = "long" | "short" | "narrow";
-export type MonthLabel = "numeric" | "2-digit" | "long" | "short" | "narrow";
-export type YearLabel = "show" | "hide";
+export type WeekdayStyle = "long" | "short" | "narrow";
+export type MonthStyle = "numeric" | "2-digit" | "long" | "short" | "narrow";
+export type LabelVisibility = "show" | "hide";
 
 export type WallpaperQuality = "4K" | "QHD" | "FHD" | "HD" | "SD";
 

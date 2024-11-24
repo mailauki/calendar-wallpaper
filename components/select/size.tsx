@@ -11,7 +11,7 @@ import {
   RadioGroup,
 } from "@nextui-org/react";
 
-import Radio from "@/components/radio-button";
+import Radio from "@/components/buttons/radio";
 import { sizes } from "@/helpers/sizes";
 import { AspectRatio, WallpaperQuality } from "@/types";
 import { getWxH } from "@/helpers";

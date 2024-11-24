@@ -1,10 +1,14 @@
 "use client";
 
 import React from "react";
-import { Checkbox } from "@nextui-org/checkbox";
-import { Input } from "@nextui-org/input";
-import { Accordion, AccordionItem } from "@nextui-org/accordion";
-import { CalendarDate, Chip, cn } from "@nextui-org/react";
+import {
+  Accordion,
+  AccordionItem,
+  CalendarDate,
+  Input,
+} from "@nextui-org/react";
+
+import Checkbox from "@/components/buttons/checkbox";
 
 export default function YearSelect({
   date,
@@ -34,22 +38,12 @@ export default function YearSelect({
   return (
     <>
       <Checkbox
-        classNames={{
-          base: cn(
-            "inline-flex w-full min-w-full",
-            "hover:bg-content2 items-center justify-start",
-            "cursor-pointer rounded-medium gap-2 m-0 px-4 py-3 border-2 border-transparent",
-          ),
-          label: "w-full",
-        }}
         isSelected={isSelected}
+        label="Use current year"
         onChange={handleOpenAccordion}
         onValueChange={setIsSelected}
       >
-        <div className="w-full flex justify-between gap-2">
-          Use current year
-          <Chip variant="flat">{date.year}</Chip>
-        </div>
+        {date.year}
       </Checkbox>
       <Accordion selectedKeys={accordionOpen}>
         <AccordionItem

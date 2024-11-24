@@ -1,28 +1,47 @@
 import { DateFormatter } from "@internationalized/date";
 
-import { MonthLabel, WeekdayLabel, YearLabel } from "@/types";
+import { LabelVisibility, MonthStyle, WeekdayStyle } from "@/types";
 
 export function formatter({
-  weekdayLabel,
+  weekdayStyle,
+  monthStyle,
   monthLabel,
   yearLabel,
 }: {
-  weekdayLabel?: WeekdayLabel;
-  monthLabel?: MonthLabel;
-  yearLabel?: YearLabel;
+  weekdayStyle?: WeekdayStyle;
+  monthStyle?: MonthStyle;
+  monthLabel?: LabelVisibility;
+  yearLabel?: LabelVisibility;
 }) {
   const monthYear = new DateFormatter("en-US", {
-    month: monthLabel || "long",
+    month: monthStyle || "long",
     year: "numeric",
   });
   const month = new DateFormatter("en-US", {
-    month: monthLabel || "long",
+    month: monthStyle || "long",
   });
   const weekday = new DateFormatter("en-US", {
-    weekday: weekdayLabel,
+    weekday: weekdayStyle,
+  });
+  const year = new DateFormatter("en-US", {
+    year: "numeric",
   });
 
-  return weekdayLabel ? weekday : yearLabel == "show" ? monthYear : month;
+  if (weekdayStyle) {
+    return weekday;
+  } else {
+    if (yearLabel == "show" && monthLabel == "show") {
+      return monthYear;
+    } else if (yearLabel == "hide" && monthLabel == "show") {
+      return month;
+    } else if (yearLabel == "show" && monthLabel == "hide") {
+      return year;
+    } else {
+      return undefined;
+    }
+  }
+
+  // return weekdayStyle ? weekday : yearLabel == "show" ? monthYear : month;
 }
 
 export const dayFormatter = new DateFormatter("en-US", {

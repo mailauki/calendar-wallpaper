@@ -11,16 +11,16 @@ import { Tab, Tabs } from "@nextui-org/react";
 
 import {
   AspectRatio,
-  MonthLabel,
-  WeekdayLabel,
+  LabelVisibility,
+  MonthStyle,
   WeekdayStart,
-  YearLabel,
+  WeekdayStyle,
 } from "@/types";
 
 import Preview from "./preview";
 import Box from "./box";
-import MonthsSelect from "./select/months";
-import YearSelect from "./select/year";
+import MonthsSelect from "./select/date/months";
+import YearSelect from "./select/date/year";
 import ColorsSelect from "./select/colors/colors";
 import SizeSelect from "./select/size";
 import CalendarStyleSelect from "./select/style/calendar";
@@ -70,17 +70,18 @@ export default function SelectOptions() {
   }, [calDate]);
 
   // weekday label length, font family, size, and start day
-  const [start, setStart] = React.useState<WeekdayStart>("0");
-  const [weekdayLabel, setWeekdayLabel] =
-    React.useState<WeekdayLabel>("narrow");
+  const [weekdayStart, setWeekdayStart] = React.useState<WeekdayStart>("0");
+  const [weekdayStyle, setWeekdayStyle] =
+    React.useState<WeekdayStyle>("narrow");
   const [weekdayFont, setWeekdayFont] = React.useState<string>("sans");
   const [weekdaySize, setWeekdaySize] = React.useState<number>(55);
 
   // month/year label length, font family, and size
-  const [monthLabel, setMonthLabel] = React.useState<MonthLabel>("long");
+  const [monthStyle, setMonthStyle] = React.useState<MonthStyle>("long");
   const [monthFont, setMonthFont] = React.useState<string>("sans");
   const [monthSize, setMonthSize] = React.useState<number>(65);
-  const [yearLabel, setYearLabel] = React.useState<YearLabel>("show");
+  const [monthLabel, setMonthLabel] = React.useState<LabelVisibility>("show");
+  const [yearLabel, setYearLabel] = React.useState<LabelVisibility>("show");
 
   // wallpaper size and aspect ratio
   const [ratio, setRatio] = React.useState<AspectRatio>("16:9");
@@ -96,13 +97,14 @@ export default function SelectOptions() {
             monthFont={monthFont}
             monthLabel={monthLabel}
             monthSize={monthSize}
+            monthStyle={monthStyle}
             ratio={ratio}
             textColor={textColor}
             wallpaperSize={size}
             weekdayFont={weekdayFont}
-            weekdayLabel={weekdayLabel}
             weekdaySize={weekdaySize}
-            weekdayStart={start}
+            weekdayStart={weekdayStart}
+            weekdayStyle={weekdayStyle}
             yearLabel={yearLabel}
           />
         </Suspense>
@@ -136,10 +138,11 @@ export default function SelectOptions() {
                 monthFont={monthFont}
                 monthLabel={monthLabel}
                 monthSize={monthSize}
+                monthStyle={monthStyle}
                 setMonthFont={setMonthFont}
                 setMonthLabel={setMonthLabel}
                 setMonthSize={setMonthSize}
-                setWeekdaySize={setWeekdaySize}
+                setMonthStyle={setMonthStyle}
                 setYearLabel={setYearLabel}
                 yearLabel={yearLabel}
               />
@@ -150,10 +153,10 @@ export default function SelectOptions() {
                 weekdaySize={weekdaySize}
               />
               <WeekdayStyleSelect
-                setStart={setStart}
-                setWeekdayLabel={setWeekdayLabel}
-                start={start}
-                weekdayLabel={weekdayLabel}
+                setWeekdayStart={setWeekdayStart}
+                setWeekdayStyle={setWeekdayStyle}
+                weekdayStart={weekdayStart}
+                weekdayStyle={weekdayStyle}
               />
             </div>
           </Tab>

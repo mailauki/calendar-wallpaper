@@ -12,7 +12,12 @@ import {
 import { NextRequest } from "next/server";
 import "@/styles/fonts.css";
 
-import { MonthLabel, WeekdayLabel, WeekdayStart, YearLabel } from "@/types";
+import {
+  LabelVisibility,
+  MonthStyle,
+  WeekdayStart,
+  WeekdayStyle,
+} from "@/types";
 import { dayFormatter, formatter } from "@/helpers/formats";
 
 export async function GET(request: NextRequest) {
@@ -24,19 +29,21 @@ export async function GET(request: NextRequest) {
   const text: string = searchParams.get("text") || "000000";
 
   const start: WeekdayStart =
-    (searchParams.get("start") as WeekdayStart) || "0";
-  const weekdayLabel: WeekdayLabel =
-    (searchParams.get("week-label") as WeekdayLabel) || "narrow";
+    (searchParams.get("week-start") as WeekdayStart) || "0";
+  const weekdayStyle: WeekdayStyle =
+    (searchParams.get("week-style") as WeekdayStyle) || "narrow";
   // const weekdayFont = searchParams.get("week-font") || "sans";
   const weekdaySize: number = Number(searchParams.get("week-size")) || 55;
 
-  const monthLabel: MonthLabel =
-    (searchParams.get("month-label") as MonthLabel) || "long";
+  const monthStyle: MonthStyle =
+    (searchParams.get("month-style") as MonthStyle) || "long";
   // const monthFont = searchParams.get("month-font") || "sans";
   const monthSize: number = Number(searchParams.get("month-size")) || 65;
+  const monthLabel: LabelVisibility =
+    (searchParams.get("month-label") as LabelVisibility) || "show";
 
-  const yearLabel: YearLabel =
-    (searchParams.get("year-label") as YearLabel) || "show";
+  const yearLabel: LabelVisibility =
+    (searchParams.get("year-label") as LabelVisibility) || "show";
   const size: string = searchParams.get("size") || "3840x2160";
 
   const bgColor = bg.split("-");
@@ -115,7 +122,7 @@ export async function GET(request: NextRequest) {
           {/* {monthYearFormatter.format(
             parseDate(date).toDate(getLocalTimeZone()),
           )} */}
-          {formatter({ monthLabel, yearLabel }).format(
+          {formatter({ monthStyle, monthLabel, yearLabel })?.format(
             parseDate(date).toDate(getLocalTimeZone()),
           )}
         </p>
@@ -130,9 +137,9 @@ export async function GET(request: NextRequest) {
               style={{
                 margin: 0,
                 width:
-                  weekdayLabel == "long"
+                  weekdayStyle == "long"
                     ? "24rem"
-                    : weekdayLabel == "short"
+                    : weekdayStyle == "short"
                       ? "10rem"
                       : "8rem",
                 display: "flex",
@@ -144,7 +151,7 @@ export async function GET(request: NextRequest) {
               }}
               // tw={`${weekdayFont}`}
             >
-              {formatter({ weekdayLabel }).format(
+              {formatter({ weekdayStyle })?.format(
                 parseDate(firstDate.add({ days: index }).toString()).toDate(
                   getLocalTimeZone(),
                 ),
@@ -171,9 +178,9 @@ export async function GET(request: NextRequest) {
                     ? 1
                     : 0.5,
                   width:
-                    weekdayLabel == "long"
+                    weekdayStyle == "long"
                       ? "24rem"
-                      : weekdayLabel == "short"
+                      : weekdayStyle == "short"
                         ? "10rem"
                         : "8rem",
                   display: "flex",

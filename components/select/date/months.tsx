@@ -9,13 +9,9 @@ import {
   endOfYear,
   CalendarDate,
 } from "@internationalized/date";
-import {
-  Accordion,
-  AccordionItem,
-  Checkbox,
-  Chip,
-  cn,
-} from "@nextui-org/react";
+import { Accordion, AccordionItem, cn } from "@nextui-org/react";
+
+import Checkbox from "@/components/buttons/checkbox";
 
 export default function MonthsSelect({
   date,
@@ -70,29 +66,12 @@ export default function MonthsSelect({
   return (
     <>
       <Checkbox
-        classNames={{
-          base: cn(
-            "inline-flex w-full min-w-full",
-            "hover:bg-content2 items-center justify-start",
-            "cursor-pointer rounded-lg gap-2 m-0 px-4 py-3 border-2 border-transparent",
-          ),
-          label: "w-full",
-        }}
         isSelected={isSelected}
+        label="Use current month"
         onChange={handleOpenAccordion}
         onValueChange={setIsSelected}
       >
-        <div className="w-full flex justify-between gap-2">
-          Use current month
-          <Chip variant="flat">
-            {/* {formatter.format(
-              date
-                .set({ month: Number(selectedKeys.values().next().value) })
-                .toDate(getLocalTimeZone()),
-            )} */}
-            {formatter.format(date.toDate(getLocalTimeZone()))}
-          </Chip>
-        </div>
+        {formatter.format(date.toDate(getLocalTimeZone()))}
       </Checkbox>
       <Accordion selectedKeys={accordionOpen}>
         <AccordionItem

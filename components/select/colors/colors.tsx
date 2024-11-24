@@ -14,6 +14,7 @@ import {
 import { colord, extend } from "colord";
 import a11yPlugin from "colord/plugins/a11y";
 extend([a11yPlugin]);
+import { BsPlusLg as AddIcon } from "react-icons/bs";
 
 import Box from "@/components/box";
 import {
@@ -195,10 +196,11 @@ export default function ColorsSelect({
                     className="mt-4 w-1/5 min-w-fit"
                     radius="full"
                     size="sm"
-                    variant="flat"
+                    startContent={<AddIcon />}
+                    variant="light"
                     onPress={() => setBgColor([...bgColor, "#000000"])}
                   >
-                    Add
+                    Add color
                   </Button>
                 </div>
               </Tab>

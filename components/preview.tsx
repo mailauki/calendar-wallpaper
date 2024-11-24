@@ -20,10 +20,11 @@ export default function Preview({
   bgColor,
   textColor,
   weekdayStart,
-  weekdayLabel,
+  weekdayStyle,
   weekdayFont,
   weekdaySize,
   monthLabel,
+  monthStyle,
   monthFont,
   monthSize,
   yearLabel,
@@ -55,13 +56,15 @@ export default function Preview({
     "&" +
     setParams("text", text) +
     "&" +
-    setParams("start", weekdayStart) +
+    setParams("week-start", weekdayStart) +
     "&" +
-    setParams("week-label", weekdayLabel) +
+    setParams("week-style", weekdayStyle) +
     "&" +
     setParams("week-font", weekdayFont) +
     "&" +
     setParams("week-size", String(weekdaySize)) +
+    "&" +
+    setParams("month-style", monthStyle) +
     "&" +
     setParams("month-label", monthLabel) +
     "&" +

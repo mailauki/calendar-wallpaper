@@ -1,41 +1,32 @@
 "use client";
 
 import React from "react";
-import {
-  CardBody,
-  CardHeader,
-  Checkbox,
-  Chip,
-  Input,
-  RadioGroup,
-  cn,
-} from "@nextui-org/react";
+import { CardBody, CardHeader, Input, RadioGroup } from "@nextui-org/react";
 
-import { MonthLabel, YearLabel } from "@/types";
+import {
+  LabelVisibilityProps,
+  MonthFontProps,
+  MonthSizeProps,
+  MonthStyle,
+  MonthStyleProps,
+} from "@/types";
 import Box from "@/components/box";
-import Radio from "@/components/radio-button";
+import Radio from "@/components/buttons/radio";
 import { monthStyles } from "@/helpers/sizes";
+import Checkbox from "@/components/buttons/checkbox";
 
 export default function MonthStyleSelect({
   monthFont,
   setMonthFont,
   monthSize,
   setMonthSize,
+  monthStyle,
+  setMonthStyle,
   monthLabel,
   setMonthLabel,
   yearLabel,
   setYearLabel,
-}: {
-  monthFont: string;
-  setMonthFont: React.Dispatch<React.SetStateAction<string>>;
-  monthSize: number;
-  setMonthSize: React.Dispatch<React.SetStateAction<number>>;
-  monthLabel: string;
-  setMonthLabel: React.Dispatch<React.SetStateAction<MonthLabel>>;
-  yearLabel: string;
-  setYearLabel: React.Dispatch<React.SetStateAction<YearLabel>>;
-  setWeekdaySize: React.Dispatch<React.SetStateAction<number>>;
-}) {
+}: MonthFontProps & MonthSizeProps & MonthStyleProps & LabelVisibilityProps) {
   return (
     <>
       <Box>
@@ -66,11 +57,11 @@ export default function MonthStyleSelect({
           </Input>
           <RadioGroup
             className="w-full min-w-full"
-            label="Select month and year label size"
+            label="Select month and year label style"
             orientation="horizontal"
-            value={monthLabel}
+            value={monthStyle}
             onValueChange={(value: string) =>
-              setMonthLabel(value as MonthLabel)
+              setMonthStyle(value as MonthStyle)
             }
           >
             {monthStyles.map((type) => (
@@ -84,23 +75,24 @@ export default function MonthStyleSelect({
             ))}
           </RadioGroup>
           <Checkbox
-            classNames={{
-              base: cn(
-                "inline-flex w-full min-w-full",
-                "hover:bg-content2 items-center justify-start",
-                "cursor-pointer rounded-medium gap-2 m-0 px-4 py-3 border-2 border-transparent",
-              ),
-              label: "w-full",
-            }}
+            isSelected={monthLabel == "show" ? true : false}
+            label="Month label"
+            onValueChange={() =>
+              monthLabel == "show"
+                ? setMonthLabel("hide")
+                : setMonthLabel("show")
+            }
+          >
+            {monthLabel}
+          </Checkbox>
+          <Checkbox
             isSelected={yearLabel == "show" ? true : false}
+            label="Year label"
             onValueChange={() =>
               yearLabel == "show" ? setYearLabel("hide") : setYearLabel("show")
             }
           >
-            <div className="w-full flex justify-between gap-2">
-              Year label
-              <Chip variant="flat">{yearLabel}</Chip>
-            </div>
+            {yearLabel}
           </Checkbox>
         </CardBody>
       </Box>

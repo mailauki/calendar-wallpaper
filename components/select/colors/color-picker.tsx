@@ -75,6 +75,7 @@ export default function ColorPicker({
               isIconOnly
               color="default"
               radius="full"
+              size="sm"
               style={{
                 background: `${color}`,
               }}
@@ -116,8 +117,9 @@ export default function ColorPicker({
           </PopoverContent>
         </Popover>
         <Snippet
-          className="w-fit"
+          className="w-fit rounded-full ps-3"
           classNames={{ pre: "font-sans" }}
+          size="sm"
           symbol="#"
           variant="flat"
         >

@@ -3,28 +3,28 @@
 import { CardBody, CardHeader, Chip, RadioGroup } from "@nextui-org/react";
 import React from "react";
 
-import { WeekdayLabel, WeekdayStart } from "@/types";
+import {
+  WeekdayStart,
+  WeekdayStartProps,
+  WeekdayStyle,
+  WeekdayStyleProps,
+} from "@/types";
 import Box from "@/components/box";
-import Radio from "@/components/radio-button";
+import Radio from "@/components/buttons/radio";
 import { weekdayStyles } from "@/helpers/sizes";
 
 export default function WeekdayStyleSelect({
-  start,
-  setStart,
-  weekdayLabel,
-  setWeekdayLabel,
-}: {
-  start: string;
-  setStart: React.Dispatch<React.SetStateAction<WeekdayStart>>;
-  weekdayLabel: WeekdayLabel;
-  setWeekdayLabel: React.Dispatch<React.SetStateAction<WeekdayLabel>>;
-}) {
+  weekdayStart,
+  setWeekdayStart,
+  weekdayStyle,
+  setWeekdayStyle,
+}: WeekdayStartProps & WeekdayStyleProps) {
   return (
     <>
       <Box>
         <CardHeader className="flex flex-col items-start justify-between gap-1">
           Weekday style
-          {weekdayLabel == "long" && (
+          {weekdayStyle == "long" && (
             <Chip
               className="pe-2"
               color="warning"
@@ -41,8 +41,10 @@ export default function WeekdayStyleSelect({
             className="w-full min-w-full"
             label="Select weekday start"
             orientation="horizontal"
-            value={start}
-            onValueChange={(value: string) => setStart(value as WeekdayStart)}
+            value={weekdayStart}
+            onValueChange={(value: string) =>
+              setWeekdayStart(value as WeekdayStart)
+            }
           >
             <Radio key={0} value="0">
               Sunday
@@ -53,11 +55,11 @@ export default function WeekdayStyleSelect({
           </RadioGroup>
           <RadioGroup
             className="w-full min-w-full"
-            label="Select weekday label size"
+            label="Select weekday label style"
             orientation="horizontal"
-            value={weekdayLabel}
+            value={weekdayStyle}
             onValueChange={(value: string) =>
-              setWeekdayLabel(value as WeekdayLabel)
+              setWeekdayStyle(value as WeekdayStyle)
             }
           >
             {weekdayStyles.map((type) => (
