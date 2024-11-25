@@ -3,15 +3,18 @@
 import React from "react";
 import { CardBody, CardHeader, Input } from "@nextui-org/react";
 
-import { WeekdayFontProps, WeekdaySizeProps } from "@/types";
+import { NonMonthDaysProps, WeekdayFontProps, WeekdaySizeProps } from "@/types";
 import Box from "@/components/box";
+import Checkbox from "@/components/buttons/checkbox";
 
 export default function CalendarStyleSelect({
   weekdayFont,
   setWeekdayFont,
   weekdaySize,
   setWeekdaySize,
-}: WeekdayFontProps & WeekdaySizeProps) {
+  nonMonthDays,
+  setNonMonthDays,
+}: WeekdayFontProps & WeekdaySizeProps & NonMonthDaysProps) {
   return (
     <>
       <Box>
@@ -31,6 +34,7 @@ export default function CalendarStyleSelect({
             ))}
           </RadioGroup> */}
           <Input
+            className="max-w-24"
             label="Font size"
             labelPlacement="outside"
             type="number"
@@ -40,6 +44,17 @@ export default function CalendarStyleSelect({
           >
             {weekdaySize}
           </Input>
+          <Checkbox
+            isSelected={nonMonthDays == "show" ? true : false}
+            label="Non-month days"
+            onValueChange={() =>
+              nonMonthDays == "show"
+                ? setNonMonthDays("hide")
+                : setNonMonthDays("show")
+            }
+          >
+            {nonMonthDays}
+          </Checkbox>
         </CardBody>
       </Box>
     </>

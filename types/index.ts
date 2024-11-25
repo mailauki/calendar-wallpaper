@@ -14,6 +14,8 @@ export interface PreviewProps {
   weekdayStyle: WeekdayStyle;
   weekdayFont: string;
   weekdaySize: number;
+  weekdayLabel: LabelVisibility;
+  nonMonthDays: LabelVisibility;
   monthStyle: MonthStyle;
   monthLabel: LabelVisibility;
   monthFont: string;
@@ -68,6 +70,14 @@ export interface WeekdaySizeProps {
   weekdaySize: number;
   setWeekdaySize: React.Dispatch<React.SetStateAction<number>>;
 }
+export interface WeekdayLabelProps {
+  weekdayLabel: LabelVisibility;
+  setWeekdayLabel: React.Dispatch<React.SetStateAction<LabelVisibility>>;
+}
+export interface NonMonthDaysProps {
+  nonMonthDays: LabelVisibility;
+  setNonMonthDays: React.Dispatch<React.SetStateAction<LabelVisibility>>;
+}
 
 export interface MonthStyleProps {
   monthStyle: MonthStyle;
@@ -94,7 +104,9 @@ export type WeekdayParams =
   | "week-start"
   | "week-style"
   | "week-font"
-  | "week-size";
+  | "week-size"
+  | "week-label"
+  | "non-days";
 export type MonthParams =
   | "month-style"
   | "month-font"

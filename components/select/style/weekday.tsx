@@ -4,6 +4,7 @@ import { CardBody, CardHeader, Chip, RadioGroup } from "@nextui-org/react";
 import React from "react";
 
 import {
+  WeekdayLabelProps,
   WeekdayStart,
   WeekdayStartProps,
   WeekdayStyle,
@@ -12,13 +13,16 @@ import {
 import Box from "@/components/box";
 import Radio from "@/components/buttons/radio";
 import { weekdayStyles } from "@/helpers/sizes";
+import Checkbox from "@/components/buttons/checkbox";
 
 export default function WeekdayStyleSelect({
   weekdayStart,
   setWeekdayStart,
   weekdayStyle,
   setWeekdayStyle,
-}: WeekdayStartProps & WeekdayStyleProps) {
+  weekdayLabel,
+  setWeekdayLabel,
+}: WeekdayStartProps & WeekdayStyleProps & WeekdayLabelProps) {
   return (
     <>
       <Box>
@@ -72,6 +76,17 @@ export default function WeekdayStyleSelect({
               </Radio>
             ))}
           </RadioGroup>
+          <Checkbox
+            isSelected={weekdayLabel == "show" ? true : false}
+            label="Weekday label"
+            onValueChange={() =>
+              weekdayLabel == "show"
+                ? setWeekdayLabel("hide")
+                : setWeekdayLabel("show")
+            }
+          >
+            {weekdayLabel}
+          </Checkbox>
         </CardBody>
       </Box>
     </>

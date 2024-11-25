@@ -34,6 +34,10 @@ export async function GET(request: NextRequest) {
     (searchParams.get("week-style") as WeekdayStyle) || "narrow";
   // const weekdayFont = searchParams.get("week-font") || "sans";
   const weekdaySize: number = Number(searchParams.get("week-size")) || 55;
+  const weekdayLabel: LabelVisibility =
+    (searchParams.get("week-label") as LabelVisibility) || "show";
+  const nonMonthDays: LabelVisibility =
+    (searchParams.get("non-days") as LabelVisibility) || "show";
 
   const monthStyle: MonthStyle =
     (searchParams.get("month-style") as MonthStyle) || "long";
@@ -151,7 +155,7 @@ export async function GET(request: NextRequest) {
               }}
               // tw={`${weekdayFont}`}
             >
-              {formatter({ weekdayStyle })?.format(
+              {formatter({ weekdayStyle, weekdayLabel })?.format(
                 parseDate(firstDate.add({ days: index }).toString()).toDate(
                   getLocalTimeZone(),
                 ),
@@ -176,7 +180,9 @@ export async function GET(request: NextRequest) {
                     firstDate.add({ weeks: week, days: day }),
                   )
                     ? 1
-                    : 0.5,
+                    : nonMonthDays == "hide"
+                      ? 0
+                      : 0.5,
                   width:
                     weekdayStyle == "long"
                       ? "24rem"

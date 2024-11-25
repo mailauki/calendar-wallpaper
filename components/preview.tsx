@@ -23,6 +23,8 @@ export default function Preview({
   weekdayStyle,
   weekdayFont,
   weekdaySize,
+  weekdayLabel,
+  nonMonthDays,
   monthLabel,
   monthStyle,
   monthFont,
@@ -34,7 +36,6 @@ export default function Preview({
   const searchParams = useSearchParams();
   const text = textColor.split("#")[1];
   const bg = bgColor.map((color) => color.split("#").join("")).join("-");
-  // let url = `/api/og?date=${date.toString()}&bg=${bg}&text=${text}&start=${weekdayStart}&label=${weekdayLabel}&ar=${ratio}&size=${size}`;
 
   const setParams = React.useCallback(
     (name: QueryParams, value: string) => {
@@ -63,6 +64,10 @@ export default function Preview({
     setParams("week-font", weekdayFont) +
     "&" +
     setParams("week-size", String(weekdaySize)) +
+    "&" +
+    setParams("week-label", weekdayLabel) +
+    "&" +
+    setParams("non-days", nonMonthDays) +
     "&" +
     setParams("month-style", monthStyle) +
     "&" +

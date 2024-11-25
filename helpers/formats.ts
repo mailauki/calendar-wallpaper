@@ -4,12 +4,14 @@ import { LabelVisibility, MonthStyle, WeekdayStyle } from "@/types";
 
 export function formatter({
   weekdayStyle,
+  weekdayLabel,
   monthStyle,
   monthLabel,
   yearLabel,
 }: {
   weekdayStyle?: WeekdayStyle;
   monthStyle?: MonthStyle;
+  weekdayLabel?: LabelVisibility;
   monthLabel?: LabelVisibility;
   yearLabel?: LabelVisibility;
 }) {
@@ -27,7 +29,7 @@ export function formatter({
     year: "numeric",
   });
 
-  if (weekdayStyle) {
+  if (weekdayStyle && weekdayLabel == "show") {
     return weekday;
   } else {
     if (yearLabel == "show" && monthLabel == "show") {
@@ -40,8 +42,6 @@ export function formatter({
       return undefined;
     }
   }
-
-  // return weekdayStyle ? weekday : yearLabel == "show" ? monthYear : month;
 }
 
 export const dayFormatter = new DateFormatter("en-US", {

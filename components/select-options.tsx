@@ -75,6 +75,10 @@ export default function SelectOptions() {
     React.useState<WeekdayStyle>("narrow");
   const [weekdayFont, setWeekdayFont] = React.useState<string>("sans");
   const [weekdaySize, setWeekdaySize] = React.useState<number>(55);
+  const [weekdayLabel, setWeekdayLabel] =
+    React.useState<LabelVisibility>("show");
+  const [nonMonthDays, setNonMonthDays] =
+    React.useState<LabelVisibility>("show");
 
   // month/year label length, font family, and size
   const [monthStyle, setMonthStyle] = React.useState<MonthStyle>("long");
@@ -98,10 +102,12 @@ export default function SelectOptions() {
             monthLabel={monthLabel}
             monthSize={monthSize}
             monthStyle={monthStyle}
+            nonMonthDays={nonMonthDays}
             ratio={ratio}
             textColor={textColor}
             wallpaperSize={size}
             weekdayFont={weekdayFont}
+            weekdayLabel={weekdayLabel}
             weekdaySize={weekdaySize}
             weekdayStart={weekdayStart}
             weekdayStyle={weekdayStyle}
@@ -147,14 +153,18 @@ export default function SelectOptions() {
                 yearLabel={yearLabel}
               />
               <CalendarStyleSelect
+                nonMonthDays={nonMonthDays}
+                setNonMonthDays={setNonMonthDays}
                 setWeekdayFont={setWeekdayFont}
                 setWeekdaySize={setWeekdaySize}
                 weekdayFont={weekdayFont}
                 weekdaySize={weekdaySize}
               />
               <WeekdayStyleSelect
+                setWeekdayLabel={setWeekdayLabel}
                 setWeekdayStart={setWeekdayStart}
                 setWeekdayStyle={setWeekdayStyle}
+                weekdayLabel={weekdayLabel}
                 weekdayStart={weekdayStart}
                 weekdayStyle={weekdayStyle}
               />

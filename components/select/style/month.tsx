@@ -46,6 +46,7 @@ export default function MonthStyleSelect({
             ))}
           </RadioGroup> */}
           <Input
+            className="max-w-24"
             label="Font size"
             labelPlacement="outside"
             type="number"
