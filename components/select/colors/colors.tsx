@@ -3,14 +3,7 @@
 import "@/styles/color-picker.css";
 
 import React from "react";
-import {
-  CardBody,
-  CardHeader,
-  Button,
-  Tabs,
-  Tab,
-  Chip,
-} from "@nextui-org/react";
+import { CardBody, CardHeader, Button, Chip } from "@nextui-org/react";
 import { colord, extend } from "colord";
 import a11yPlugin from "colord/plugins/a11y";
 extend([a11yPlugin]);
@@ -27,7 +20,6 @@ import { gradientColors, solidColors } from "@/helpers/colors";
 
 import ColorPicker from "./color-picker";
 import ColorButton from "./button";
-import ImageSelect from "./image";
 
 export default function ColorsSelect({
   bgColor,
@@ -176,7 +168,32 @@ export default function ColorsSelect({
               )}
           </CardHeader>
           <CardBody>
-            <Tabs fullWidth aria-label="Background options">
+            <div className="flex flex-col gap-3">
+              {bgColor.map((color, index) => (
+                <ColorPicker
+                  key={index}
+                  color={color}
+                  index={index}
+                  length={bgColor.length}
+                  moveDown={moveDownBgColor}
+                  moveUp={moveUpBgColor}
+                  removeColor={removeBgColor}
+                  showRemove={bgColor.length > 1}
+                  updateColor={updateColor}
+                />
+              ))}
+              <Button
+                className="mt-4 w-1/5 min-w-fit"
+                radius="full"
+                size="sm"
+                startContent={<AddIcon />}
+                variant="light"
+                onPress={() => setBgColor([...bgColor, "#000000"])}
+              >
+                Add color
+              </Button>
+            </div>
+            {/* <Tabs fullWidth aria-label="Background options">
               <Tab key="bg-color" title="Color">
                 <div className="flex flex-col gap-3">
                   {bgColor.map((color, index) => (
@@ -207,7 +224,7 @@ export default function ColorsSelect({
               <Tab key="bg-image" title="Image">
                 <ImageSelect bgImage={bgImage} setBgImage={setBgImage} />
               </Tab>
-            </Tabs>
+            </Tabs> */}
           </CardBody>
         </Box>
       </div>

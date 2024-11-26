@@ -8,6 +8,12 @@ import {
   DateValue,
 } from "@internationalized/date";
 import { Tab, Tabs } from "@nextui-org/react";
+import {
+  BsPalette as PaletteIcon,
+  BsCalendarMonth as CalendarIcon,
+  BsType as FontIcon,
+  BsAspectRatio as RatioIcon,
+} from "react-icons/bs";
 
 import {
   AspectRatio,
@@ -118,7 +124,16 @@ export default function SelectOptions() {
 
       <div className="flex flex-col w-full lg:max-w-md md:max-w-md">
         <Tabs fullWidth aria-label="Options">
-          <Tab key="color" title="Color">
+          <Tab
+            key="color"
+            aria-label="Color"
+            title={
+              <div className="flex items-center space-x-2">
+                <PaletteIcon />
+                <span>Color</span>
+              </div>
+            }
+          >
             <ColorsSelect
               bgColor={bgColor}
               bgImage={bgImage}
@@ -128,7 +143,16 @@ export default function SelectOptions() {
               textColor={textColor}
             />
           </Tab>
-          <Tab key="size" title="Size">
+          <Tab
+            key="size"
+            aria-label="Size"
+            title={
+              <div className="flex items-center space-x-2">
+                <RatioIcon />
+                <span>Size</span>
+              </div>
+            }
+          >
             <Box>
               <SizeSelect
                 ratio={ratio}
@@ -138,7 +162,16 @@ export default function SelectOptions() {
               />
             </Box>
           </Tab>
-          <Tab key="style" title="Style">
+          <Tab
+            key="style"
+            aria-label="Style"
+            title={
+              <div className="flex items-center space-x-2">
+                <FontIcon />
+                <span>Style</span>
+              </div>
+            }
+          >
             <div className="flex flex-col gap-4">
               <MonthStyleSelect
                 monthFont={monthFont}
@@ -170,7 +203,16 @@ export default function SelectOptions() {
               />
             </div>
           </Tab>
-          <Tab key="date" title="Date">
+          <Tab
+            key="date"
+            aria-label="Date"
+            title={
+              <div className="flex items-center space-x-2">
+                <CalendarIcon />
+                <span>Date</span>
+              </div>
+            }
+          >
             <div className="flex flex-col gap-4">
               <Box>
                 <MonthsSelect

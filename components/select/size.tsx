@@ -4,6 +4,7 @@ import React from "react";
 import {
   Accordion,
   AccordionItem,
+  CardBody,
   CardFooter,
   CardHeader,
   Chip,
@@ -38,8 +39,8 @@ export default function SizeSelect({
 
   return (
     <>
-      <CardHeader>
-        {index !== "0" && (
+      {index !== "0" && (
+        <CardHeader>
           <Chip
             className="pe-2"
             color="warning"
@@ -49,35 +50,41 @@ export default function SizeSelect({
           >
             Recommended to change font size for lower quality
           </Chip>
-        )}
-      </CardHeader>
-      <RadioGroup
-        className="w-full min-w-full p-4"
-        label="Select aspect ratio"
-        orientation="horizontal"
-        value={ratio}
-        onValueChange={(value: string) => setRatio(value as AspectRatio)}
-      >
-        {Object.keys(sizes).map((ratio) => (
-          <Radio key={ratio} description={ratio} value={ratio}>
-            {layout[ratio as AspectRatio]}
-          </Radio>
-        ))}
-      </RadioGroup>
+        </CardHeader>
+      )}
+      <CardBody>
+        <RadioGroup
+          className="w-full min-w-full"
+          label="Select aspect ratio"
+          orientation="horizontal"
+          value={ratio}
+          onValueChange={(value: string) => setRatio(value as AspectRatio)}
+        >
+          {Object.keys(sizes).map((ratio) => (
+            <Radio key={ratio} description={ratio} value={ratio}>
+              {layout[ratio as AspectRatio]}
+            </Radio>
+          ))}
+        </RadioGroup>
 
-      <RadioGroup
-        className="w-full min-w-full p-4"
-        label="Select wallpaper size/quality"
-        orientation="horizontal"
-        value={index}
-        onValueChange={setIndex}
-      >
-        {sizes[ratio as AspectRatio].map((size, index) => (
-          <Radio key={index} description={quality[index]} value={String(index)}>
-            {getWxH(size)}
-          </Radio>
-        ))}
-      </RadioGroup>
+        <RadioGroup
+          className="w-full min-w-full"
+          label="Select wallpaper size/quality"
+          orientation="horizontal"
+          value={index}
+          onValueChange={setIndex}
+        >
+          {sizes[ratio as AspectRatio].map((size, index) => (
+            <Radio
+              key={index}
+              description={quality[index]}
+              value={String(index)}
+            >
+              {getWxH(size)}
+            </Radio>
+          ))}
+        </RadioGroup>
+      </CardBody>
       <CardFooter>
         <Accordion variant="bordered">
           <AccordionItem

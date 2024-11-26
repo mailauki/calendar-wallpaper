@@ -101,7 +101,7 @@ export default function Preview({
       {!imageError && (
         <CardBody className="items-center">
           <Image
-            alt={date.toString()}
+            alt={date.year + "-" + date.month + ".jpeg"}
             height={440}
             isLoading={!imageUrl}
             src={imageUrl}
@@ -117,7 +117,8 @@ export default function Preview({
           as={Link}
           className="w-2/5 min-w-fit"
           color="primary"
-          download={imageUrl}
+          download={date.year + "-" + date.month + ".jpeg"}
+          href={imageUrl}
           radius="full"
         >
           Download
